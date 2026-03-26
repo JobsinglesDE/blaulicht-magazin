@@ -1,18 +1,19 @@
-import { DocumentRenderer } from '@keystatic/core/renderer';
+import Markdoc, { type RenderableTreeNode } from '@markdoc/markdoc';
+import React from 'react';
 
 type Props = {
-  document: any;
+  content: { node: any } | any[];
 };
 
-export function ArticleBody({ document }: Props) {
-  // Handle both resolved (Element[]) and unresolved ({ node: Node }) formats
-  const doc = Array.isArray(document) ? document : [];
+export function ArticleBody({ content }: Props) {
+  // Content from Keystatic is a Markdoc AST node
+  const node = 'node' in content ? content.node : content;
 
-  if (doc.length === 0) return null;
+  const renderable = Markdoc.transform(node);
 
   return (
     <div className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-foreground/85 prose-a:text-brand-orange prose-strong:text-foreground prose-code:text-brand-orange dark:prose-invert">
-      <DocumentRenderer document={doc} />
+      {Markdoc.renderers.react(renderable, React)}
     </div>
   );
 }

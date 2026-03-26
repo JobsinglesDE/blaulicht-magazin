@@ -20,8 +20,6 @@ export default async function AssistenzaerzteArticle({ params }: { params: Promi
   const article = seriesArticle || await reader.collections.articles.read(slug, { resolveLinkedFiles: true });
   if (!article) notFound();
 
-  const content = article.content;
-
   return (
     <div data-theme="dark" className="bg-background text-foreground min-h-screen">
       <section className="py-20 px-4">
@@ -37,7 +35,7 @@ export default async function AssistenzaerzteArticle({ params }: { params: Promi
             </div>
           )}
 
-          <ArticleBody document={content} />
+          <ArticleBody content={article.content} />
 
           {'takeaways' in article && article.takeaways && article.takeaways.length > 0 && (
             <div className="bg-surface-dark rounded-lg p-6 mt-8">
