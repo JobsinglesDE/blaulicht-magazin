@@ -5,15 +5,25 @@ export function Footer() {
 
   return (
     <footer className="bg-primary text-white/90 relative overflow-visible">
-      {/* Tape top-left */}
+      {/* Tape top-left — fast senkrecht, zerrissene Ränder */}
       <div
-        className="absolute -top-5 left-[20%] w-28 h-9 rounded-sm hidden md:block"
-        style={{ background: 'rgba(255,255,255,0.35)', transform: 'rotate(-12deg)', boxShadow: '0 3px 12px rgba(0,0,0,0.18)' }}
+        className="absolute -top-6 left-[20%] w-10 h-24 hidden md:block"
+        style={{
+          background: 'rgba(255,255,255,0.42)',
+          transform: 'rotate(-78deg)',
+          boxShadow: '0 3px 14px rgba(0,0,0,0.2)',
+          clipPath: 'polygon(4% 0%, 98% 2%, 100% 18%, 96% 35%, 100% 52%, 97% 70%, 100% 88%, 95% 100%, 3% 98%, 0% 82%, 3% 65%, 0% 48%, 4% 30%, 0% 14%)',
+        }}
       />
       {/* Tape top-right */}
       <div
-        className="absolute -top-5 right-[20%] w-24 h-8 rounded-sm hidden md:block"
-        style={{ background: 'rgba(255,255,255,0.35)', transform: 'rotate(4deg)', boxShadow: '0 3px 12px rgba(0,0,0,0.18)' }}
+        className="absolute -top-5 right-[20%] w-24 h-8 hidden md:block"
+        style={{
+          background: 'rgba(255,255,255,0.42)',
+          transform: 'rotate(4deg)',
+          boxShadow: '0 3px 12px rgba(0,0,0,0.18)',
+          clipPath: 'polygon(2% 0%, 100% 3%, 97% 100%, 0% 98%)',
+        }}
       />
 
       {/* Animated gradient accent line */}
