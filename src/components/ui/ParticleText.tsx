@@ -150,8 +150,9 @@ export function ParticleText({ text, texts, className = '', colors = BRAND_COLOR
       oc.textAlign = 'center';
       oc.textBaseline = 'middle';
 
-      const lineHeight = fontSize * 1.15;
-      const startY = h / 2 - ((lines.length - 1) * lineHeight) / 2;
+      const lineHeight = fontSize * 1.2;
+      const totalTextH = (lines.length - 1) * lineHeight;
+      const startY = (h - totalTextH) / 2;
       const centerX = w / 2;
       for (let i = 0; i < lines.length; i++) {
         oc.fillText(lines[i], centerX, startY + i * lineHeight);
