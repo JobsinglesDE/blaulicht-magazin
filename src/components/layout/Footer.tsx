@@ -4,74 +4,95 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-bg-dark text-white/90 relative overflow-hidden">
-      {/* Top accent — gradient bar */}
-      <div className="h-1 bg-gradient-to-r from-brand-orange via-secondary to-brand-orange" />
+    <footer className="bg-bg-light text-foreground relative overflow-visible">
+      {/* Tape top-left */}
+      <div
+        className="absolute -top-5 left-8 w-20 h-8 bg-[#1a1a1a]/80 rounded-sm hidden md:block"
+        style={{ transform: 'rotate(-8deg)', boxShadow: '0 2px 6px rgba(0,0,0,0.2)' }}
+      />
+      {/* Tape top-right */}
+      <div
+        className="absolute -top-5 right-8 w-20 h-8 bg-[#1a1a1a]/80 rounded-sm hidden md:block"
+        style={{ transform: 'rotate(6deg)', boxShadow: '0 2px 6px rgba(0,0,0,0.2)' }}
+      />
 
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Brand — with tape decoration */}
-          <div className="relative">
-            <div
-              className="absolute -top-2 left-6 w-14 h-5 rounded-sm hidden md:block"
-              style={{ background: 'rgba(255,255,255,0.08)', transform: 'rotate(-4deg)', boxShadow: '0 1px 2px rgba(0,0,0,0.15)' }}
-            />
+      <div className="max-w-7xl mx-auto px-6 pt-16 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+          {/* Brand */}
+          <div>
             <div className="flex items-center gap-3 mb-4">
               <Image
                 src="/logos/jobsingles-logo.png"
                 alt="Jobsingles Network"
-                width={44}
-                height={44}
+                width={36}
+                height={36}
                 className="rounded-lg"
               />
-              <h3 className="font-bold text-xl text-white tracking-tight">
+              <h3 className="font-bold text-lg tracking-tight">
                 Blaulicht<span className="text-brand-orange"> Magazin</span>
               </h3>
             </div>
-            <p className="text-sm text-white/50 leading-relaxed">
+            <p className="text-sm text-foreground/50 leading-relaxed">
               Das Magazin für Singles bei Polizei, Feuerwehr und Sanität.
               Partnersuche, Erfolgsgeschichten und regionale Tipps.
             </p>
           </div>
 
-          {/* Navigation */}
+          {/* Magazin */}
           <div>
-            <h4 className="text-xs uppercase tracking-widest font-bold text-brand-orange/60 mb-4">
+            <h4 className="text-xs uppercase tracking-widest font-bold text-foreground/40 mb-4">
               Magazin
             </h4>
-            <nav className="flex flex-col gap-2.5">
-              <a href="/singles-partnersuche" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+            <nav className="flex flex-col gap-2">
+              <a href="/singles-partnersuche" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
                 Singles & Partnersuche
               </a>
-              <a href="/tv-news" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+              <a href="/tv-news" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
                 TV News
               </a>
-              <a href="/regional" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+              <a href="/regional" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
                 Regional
               </a>
-              <a href="/erfolgsgeschichten" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+              <a href="/erfolgsgeschichten" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
                 Erfolgsgeschichten
               </a>
             </nav>
           </div>
 
-          {/* Legal — with tape decoration */}
-          <div className="relative">
-            <div
-              className="absolute -top-2 right-8 w-12 h-5 rounded-sm hidden md:block"
-              style={{ background: 'rgba(255,255,255,0.08)', transform: 'rotate(5deg)', boxShadow: '0 1px 2px rgba(0,0,0,0.15)' }}
-            />
-            <h4 className="text-xs uppercase tracking-widest font-bold text-brand-orange/60 mb-4">
+          {/* Netzwerk */}
+          <div>
+            <h4 className="text-xs uppercase tracking-widest font-bold text-foreground/40 mb-4">
+              Netzwerk
+            </h4>
+            <nav className="flex flex-col gap-2">
+              <a href="https://blaulichtsingles.ch" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
+                Blaulichtsingles.ch
+              </a>
+              <a href="https://farmersingles.de" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
+                Farmersingles.de
+              </a>
+              <a href="https://singlebuure.ch" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
+                Singlebuure.ch
+              </a>
+              <a href="https://jobsingles.de" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
+                Jobsingles.de
+              </a>
+            </nav>
+          </div>
+
+          {/* Rechtliches */}
+          <div>
+            <h4 className="text-xs uppercase tracking-widest font-bold text-foreground/40 mb-4">
               Rechtliches
             </h4>
-            <nav className="flex flex-col gap-2.5">
-              <a href="https://blaulichtsingles.ch/impressum" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+            <nav className="flex flex-col gap-2">
+              <a href="https://blaulichtsingles.ch/impressum" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
                 Impressum
               </a>
-              <a href="https://blaulichtsingles.ch/datenschutz" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+              <a href="https://blaulichtsingles.ch/datenschutz" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
                 Datenschutz
               </a>
-              <a href="https://blaulichtsingles.ch/ueber-uns" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+              <a href="https://blaulichtsingles.ch/ueber-uns" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
                 Über uns
               </a>
             </nav>
@@ -79,8 +100,8 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-white/40">
+        <div className="mt-12 pt-5 border-t border-foreground/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-foreground/40">
             © {currentYear} Blaulichtsingles.ch — Alle Rechte vorbehalten.
           </p>
           <a
@@ -94,12 +115,6 @@ export function Footer() {
           </a>
         </div>
       </div>
-
-      {/* Bottom corner tape */}
-      <div
-        className="absolute bottom-6 right-6 w-16 h-5 rounded-sm hidden md:block"
-        style={{ background: 'rgba(255,255,255,0.06)', transform: 'rotate(8deg)', boxShadow: '0 1px 2px rgba(0,0,0,0.1)' }}
-      />
     </footer>
   );
 }
