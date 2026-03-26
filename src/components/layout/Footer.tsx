@@ -4,104 +4,110 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-surface text-foreground relative overflow-visible border-t border-foreground/5">
-      {/* Tape top-left — dark, inside content, like ActivationLed */}
+    <footer className="bg-primary text-white/90 relative overflow-visible">
+      {/* Tape top-left — lighter than dark blue */}
       <div
         className="absolute -top-5 left-[8%] w-24 h-8 rounded-sm hidden md:block"
-        style={{ background: '#1a1a1a', transform: 'rotate(-8deg)', boxShadow: '0 3px 10px rgba(0,0,0,0.15)', opacity: 0.85 }}
+        style={{ background: 'rgba(255,255,255,0.12)', transform: 'rotate(-8deg)', boxShadow: '0 3px 10px rgba(0,0,0,0.15)' }}
       />
       {/* Tape top-right */}
       <div
         className="absolute -top-5 right-[8%] w-24 h-8 rounded-sm hidden md:block"
-        style={{ background: '#1a1a1a', transform: 'rotate(6deg)', boxShadow: '0 3px 10px rgba(0,0,0,0.15)', opacity: 0.85 }}
+        style={{ background: 'rgba(255,255,255,0.12)', transform: 'rotate(6deg)', boxShadow: '0 3px 10px rgba(0,0,0,0.15)' }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 pt-16 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <Image
-                src="/logos/jobsingles-logo.png"
-                alt="Jobsingles Network"
-                width={36}
-                height={36}
-                className="rounded-lg"
-              />
-              <h3 className="font-bold text-lg tracking-tight">
-                Blaulicht<span className="text-brand-orange"> Magazin</span>
-              </h3>
+      {/* Orange accent line */}
+      <div className="h-1 bg-gradient-to-r from-brand-orange via-secondary to-brand-orange" />
+
+      <div className="max-w-7xl mx-auto px-6 pt-14 pb-10">
+        {/* Inner content area — slightly lighter surface */}
+        <div className="rounded-2xl p-8 md:p-10" style={{ background: 'rgba(255,255,255,0.06)' }}>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+            {/* Brand */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <Image
+                  src="/logos/jobsingles-logo.png"
+                  alt="Jobsingles Network"
+                  width={36}
+                  height={36}
+                  className="rounded-lg"
+                />
+                <h3 className="font-bold text-lg text-white tracking-tight">
+                  Blaulicht<span className="text-brand-orange"> Magazin</span>
+                </h3>
+              </div>
+              <p className="text-sm text-white/50 leading-relaxed">
+                Das Magazin für Singles bei Polizei, Feuerwehr und Sanität.
+                Partnersuche, Erfolgsgeschichten und regionale Tipps.
+              </p>
             </div>
-            <p className="text-sm text-foreground/50 leading-relaxed">
-              Das Magazin für Singles bei Polizei, Feuerwehr und Sanität.
-              Partnersuche, Erfolgsgeschichten und regionale Tipps.
-            </p>
-          </div>
 
-          {/* Magazin */}
-          <div>
-            <h4 className="text-xs uppercase tracking-widest font-bold text-foreground/40 mb-4">
-              Magazin
-            </h4>
-            <nav className="flex flex-col gap-2">
-              <a href="/singles-partnersuche" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
-                Singles & Partnersuche
-              </a>
-              <a href="/tv-news" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
-                TV News
-              </a>
-              <a href="/regional" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
-                Regional
-              </a>
-              <a href="/erfolgsgeschichten" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
-                Erfolgsgeschichten
-              </a>
-            </nav>
-          </div>
+            {/* Magazin */}
+            <div>
+              <h4 className="text-xs uppercase tracking-widest font-bold text-white/40 mb-4">
+                Magazin
+              </h4>
+              <nav className="flex flex-col gap-2">
+                <a href="/singles-partnersuche" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+                  Singles & Partnersuche
+                </a>
+                <a href="/tv-news" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+                  TV News
+                </a>
+                <a href="/regional" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+                  Regional
+                </a>
+                <a href="/erfolgsgeschichten" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+                  Erfolgsgeschichten
+                </a>
+              </nav>
+            </div>
 
-          {/* Netzwerk */}
-          <div>
-            <h4 className="text-xs uppercase tracking-widest font-bold text-foreground/40 mb-4">
-              Netzwerk
-            </h4>
-            <nav className="flex flex-col gap-2">
-              <a href="https://blaulichtsingles.ch" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
-                Blaulichtsingles.ch
-              </a>
-              <a href="https://farmersingles.de" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
-                Farmersingles.de
-              </a>
-              <a href="https://singlebuure.ch" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
-                Singlebuure.ch
-              </a>
-              <a href="https://jobsingles.de" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
-                Jobsingles.de
-              </a>
-            </nav>
-          </div>
+            {/* Netzwerk */}
+            <div>
+              <h4 className="text-xs uppercase tracking-widest font-bold text-white/40 mb-4">
+                Netzwerk
+              </h4>
+              <nav className="flex flex-col gap-2">
+                <a href="https://blaulichtsingles.ch" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+                  Blaulichtsingles.ch
+                </a>
+                <a href="https://farmersingles.de" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+                  Farmersingles.de
+                </a>
+                <a href="https://singlebuure.ch" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+                  Singlebuure.ch
+                </a>
+                <a href="https://jobsingles.de" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+                  Jobsingles.de
+                </a>
+              </nav>
+            </div>
 
-          {/* Rechtliches */}
-          <div>
-            <h4 className="text-xs uppercase tracking-widest font-bold text-foreground/40 mb-4">
-              Rechtliches
-            </h4>
-            <nav className="flex flex-col gap-2">
-              <a href="https://blaulichtsingles.ch/impressum" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
-                Impressum
-              </a>
-              <a href="https://blaulichtsingles.ch/datenschutz" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
-                Datenschutz
-              </a>
-              <a href="https://blaulichtsingles.ch/ueber-uns" className="text-sm text-foreground/60 hover:text-brand-orange transition-colors">
-                Über uns
-              </a>
-            </nav>
+            {/* Rechtliches */}
+            <div>
+              <h4 className="text-xs uppercase tracking-widest font-bold text-white/40 mb-4">
+                Rechtliches
+              </h4>
+              <nav className="flex flex-col gap-2">
+                <a href="https://blaulichtsingles.ch/impressum" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+                  Impressum
+                </a>
+                <a href="https://blaulichtsingles.ch/datenschutz" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+                  Datenschutz
+                </a>
+                <a href="https://blaulichtsingles.ch/ueber-uns" className="text-sm text-white/60 hover:text-brand-orange transition-colors">
+                  Über uns
+                </a>
+              </nav>
+            </div>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-5 border-t border-foreground/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-foreground/40">
+        <div className="mt-8 pt-5 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-white/40">
             © {currentYear} Blaulichtsingles.ch — Alle Rechte vorbehalten.
           </p>
           <a
