@@ -7,13 +7,13 @@ export function Footer() {
     <footer className="bg-primary text-white/90 relative overflow-visible">
       {/* Tape top-left */}
       <div
-        className="absolute -top-5 left-[20%] w-24 h-8 rounded-sm hidden md:block"
-        style={{ background: 'rgba(255,255,255,0.22)', transform: 'rotate(-8deg)', boxShadow: '0 3px 10px rgba(0,0,0,0.15)' }}
+        className="absolute -top-5 left-[20%] w-28 h-9 rounded-sm hidden md:block"
+        style={{ background: 'rgba(255,255,255,0.35)', transform: 'rotate(-12deg)', boxShadow: '0 3px 12px rgba(0,0,0,0.18)' }}
       />
       {/* Tape top-right */}
       <div
         className="absolute -top-5 right-[20%] w-24 h-8 rounded-sm hidden md:block"
-        style={{ background: 'rgba(255,255,255,0.22)', transform: 'rotate(6deg)', boxShadow: '0 3px 10px rgba(0,0,0,0.15)' }}
+        style={{ background: 'rgba(255,255,255,0.35)', transform: 'rotate(4deg)', boxShadow: '0 3px 12px rgba(0,0,0,0.18)' }}
       />
 
       {/* Animated gradient accent line */}
