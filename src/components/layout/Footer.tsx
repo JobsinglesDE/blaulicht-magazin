@@ -13,7 +13,7 @@ export function Footer() {
         <div className="relative rounded-2xl p-8 md:p-10" style={{ background: 'rgba(255,255,255,0.06)' }}>
           {/* Tape left — fast senkrecht, zerrissene Ränder, dunkelgrau */}
           <div
-            className="absolute -top-4 left-12 w-9 h-20 hidden md:block z-10"
+            className="absolute -top-8 left-24 w-9 h-20 hidden md:block z-10"
             style={{
               background: 'rgba(255,255,255,0.38)',
               transform: 'rotate(-5deg)',
