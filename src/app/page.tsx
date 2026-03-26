@@ -1,4 +1,5 @@
 import { reader } from '@/lib/keystatic';
+import { getArticleUrl } from '@/lib/routes';
 
 export default async function HomePage() {
   const articles = await reader.collections.articles.all();
@@ -23,12 +24,13 @@ export default async function HomePage() {
         <h2 className="text-3xl font-bold mb-8">Neueste Artikel</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {articles.slice(0, 3).map((article) => (
-            <article key={article.slug} className="rounded-lg overflow-hidden bg-surface shadow-lg">
+            <a key={article.slug} href={getArticleUrl(article.slug, article.entry.type, article.entry.series)} className="block rounded-lg overflow-hidden bg-surface shadow-lg hover:shadow-xl transition-shadow">
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{article.entry.title}</h3>
+                <span className="text-xs uppercase tracking-wider text-brand-orange font-semibold">{article.entry.category}</span>
+                <h3 className="text-xl font-semibold mt-2 mb-2">{article.entry.title}</h3>
                 <p className="text-foreground/70">{article.entry.excerpt}</p>
               </div>
-            </article>
+            </a>
           ))}
           {articles.length === 0 && (
             <p className="text-foreground/50 col-span-3 text-center py-12">
