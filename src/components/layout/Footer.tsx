@@ -11,23 +11,23 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 pt-14 pb-10">
         {/* Inner content area — slightly lighter surface */}
         <div className="relative rounded-2xl p-8 md:p-10" style={{ background: 'rgba(255,255,255,0.06)' }}>
-          {/* Tape left — fast senkrecht, zerrissene Ränder, über dem Rand */}
+          {/* Tape left — fast senkrecht, zerrissene Ränder, dunkelgrau */}
           <div
-            className="absolute -top-5 left-8 w-10 h-20 hidden md:block z-10"
+            className="absolute -top-4 left-12 w-9 h-20 hidden md:block z-10"
             style={{
-              background: 'rgba(255,255,255,0.45)',
-              transform: 'rotate(-82deg)',
-              boxShadow: '0 3px 14px rgba(0,0,0,0.22)',
+              background: 'rgba(30,30,30,0.7)',
+              transform: 'rotate(-80deg)',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.35)',
               clipPath: 'polygon(4% 0%, 98% 2%, 100% 18%, 96% 35%, 100% 52%, 97% 70%, 100% 88%, 95% 100%, 3% 98%, 0% 82%, 3% 65%, 0% 48%, 4% 30%, 0% 14%)',
             }}
           />
-          {/* Tape right — leicht schräg, über dem Rand */}
+          {/* Tape right — leicht schräg, dunkelgrau */}
           <div
-            className="absolute -top-4 right-10 w-24 h-8 hidden md:block z-10"
+            className="absolute -top-3 right-14 w-20 h-7 hidden md:block z-10"
             style={{
-              background: 'rgba(255,255,255,0.45)',
-              transform: 'rotate(5deg)',
-              boxShadow: '0 3px 12px rgba(0,0,0,0.2)',
+              background: 'rgba(30,30,30,0.65)',
+              transform: 'rotate(6deg)',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.3)',
               clipPath: 'polygon(2% 0%, 100% 3%, 98% 100%, 0% 97%)',
             }}
           />
