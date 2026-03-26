@@ -2,7 +2,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-bg-dark text-fg-dark relative overflow-hidden">
+    <footer className="bg-bg-dark text-white/90 relative overflow-hidden">
       {/* Orange top accent line */}
       <div className="h-1 bg-brand-orange" />
 
@@ -13,7 +13,7 @@ export function Footer() {
             <h3 className="font-bold text-xl text-white tracking-tight mb-4">
               Blaulicht<span className="text-brand-orange"> Magazin</span>
             </h3>
-            <p className="text-sm text-fg-dark/60 leading-relaxed">
+            <p className="text-sm text-white/60 leading-relaxed">
               Das Magazin für Singles bei Polizei, Feuerwehr und Sanität.
               Partnersuche, Erfolgsgeschichten und regionale Tipps.
             </p>
@@ -21,20 +21,20 @@ export function Footer() {
 
           {/* Navigation */}
           <div>
-            <h4 className="text-xs uppercase tracking-widest font-bold text-fg-dark/40 mb-4">
+            <h4 className="text-xs uppercase tracking-widest font-bold text-white/50 mb-4">
               Magazin
             </h4>
             <nav className="flex flex-col gap-2">
-              <a href="/singles-partnersuche" className="text-sm text-fg-dark/70 hover:text-brand-orange transition-colors">
+              <a href="/singles-partnersuche" className="text-sm text-white/70 hover:text-brand-orange transition-colors">
                 Singles & Partnersuche
               </a>
-              <a href="/tv-news" className="text-sm text-fg-dark/70 hover:text-brand-orange transition-colors">
+              <a href="/tv-news" className="text-sm text-white/70 hover:text-brand-orange transition-colors">
                 TV News
               </a>
-              <a href="/regional" className="text-sm text-fg-dark/70 hover:text-brand-orange transition-colors">
+              <a href="/regional" className="text-sm text-white/70 hover:text-brand-orange transition-colors">
                 Regional
               </a>
-              <a href="/erfolgsgeschichten" className="text-sm text-fg-dark/70 hover:text-brand-orange transition-colors">
+              <a href="/erfolgsgeschichten" className="text-sm text-white/70 hover:text-brand-orange transition-colors">
                 Erfolgsgeschichten
               </a>
             </nav>
@@ -42,17 +42,17 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 className="text-xs uppercase tracking-widest font-bold text-fg-dark/40 mb-4">
+            <h4 className="text-xs uppercase tracking-widest font-bold text-white/50 mb-4">
               Rechtliches
             </h4>
             <nav className="flex flex-col gap-2">
-              <a href="https://blaulichtsingles.ch/impressum" className="text-sm text-fg-dark/70 hover:text-brand-orange transition-colors">
+              <a href="https://blaulichtsingles.ch/impressum" className="text-sm text-white/70 hover:text-brand-orange transition-colors">
                 Impressum
               </a>
-              <a href="https://blaulichtsingles.ch/datenschutz" className="text-sm text-fg-dark/70 hover:text-brand-orange transition-colors">
+              <a href="https://blaulichtsingles.ch/datenschutz" className="text-sm text-white/70 hover:text-brand-orange transition-colors">
                 Datenschutz
               </a>
-              <a href="https://blaulichtsingles.ch/ueber-uns" className="text-sm text-fg-dark/70 hover:text-brand-orange transition-colors">
+              <a href="https://blaulichtsingles.ch/ueber-uns" className="text-sm text-white/70 hover:text-brand-orange transition-colors">
                 Über uns
               </a>
             </nav>
@@ -60,8 +60,8 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-fg-dark/40">
+        <div className="mt-16 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-white/50">
             © {currentYear} Blaulichtsingles.ch — Alle Rechte vorbehalten.
           </p>
           <a
