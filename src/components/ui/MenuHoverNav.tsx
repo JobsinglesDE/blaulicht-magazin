@@ -6,7 +6,15 @@ import { motion } from 'framer-motion';
 
 const NAV_ITEMS = [
   { label: 'Startseite', href: '/' },
-  { label: 'Singles & Partnersuche', href: '/singles-partnersuche' },
+  {
+    label: 'Singles & Partnersuche',
+    href: '/singles-partnersuche',
+    dropdown: [
+      { label: 'Polizei Dating', href: '/singles-partnersuche/polizei' },
+      { label: 'Sanität Dating', href: '/singles-partnersuche/sanitaet' },
+      { label: 'Feuerwehr Dating', href: '/singles-partnersuche/feuerwehr' },
+    ],
+  },
   {
     label: 'TV News',
     href: '/tv-news',
