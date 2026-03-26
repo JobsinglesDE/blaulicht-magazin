@@ -4,16 +4,16 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-bg-light text-foreground relative overflow-visible">
-      {/* Tape top-left */}
+    <footer className="bg-surface text-foreground relative overflow-visible border-t border-foreground/5">
+      {/* Tape top-left — dark, inside content, like ActivationLed */}
       <div
-        className="absolute -top-5 left-8 w-20 h-8 bg-[#1a1a1a]/80 rounded-sm hidden md:block"
-        style={{ transform: 'rotate(-8deg)', boxShadow: '0 2px 6px rgba(0,0,0,0.2)' }}
+        className="absolute -top-5 left-[8%] w-24 h-8 rounded-sm hidden md:block"
+        style={{ background: '#1a1a1a', transform: 'rotate(-8deg)', boxShadow: '0 3px 10px rgba(0,0,0,0.15)', opacity: 0.85 }}
       />
       {/* Tape top-right */}
       <div
-        className="absolute -top-5 right-8 w-20 h-8 bg-[#1a1a1a]/80 rounded-sm hidden md:block"
-        style={{ transform: 'rotate(6deg)', boxShadow: '0 2px 6px rgba(0,0,0,0.2)' }}
+        className="absolute -top-5 right-[8%] w-24 h-8 rounded-sm hidden md:block"
+        style={{ background: '#1a1a1a', transform: 'rotate(6deg)', boxShadow: '0 3px 10px rgba(0,0,0,0.15)', opacity: 0.85 }}
       />
 
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-10">
