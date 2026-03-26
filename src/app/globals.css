@@ -15,18 +15,25 @@
   /* Light Theme */
   --bg-light: #FDFBF7;
   --fg-light: #1A1A1A;
+  --surface-light: #FFFFFF;
 
   /* Dark Theme */
   --bg-dark: #0F1318;
   --surface-dark: #1A2030;
+  --surface-dark-high: #242C3D;
   --fg-dark: #E8E8E8;
+
+  /* Glass */
+  --glass-bg: rgba(30, 58, 95, 0.85);
+  --glass-blur: 16px;
 }
 
 /* Light mode (default) */
 [data-theme="light"] {
   --background: var(--bg-light);
   --foreground: var(--fg-light);
-  --surface: #FFFFFF;
+  --surface: var(--surface-light);
+  --glass-bg: rgba(253, 251, 247, 0.85);
 }
 
 /* Dark mode */
@@ -34,6 +41,7 @@
   --background: var(--bg-dark);
   --foreground: var(--fg-dark);
   --surface: var(--surface-dark);
+  --glass-bg: rgba(15, 19, 24, 0.85);
 }
 
 @theme inline {
@@ -48,6 +56,7 @@
   --color-bg-light: var(--bg-light);
   --color-bg-dark: var(--bg-dark);
   --color-surface-dark: var(--surface-dark);
+  --color-surface-dark-high: var(--surface-dark-high);
   --font-sans: var(--font-roboto);
 }
 
@@ -57,16 +66,132 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* Glass effect for header */
-.glass {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background: rgba(30, 58, 95, 0.85);
+/* === Glass Nav === */
+.glass-nav {
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  background: var(--glass-bg);
 }
 
-/* Tape effect for polaroid cards */
+/* === Ambient Shadow (no harsh drop shadows) === */
+.ambient-shadow {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+}
+
+/* === Tape Effect for Polaroid Cards === */
 .tape {
-  background: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transform: rotate(-2deg);
+  position: absolute;
+  width: 60px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+}
+.tape-center {
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+}
+.tape-left {
+  top: -8px;
+  left: 12px;
+  transform: rotate(-8deg);
+}
+.tape-right {
+  top: -8px;
+  right: 12px;
+  transform: rotate(6deg);
+}
+
+/* === Taped Edge (Footer) === */
+.taped-edge {
+  mask-image: url("data:image/svg+xml,%3Csvg width='100' height='10' viewBox='0 0 100 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10L5 0L10 10L15 0L20 10L25 0L30 10L35 0L40 10L45 0L50 10L55 0L60 10L65 0L70 10L75 0L80 10L85 0L90 10L95 0L100 10H0Z' fill='black'/%3E%3C/svg%3E");
+  mask-repeat: repeat-x;
+  mask-size: 40px 10px;
+}
+
+/* === Particle Text (gradient text) === */
+.particle-text {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--brand-orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === Particle Overlay (dot pattern) === */
+.particle-overlay {
+  background-image: radial-gradient(circle, rgba(74, 144, 217, 0.12) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* === Polaroid Rotations === */
+.polaroid-1 { transform: rotate(-2deg); }
+.polaroid-2 { transform: rotate(3deg); }
+.polaroid-3 { transform: rotate(-1deg); }
+
+/* === Spotlight Gradient (mouse-tracking, set via JS) === */
+.spotlight-gradient {
+  background: radial-gradient(
+    600px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    rgba(74, 144, 217, 0.08),
+    transparent 40%
+  );
+}
+
+/* === Animated Gradient Border === */
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 16px;
+  padding: 3px;
+  background: conic-gradient(from var(--gradient-angle), var(--brand-orange), var(--secondary), var(--brand-orange));
+  animation: gradient-rotate 3s linear infinite;
+}
+
+@keyframes gradient-rotate {
+  to { --gradient-angle: 360deg; }
+}
+
+/* === FAQ Accordion Animation === */
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms ease;
+}
+.faq-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+.faq-panel > div {
+  overflow: hidden;
+}
+
+/* === Reveal Link === */
+.reveal-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms ease;
+}
+.reveal-content[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+.reveal-content > div {
+  overflow: hidden;
+}
+
+/* === Handwriting Animation === */
+@keyframes handwrite {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* === Heart Burst Animation === */
+@keyframes heart-burst {
+  0% { transform: scale(0); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(0) translateY(-20px); opacity: 0; }
 }
