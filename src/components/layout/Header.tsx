@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { MenuHoverNav } from '@/components/ui/MenuHoverNav';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 export function Header() {
   return (
@@ -19,8 +20,11 @@ export function Header() {
           </span>
         </a>
 
-        {/* Navigation */}
-        <MenuHoverNav />
+        {/* Navigation + Theme */}
+        <div className="flex items-center gap-2">
+          <MenuHoverNav />
+          <ThemeToggle />
+        </div>
       </div>
       {/* Animated gradient border */}
       <div className="animated-gradient-line h-[2px]" />

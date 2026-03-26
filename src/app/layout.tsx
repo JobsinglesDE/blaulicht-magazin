@@ -5,6 +5,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { BottomNav } from '@/components/layout/BottomNav';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
+import { StickyCTA } from '@/components/ui/StickyCTA';
 
 const roboto = Roboto({
   variable: '--font-roboto',
@@ -33,6 +34,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-1 pt-20 pb-20 md:pb-0">{children}</main>
           <Footer />
+          <StickyCTA />
           <BottomNav />
         </ThemeProvider>
       </body>
