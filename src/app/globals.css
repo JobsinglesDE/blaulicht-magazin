@@ -196,20 +196,3 @@ body {
   100% { transform: scale(0) translateY(-20px); opacity: 0; }
 }
 
-/* === Heart Scatter Button === */
-.heart-scatter {
-  position: absolute;
-  z-index: -1;
-  transition: all 1000ms cubic-bezier(0.05, 0.83, 0.43, 0.96);
-  filter: drop-shadow(0 0 0 transparent);
-}
-.heart-btn:hover .heart-scatter {
-  z-index: 2;
-  filter: drop-shadow(0 0 10px rgba(255, 68, 102, 0.5));
-}
-.heart-btn:hover .hs-1 { top: -80%; left: -25%; }
-.heart-btn:hover .hs-2 { top: -30%; left: 10%; }
-.heart-btn:hover .hs-3 { top: 60%; left: 25%; }
-.heart-btn:hover .hs-4 { top: 30%; left: 85%; }
-.heart-btn:hover .hs-5 { top: -20%; left: 110%; }
-.heart-btn:hover .hs-6 { top: -50%; left: 70%; }
