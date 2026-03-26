@@ -12,7 +12,7 @@ export function Header() {
               <path d="M12 6v6l4 2" strokeLinecap="round" />
             </svg>
           </div>
-          <span className="font-bold text-xl text-on-primary tracking-tight">
+          <span className="font-bold text-xl text-foreground tracking-tight">
             Blaulicht<span className="text-brand-orange"> Magazin</span>
           </span>
         </a>

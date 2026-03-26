@@ -72,7 +72,7 @@ export function MenuHoverNav() {
                 px-4 py-2 text-xs uppercase tracking-widest font-bold transition-colors duration-200 relative
                 ${isActive(item.href)
                   ? 'text-brand-orange'
-                  : 'text-on-primary/70 hover:text-brand-orange'
+                  : 'text-foreground/70 hover:text-brand-orange'
                 }
               `}
             >
@@ -102,7 +102,7 @@ export function MenuHoverNav() {
                       block px-5 py-2.5 text-sm transition-colors duration-150
                       ${isActive(sub.href)
                         ? 'text-brand-orange bg-white/5'
-                        : 'text-on-primary/80 hover:text-brand-orange hover:bg-white/5'
+                        : 'text-foreground/70 hover:text-brand-orange hover:bg-black/5'
                       }
                     `}
                   >
@@ -121,9 +121,9 @@ export function MenuHoverNav() {
         onClick={() => setMobileOpen(!mobileOpen)}
         aria-label={mobileOpen ? 'Menü schliessen' : 'Menü öffnen'}
       >
-        <span className={`block w-6 h-0.5 bg-on-primary transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
-        <span className={`block w-6 h-0.5 bg-on-primary transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`} />
-        <span className={`block w-6 h-0.5 bg-on-primary transition-all duration-300 ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+        <span className={`block w-6 h-0.5 bg-foreground transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
+        <span className={`block w-6 h-0.5 bg-foreground transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`} />
+        <span className={`block w-6 h-0.5 bg-foreground transition-all duration-300 ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
       </button>
 
       {/* Mobile Overlay */}
@@ -137,8 +137,8 @@ export function MenuHoverNav() {
                   className={`
                     block py-3 px-4 text-lg font-bold transition-colors rounded-lg
                     ${isActive(item.href)
-                      ? 'text-brand-orange bg-white/5'
-                      : 'text-on-primary/80 hover:text-brand-orange'
+                      ? 'text-brand-orange bg-black/5'
+                      : 'text-foreground/70 hover:text-brand-orange'
                     }
                   `}
                 >
@@ -154,7 +154,7 @@ export function MenuHoverNav() {
                           block py-2 text-sm transition-colors
                           ${isActive(sub.href)
                             ? 'text-brand-orange'
-                            : 'text-on-primary/60 hover:text-brand-orange'
+                            : 'text-foreground/60 hover:text-brand-orange'
                           }
                         `}
                       >
