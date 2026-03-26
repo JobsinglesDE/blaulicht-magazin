@@ -1,5 +1,9 @@
 import { reader } from '@/lib/keystatic';
 import { notFound } from 'next/navigation';
+import { ArticleBody } from '@/components/content/ArticleBody';
+import { PolaroidCard } from '@/components/ui/PolaroidCard';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { JsonLd, articleJsonLd } from '@/components/seo/JsonLd';
 
 export async function generateStaticParams() {
   const stories = await reader.collections.stories.all();
@@ -8,22 +12,49 @@ export async function generateStaticParams() {
 
 export default async function StoryDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const story = await reader.collections.stories.read(slug);
+  const story = await reader.collections.stories.read(slug, { resolveLinkedFiles: true });
   if (!story) notFound();
 
   return (
-    <div data-theme="dark" className="bg-background text-foreground min-h-screen">
-      <section className="py-20 px-4">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4">{story.title}</h1>
-          <p className="text-brand-orange text-lg">{story.couple}</p>
-          <p className="text-foreground/60">{story.location}</p>
+    <>
+      <JsonLd
+        data={articleJsonLd({
+          title: story.title,
+          description: story.excerpt,
+          url: `https://blaulichtsingles.ch/magazin/erfolgsgeschichten/${slug}`,
+          image: story.featuredImage || undefined,
+          datePublished: story.publishedAt || undefined,
+        })}
+      />
 
-          <div className="prose prose-invert max-w-none mt-8">
-            {/* TODO: Markdoc renderer */}
+      <div className="max-w-3xl mx-auto px-6 py-12">
+        <Breadcrumbs items={[
+          { label: 'Erfolgsgeschichten', href: '/erfolgsgeschichten' },
+          { label: story.title, href: `/erfolgsgeschichten/${slug}` },
+        ]} />
+
+        {story.featuredImage && (
+          <div className="flex justify-center mb-12">
+            <PolaroidCard rotation="slight" tape="center">
+              <img
+                src={story.featuredImage}
+                alt={story.couple}
+                className="w-full max-w-sm aspect-square object-cover"
+              />
+              <div className="p-3 text-center">
+                <p className="font-bold text-gray-900">{story.couple}</p>
+                {story.location && <p className="text-xs text-gray-500">{story.location}</p>}
+              </div>
+            </PolaroidCard>
           </div>
-        </div>
-      </section>
-    </div>
+        )}
+
+        <h1 className="text-3xl md:text-5xl font-bold mb-4">{story.title}</h1>
+        <p className="text-brand-orange text-lg mb-1">{story.couple}</p>
+        {story.location && <p className="text-foreground/60 mb-8">{story.location}</p>}
+
+        <ArticleBody content={story.content} />
+      </div>
+    </>
   );
 }

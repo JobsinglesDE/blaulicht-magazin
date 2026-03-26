@@ -1,36 +1,37 @@
 import { reader } from '@/lib/keystatic';
 import { getArticleUrl } from '@/lib/routes';
+import { ArticleCard } from '@/components/content/ArticleCard';
+import { SuccessStory } from '@/components/content/SuccessStory';
+import { PillarHero } from '@/components/content/PillarHero';
+import { HeartButton } from '@/components/ui/HeartButton';
+
+const rotations: Array<'left' | 'right' | 'slight'> = ['left', 'right', 'slight'];
 
 export default async function HomePage() {
   const articles = await reader.collections.articles.all();
   const stories = await reader.collections.stories.all();
 
   return (
-    <div data-theme="light">
-      {/* Hero */}
-      <section className="relative h-[70vh] bg-primary flex items-center justify-center">
-        <div className="text-center text-on-primary px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Blaulicht Magazin
-          </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto opacity-90">
-            Das Magazin für Singles bei Polizei, Feuerwehr und Sanität
-          </p>
-        </div>
-      </section>
+    <>
+      <PillarHero
+        title="Blaulicht Magazin"
+        subtitle="Das Magazin für Singles bei Polizei, Feuerwehr und Sanität"
+      />
 
       {/* Neueste Artikel */}
-      <section className="max-w-6xl mx-auto px-4 py-16">
+      <section className="max-w-6xl mx-auto px-6 py-16">
         <h2 className="text-3xl font-bold mb-8">Neueste Artikel</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {articles.slice(0, 3).map((article) => (
-            <a key={article.slug} href={getArticleUrl(article.slug, article.entry.type, article.entry.series)} className="block rounded-lg overflow-hidden bg-surface shadow-lg hover:shadow-xl transition-shadow">
-              <div className="p-6">
-                <span className="text-xs uppercase tracking-wider text-brand-orange font-semibold">{article.entry.category}</span>
-                <h3 className="text-xl font-semibold mt-2 mb-2">{article.entry.title}</h3>
-                <p className="text-foreground/70">{article.entry.excerpt}</p>
-              </div>
-            </a>
+          {articles.slice(0, 6).map((article) => (
+            <ArticleCard
+              key={article.slug}
+              title={article.entry.title}
+              excerpt={article.entry.excerpt}
+              href={getArticleUrl(article.slug, article.entry.type, article.entry.series)}
+              image={article.entry.featuredImage || undefined}
+              category={article.entry.category}
+              date={article.entry.publishedAt || undefined}
+            />
           ))}
           {articles.length === 0 && (
             <p className="text-foreground/50 col-span-3 text-center py-12">
@@ -42,17 +43,36 @@ export default async function HomePage() {
       </section>
 
       {/* Erfolgsgeschichten */}
-      <section className="max-w-6xl mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold mb-8">Erfolgsgeschichten</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {stories.slice(0, 3).map((story) => (
-            <article key={story.slug} className="bg-surface rounded-lg p-6 shadow-lg rotate-[-1deg] hover:rotate-0 transition-transform">
-              <h3 className="text-lg font-semibold">{story.entry.title}</h3>
-              <p className="text-sm text-foreground/60 mt-1">{story.entry.couple} — {story.entry.location}</p>
-            </article>
-          ))}
-        </div>
+      {stories.length > 0 && (
+        <section className="max-w-6xl mx-auto px-6 py-16">
+          <h2 className="text-3xl font-bold mb-8">Erfolgsgeschichten</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+            {stories.slice(0, 3).map((story, i) => (
+              <SuccessStory
+                key={story.slug}
+                title={story.entry.title}
+                couple={story.entry.couple}
+                location={story.entry.location}
+                excerpt={story.entry.excerpt}
+                href={`/erfolgsgeschichten/${story.slug}`}
+                image={story.entry.featuredImage || undefined}
+                rotation={rotations[i % 3]}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* CTA */}
+      <section className="text-center py-20 px-6">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4">Bereit für die Partnersuche?</h2>
+        <p className="text-foreground/60 mb-8 max-w-lg mx-auto">
+          Tausende Blaulicht-Singles warten auf dich.
+        </p>
+        <HeartButton href="https://blaulichtsingles.ch/registrieren">
+          Jetzt kostenlos anmelden
+        </HeartButton>
       </section>
-    </div>
+    </>
   );
 }

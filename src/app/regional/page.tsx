@@ -1,4 +1,7 @@
 import { reader } from '@/lib/keystatic';
+import { PillarHero } from '@/components/content/PillarHero';
+import { ArticleCard } from '@/components/content/ArticleCard';
+import { RegionalProgress } from '@/components/ui/RegionalProgress';
 
 export const metadata = {
   title: 'Regional',
@@ -8,7 +11,6 @@ export const metadata = {
 export default async function Regional() {
   const allRegional = await reader.collections.regional.all();
 
-  // Group by kanton
   const kantons = new Map<string, typeof allRegional>();
   for (const entry of allRegional) {
     const k = entry.entry.kanton;
@@ -17,32 +19,46 @@ export default async function Regional() {
   }
 
   return (
-    <div data-theme="dark" className="bg-background text-foreground min-h-screen">
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Regional</h1>
-          <p className="text-lg text-foreground/80">
-            Blaulicht-Singles in deinem Kanton finden.
-          </p>
-        </div>
-      </section>
+    <>
+      <PillarHero
+        title="Regional"
+        subtitle="Blaulicht-Singles in deinem Kanton finden."
+      />
 
-      <section className="max-w-6xl mx-auto px-4 py-12">
+      <section className="max-w-6xl mx-auto px-6 py-16">
+        {/* Kanton overview */}
+        {kantons.size > 0 && (
+          <div className="max-w-md mb-16">
+            {Array.from(kantons.entries()).map(([kanton, entries]) => (
+              <RegionalProgress
+                key={kanton}
+                label={kanton}
+                value={entries.length}
+                max={Math.max(...Array.from(kantons.values()).map((e) => e.length))}
+              />
+            ))}
+          </div>
+        )}
+
         {Array.from(kantons.entries()).map(([kanton, entries]) => (
-          <div key={kanton} className="mb-12">
-            <h2 className="text-2xl font-bold mb-4">{kanton}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div key={kanton} className="mb-16">
+            <h2 className="text-2xl font-bold mb-6">{kanton}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {entries.map((entry) => (
-                <a key={entry.slug} href={`/regional/${entry.entry.kanton.toLowerCase().replace(/\s+/g, '-')}/${entry.slug}`} className="bg-surface-dark rounded-lg p-6 hover:ring-2 hover:ring-brand-orange transition-all">
-                  <h3 className="text-lg font-semibold">{entry.entry.title}</h3>
-                  {entry.entry.city && <p className="text-sm text-brand-orange mt-1">{entry.entry.city}</p>}
-                  <p className="text-foreground/60 mt-2 text-sm">{entry.entry.excerpt}</p>
-                </a>
+                <ArticleCard
+                  key={entry.slug}
+                  title={entry.entry.title}
+                  excerpt={entry.entry.excerpt}
+                  href={`/regional/${entry.entry.kanton.toLowerCase().replace(/\s+/g, '-')}/${entry.slug}`}
+                  image={entry.entry.featuredImage || undefined}
+                  category={entry.entry.city || entry.entry.kanton}
+                  date={entry.entry.publishedAt || undefined}
+                />
               ))}
             </div>
           </div>
         ))}
       </section>
-    </div>
+    </>
   );
 }

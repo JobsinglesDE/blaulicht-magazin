@@ -1,6 +1,6 @@
 interface TakeawayBoxProps {
   title?: string;
-  items: string[];
+  items: readonly string[];
 }
 
 export function TakeawayBox({ title = 'Das Wichtigste', items }: TakeawayBoxProps) {

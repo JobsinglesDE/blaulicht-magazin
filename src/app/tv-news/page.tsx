@@ -1,4 +1,6 @@
 import { reader } from '@/lib/keystatic';
+import { PillarHero } from '@/components/content/PillarHero';
+import { SeriesCard } from '@/components/content/SeriesCard';
 
 export const metadata = {
   title: 'TV News',
@@ -12,37 +14,43 @@ export default async function TVNews() {
   const tatort = seriesArticles.filter((s) => s.entry.seriesId === 'tatort-zuerich');
 
   return (
-    <div data-theme="dark" className="bg-background text-foreground min-h-screen">
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">TV News</h1>
-          <p className="text-lg text-foreground/80">
-            Dating-Perspektiven aus beliebten Schweizer TV-Serien.
-          </p>
-        </div>
-      </section>
+    <>
+      <PillarHero
+        title="TV News"
+        subtitle="Dating-Perspektiven aus beliebten Schweizer TV-Serien."
+      />
 
-      <section className="max-w-6xl mx-auto px-4 py-12">
+      <section className="max-w-6xl mx-auto px-6 py-16">
         <h2 className="text-2xl font-bold mb-6">Die Assistenzärzte (SRF)</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          {assistenzaerzte.map((article) => (
-            <a key={article.slug} href={`/tv-news/assistenzaerzte/${article.slug}`} className="bg-surface-dark rounded-lg p-6 hover:ring-2 hover:ring-brand-orange transition-all">
-              <h3 className="text-lg font-semibold">{article.entry.title}</h3>
-              <p className="text-sm text-foreground/60 mt-2">{article.entry.excerpt}</p>
-            </a>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {assistenzaerzte.map((article, i) => (
+            <SeriesCard
+              key={article.slug}
+              title={article.entry.title}
+              excerpt={article.entry.excerpt}
+              href={`/tv-news/assistenzaerzte/${article.slug}`}
+              image={article.entry.featuredImage || undefined}
+              seriesLabel="Die Assistenzärzte"
+              episodeNumber={i + 1}
+            />
           ))}
         </div>
 
         <h2 className="text-2xl font-bold mb-6">Tatort Zürich (SRF)</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {tatort.map((article) => (
-            <a key={article.slug} href={`/tv-news/tatort-zuerich/${article.slug}`} className="bg-surface-dark rounded-lg p-6 hover:ring-2 hover:ring-brand-orange transition-all">
-              <h3 className="text-lg font-semibold">{article.entry.title}</h3>
-              <p className="text-sm text-foreground/60 mt-2">{article.entry.excerpt}</p>
-            </a>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {tatort.map((article, i) => (
+            <SeriesCard
+              key={article.slug}
+              title={article.entry.title}
+              excerpt={article.entry.excerpt}
+              href={`/tv-news/tatort-zuerich/${article.slug}`}
+              image={article.entry.featuredImage || undefined}
+              seriesLabel="Tatort Zürich"
+              episodeNumber={i + 1}
+            />
           ))}
         </div>
       </section>
-    </div>
+    </>
   );
 }

@@ -1,4 +1,7 @@
 import { reader } from '@/lib/keystatic';
+import { PillarHero } from '@/components/content/PillarHero';
+import { ArticleCard } from '@/components/content/ArticleCard';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 
 export async function generateStaticParams() {
   const all = await reader.collections.regional.all();
@@ -16,24 +19,32 @@ export default async function KantonPage({ params }: { params: Promise<{ kanton:
   const kantonName = entries[0]?.entry.kanton || kanton;
 
   return (
-    <div data-theme="dark" className="bg-background text-foreground min-h-screen">
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">Kanton {kantonName}</h1>
-          <p className="text-foreground/80">Blaulicht-Singles im Kanton {kantonName}.</p>
-        </div>
-      </section>
-      <section className="max-w-6xl mx-auto px-4 py-12">
+    <>
+      <PillarHero
+        title={`Kanton ${kantonName}`}
+        subtitle={`Blaulicht-Singles im Kanton ${kantonName}.`}
+      />
+
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        <Breadcrumbs items={[
+          { label: 'Regional', href: '/regional' },
+          { label: kantonName, href: `/regional/${kanton}` },
+        ]} />
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {entries.map((entry) => (
-            <a key={entry.slug} href={`/regional/${kanton}/${entry.slug}`} className="bg-surface-dark rounded-lg p-6 hover:ring-2 hover:ring-brand-orange transition-all">
-              <h3 className="text-xl font-semibold">{entry.entry.title}</h3>
-              {entry.entry.city && <p className="text-sm text-brand-orange">{entry.entry.city}</p>}
-              <p className="text-foreground/60 mt-2">{entry.entry.excerpt}</p>
-            </a>
+            <ArticleCard
+              key={entry.slug}
+              title={entry.entry.title}
+              excerpt={entry.entry.excerpt}
+              href={`/regional/${kanton}/${entry.slug}`}
+              image={entry.entry.featuredImage || undefined}
+              category={entry.entry.city || kantonName}
+              date={entry.entry.publishedAt || undefined}
+            />
           ))}
         </div>
-      </section>
-    </div>
+      </div>
+    </>
   );
 }
