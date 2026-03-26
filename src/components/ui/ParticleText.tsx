@@ -138,7 +138,7 @@ export function ParticleText({ text, texts, className = '', colors = BRAND_COLOR
       const isMobile = w < 500;
       const usableWidth = w * (isMobile ? 0.9 : 0.85);
       const maxH = h / (lines.length * 1.4);
-      let fontSize = Math.min(maxH, isMobile ? 60 : 120); // start large
+      let fontSize = Math.min(maxH, isMobile ? 80 : 120); // start large
       oc.font = `bold ${fontSize}px Arial`;
       // Shrink until longest line fits
       const longestLine = lines.reduce((a, b) => a.length > b.length ? a : b);
@@ -162,7 +162,7 @@ export function ParticleText({ text, texts, className = '', colors = BRAND_COLOR
       colorIdx.current++;
       const particles = particlesRef.current;
       let pi = 0;
-      const step = isMobile ? 3 : 4; // more particles on mobile for sharper text
+      const step = isMobile ? 2 : 4; // much more particles on mobile for sharp text
 
       const coords: number[] = [];
       for (let i = 0; i < imgData.length; i += step * 4) coords.push(i);
@@ -185,8 +185,8 @@ export function ParticleText({ text, texts, className = '', colors = BRAND_COLOR
             const dist = (w + h) / 2;
             p.pos.x = w / 2 + Math.cos(angle) * dist;
             p.pos.y = h / 2 + Math.sin(angle) * dist;
-            p.maxSpeed = Math.random() * 6 + 4;
-            p.maxForce = p.maxSpeed * 0.05;
+            p.maxSpeed = isMobile ? Math.random() * 8 + 6 : Math.random() * 6 + 4;
+            p.maxForce = p.maxSpeed * (isMobile ? 0.08 : 0.05);
             p.particleSize = Math.random() * 6 + 6;
             p.colorBlendRate = Math.random() * 0.0275 + 0.0025;
             particles.push(p);
@@ -214,7 +214,7 @@ export function ParticleText({ text, texts, className = '', colors = BRAND_COLOR
       const r = parseInt(bgColor.slice(1, 3), 16) || 253;
       const g = parseInt(bgColor.slice(3, 5), 16) || 251;
       const b = parseInt(bgColor.slice(5, 7), 16) || 247;
-      const trailOpacity = w < 500 ? 0.22 : 0.15; // faster fade on mobile = sharper
+      const trailOpacity = w < 500 ? 0.35 : 0.15; // much faster fade on mobile = no italic trails
       ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${trailOpacity})`;
       ctx.fillRect(0, 0, w, h);
       const particles = particlesRef.current;
