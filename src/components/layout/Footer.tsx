@@ -15,9 +15,9 @@ export function Footer() {
           <div
             className="absolute -top-4 left-12 w-9 h-20 hidden md:block z-10"
             style={{
-              background: 'rgba(30,30,30,0.7)',
+              background: 'rgba(255,255,255,0.38)',
               transform: 'rotate(-5deg)',
-              boxShadow: '0 2px 10px rgba(0,0,0,0.35)',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
               clipPath: 'polygon(4% 0%, 98% 2%, 100% 18%, 96% 35%, 100% 52%, 97% 70%, 100% 88%, 95% 100%, 3% 98%, 0% 82%, 3% 65%, 0% 48%, 4% 30%, 0% 14%)',
             }}
           />
@@ -25,9 +25,9 @@ export function Footer() {
           <div
             className="absolute -top-3 right-14 w-20 h-7 hidden md:block z-10"
             style={{
-              background: 'rgba(30,30,30,0.65)',
+              background: 'rgba(255,255,255,0.35)',
               transform: 'rotate(6deg)',
-              boxShadow: '0 2px 10px rgba(0,0,0,0.3)',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.18)',
               clipPath: 'polygon(2% 0%, 100% 3%, 98% 100%, 0% 97%)',
             }}
           />
