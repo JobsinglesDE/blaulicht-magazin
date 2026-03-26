@@ -24,8 +24,8 @@ export function HeartButton({ href, children, className = '' }: HeartButtonProps
     <a
       href={href}
       className={`
-        group relative inline-flex items-center gap-3 px-9 py-4
-        text-lg font-bold text-white
+        group relative inline-flex items-center gap-2 px-6 py-3 md:gap-3 md:px-9 md:py-4
+        text-base md:text-lg font-bold text-white
         rounded-full
         transition-all duration-300 ease-in-out
         cursor-pointer

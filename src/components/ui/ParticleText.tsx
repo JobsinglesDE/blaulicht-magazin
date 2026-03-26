@@ -163,7 +163,7 @@ export function ParticleText({ text, texts, className = '', colors = BRAND_COLOR
       const lineHeight = fontSize * 1.2;
       const totalTextH = (lines.length - 1) * lineHeight;
       const startY = (h - totalTextH) / 2;
-      const centerX = w / 2 + (isMobile ? 55 : 0);
+      const centerX = w / 2 + (isMobile ? 45 : 0);
       for (let i = 0; i < lines.length; i++) {
         oc.fillText(lines[i], centerX, startY + i * lineHeight);
       }
