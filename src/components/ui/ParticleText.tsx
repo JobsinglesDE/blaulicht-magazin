@@ -55,7 +55,7 @@ class Particle {
     const g = Math.round(this.startColor.g + (this.targetColor.g - this.startColor.g) * this.colorWeight);
     const b = Math.round(this.startColor.b + (this.targetColor.b - this.startColor.b) * this.colorWeight);
     ctx.fillStyle = `rgb(${r},${g},${b})`;
-    ctx.fillRect(this.pos.x, this.pos.y, 2, 2);
+    ctx.fillRect(this.pos.x, this.pos.y, this.particleSize > 8 ? 3 : 2, this.particleSize > 8 ? 3 : 2);
   }
 
   kill(w: number, h: number) {
@@ -153,7 +153,7 @@ export function ParticleText({ text, texts, className = '', colors = BRAND_COLOR
       const lineHeight = fontSize * 1.2;
       const totalTextH = (lines.length - 1) * lineHeight;
       const startY = (h - totalTextH) / 2;
-      const centerX = w / 2 + (isMobile ? 20 : 0);
+      const centerX = w / 2 + (isMobile ? 25 : 0);
       for (let i = 0; i < lines.length; i++) {
         oc.fillText(lines[i], centerX, startY + i * lineHeight);
       }
