@@ -3,7 +3,7 @@ import { config, fields, collection, singleton } from '@keystatic/core';
 export default config({
   storage: {
     kind: 'github',
-    repo: 'jobsingles/blaulicht-magazin',
+    repo: 'JobsinglesDE/blaulicht-magazin',
   },
   ui: {
     brand: { name: 'Blaulicht Magazin' },
