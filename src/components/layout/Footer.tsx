@@ -13,7 +13,7 @@ export function Footer() {
         <div className="relative rounded-2xl p-8 md:p-10" style={{ background: 'rgba(255,255,255,0.06)' }}>
           {/* Tape left — fast senkrecht, zerrissene Ränder, dunkelgrau */}
           <div
-            className="absolute -top-8 left-24 w-9 h-20 hidden md:block z-10"
+            className="absolute -top-10 left-24 w-9 h-20 hidden md:block z-10"
             style={{
               background: 'rgba(255,255,255,0.38)',
               transform: 'rotate(-5deg)',
@@ -21,14 +21,14 @@ export function Footer() {
               clipPath: 'polygon(4% 0%, 98% 2%, 100% 18%, 96% 35%, 100% 52%, 97% 70%, 100% 88%, 95% 100%, 3% 98%, 0% 82%, 3% 65%, 0% 48%, 4% 30%, 0% 14%)',
             }}
           />
-          {/* Tape right — leicht schräg, dunkelgrau */}
+          {/* Tape right — leicht schräg, zerrissene Ränder */}
           <div
-            className="absolute -top-3 right-14 w-20 h-7 hidden md:block z-10"
+            className="absolute -top-3 right-14 w-9 h-20 hidden md:block z-10"
             style={{
               background: 'rgba(255,255,255,0.35)',
               transform: 'rotate(6deg)',
               boxShadow: '0 2px 10px rgba(0,0,0,0.18)',
-              clipPath: 'polygon(2% 0%, 100% 3%, 98% 100%, 0% 97%)',
+              clipPath: 'polygon(3% 0%, 97% 1%, 100% 15%, 96% 32%, 100% 50%, 97% 68%, 100% 85%, 96% 100%, 2% 98%, 0% 80%, 4% 62%, 0% 45%, 3% 28%, 0% 12%)',
             }}
           />
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
