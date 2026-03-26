@@ -1,6 +1,5 @@
 import { reader } from '@/lib/keystatic';
 import { SuccessStory } from '@/components/content/SuccessStory';
-import { PillarHero } from '@/components/content/PillarHero';
 
 export const metadata = {
   title: 'Erfolgsgeschichten',
@@ -14,10 +13,15 @@ export default async function Erfolgsgeschichten() {
 
   return (
     <>
-      <PillarHero
-        title="Zwei Herzen, ein Notruf"
-        subtitle="Echte Paare. Echte Geschichten. So findet Blaulicht die Liebe."
-      />
+      <section className="relative overflow-hidden py-20 md:py-32">
+        <div className="absolute inset-0 particle-overlay opacity-50" />
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 particle-text">Erfolgsgeschichten</h1>
+          <p className="text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed">
+            Echte Paare. Echte Geschichten. So findet Blaulicht die Liebe.
+          </p>
+        </div>
+      </section>
 
       <section className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">

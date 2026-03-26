@@ -15,7 +15,15 @@ export default async function SinglesPartnersuche() {
   return (
     <>
       <PillarHero
-        title="Wer rettet, verdient jemanden der wartet"
+        title="Partnersuche"
+        texts={[
+          "Schicht. Schluss. Liebe.",
+          "Wer rettet dich?",
+          "Dein Blaulicht-Match",
+          "Herz an Zentrale",
+          "Liebe trotz Piepser",
+          "Partnersuche",
+        ]}
         subtitle="Partnersuche für Blaulicht-Berufe — von Polizei bis Sanität. Dein Guide für die Liebe neben dem Dienst."
       />
 

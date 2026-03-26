@@ -21,7 +21,14 @@ export default async function Regional() {
   return (
     <>
       <PillarHero
-        title="Liebe spricht Dialekt"
+        title="Regional"
+        texts={[
+          "Liebe spricht Dialekt",
+          "Singles vor Ort",
+          "Dein Kanton. Dein Match.",
+          "Nähe verbindet",
+          "Regional",
+        ]}
         subtitle="Blaulicht-Singles in deinem Kanton — regionale Tipps, lokale Orte, echte Verbindungen."
       />
 

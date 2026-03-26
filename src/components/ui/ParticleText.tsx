@@ -146,8 +146,9 @@ export function ParticleText({ text, texts, className = '', colors = BRAND_COLOR
 
       const lineHeight = fontSize * 1.2;
       const startY = h / 2 - ((lines.length - 1) * lineHeight) / 2;
+      const centerX = w / 2 + (w < 500 ? w * 0.03 : 0); // slight right nudge on mobile
       for (let i = 0; i < lines.length; i++) {
-        oc.fillText(lines[i], w / 2, startY + i * lineHeight);
+        oc.fillText(lines[i], centerX, startY + i * lineHeight);
       }
 
       const imgData = oc.getImageData(0, 0, w, h).data;

@@ -1,5 +1,4 @@
 import { reader } from '@/lib/keystatic';
-import { PillarHero } from '@/components/content/PillarHero';
 import { SeriesCard } from '@/components/content/SeriesCard';
 
 export const metadata = {
@@ -15,10 +14,15 @@ export default async function TVNews() {
 
   return (
     <>
-      <PillarHero
-        title="Wenn die Sirene schweigt, beginnt das Herzklopfen"
-        subtitle="Dating-Perspektiven aus beliebten Schweizer TV-Serien — Fiktion trifft auf echtes Leben."
-      />
+      <section className="relative overflow-hidden py-20 md:py-32">
+        <div className="absolute inset-0 particle-overlay opacity-50" />
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 particle-text">TV News</h1>
+          <p className="text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed">
+            Dating-Perspektiven aus beliebten Schweizer TV-Serien — Fiktion trifft auf echtes Leben.
+          </p>
+        </div>
+      </section>
 
       <section className="max-w-6xl mx-auto px-6 py-16">
         <h2 className="text-2xl font-bold mb-6">Die Assistenzärzte (SRF)</h2>
