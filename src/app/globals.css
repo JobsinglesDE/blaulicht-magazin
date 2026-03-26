@@ -253,8 +253,8 @@ body {
 
 /* === Subtle Pulse for CTA === */
 @keyframes subtle-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(66, 154, 69, 0.4); }
-  50% { box-shadow: 0 0 0 8px rgba(66, 154, 69, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 122, 0, 0.45); }
+  50% { box-shadow: 0 0 0 10px rgba(255, 122, 0, 0); }
 }
 .pulse-cta {
   animation: subtle-pulse 2.5s ease infinite;
