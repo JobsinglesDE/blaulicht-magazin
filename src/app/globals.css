@@ -201,3 +201,10 @@ body {
   0%, 100% { box-shadow: 0 6px 24px rgba(66, 154, 69, 0.35); }
   50% { box-shadow: 0 8px 40px rgba(66, 154, 69, 0.55); }
 }
+.heart-button {
+  animation: pulse-glow-green 2.5s ease-in-out infinite;
+}
+.heart-button:hover {
+  animation: none;
+  box-shadow: 0 8px 36px rgba(66, 154, 69, 0.5);
+}

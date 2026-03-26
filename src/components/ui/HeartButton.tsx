@@ -23,15 +23,21 @@ export function HeartButton({ href, children, className = '' }: HeartButtonProps
       onClick={handleClick}
       whileHover={{ scale: 1.05, y: -2 }}
       whileTap={{ scale: 0.95 }}
-      className={`relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#3a8c3d] via-[#429A45] to-[#55ad58] text-white text-lg font-bold tracking-tight shadow-[0_6px_24px_rgba(66,154,69,0.35)] hover:shadow-[0_8px_36px_rgba(66,154,69,0.5)] transition-shadow animate-[pulse-glow-green_2.5s_ease-in-out_infinite] ${className}`}
+      className={`heart-button relative inline-flex items-center gap-3 px-8 py-4 rounded-full text-white text-lg font-bold tracking-tight transition-all ${className}`}
+      style={{
+        background: 'linear-gradient(to right, #3a8c3d, #429A45, #55ad58)',
+      }}
     >
       <span className="relative">
         <motion.svg
           viewBox="0 0 24 24"
-          fill="currentColor"
-          className="w-6 h-6 text-red-400"
-          animate={burst ? { scale: [1, 1.5, 1] } : { scale: [1, 1.15, 1] }}
-          transition={burst ? { duration: 0.4, ease: 'easeOut' } : { duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+          className="w-6 h-6"
+          style={{ fill: '#ff4466' }}
+          animate={burst ? { scale: [1, 1.5, 1] } : { scale: [1, 1.2, 1] }}
+          transition={burst
+            ? { duration: 0.4, ease: 'easeOut' }
+            : { duration: 1.2, repeat: Infinity, ease: 'easeInOut' }
+          }
         >
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
         </motion.svg>
@@ -40,8 +46,9 @@ export function HeartButton({ href, children, className = '' }: HeartButtonProps
             {[...Array(8)].map((_, i) => (
               <span
                 key={i}
-                className="absolute w-1.5 h-1.5 rounded-full bg-white/90"
+                className="absolute w-1.5 h-1.5 rounded-full"
                 style={{
+                  backgroundColor: '#ff4466',
                   animation: 'heart-burst 700ms ease-out forwards',
                   animationDelay: `${i * 40}ms`,
                   transform: `rotate(${i * 45}deg) translateY(-10px)`,

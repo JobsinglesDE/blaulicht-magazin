@@ -10,8 +10,12 @@ export function Footer() {
 
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Brand */}
-          <div>
+          {/* Brand — with tape decoration */}
+          <div className="relative">
+            <div
+              className="absolute -top-2 left-6 w-14 h-5 rounded-sm hidden md:block"
+              style={{ background: 'rgba(255,255,255,0.08)', transform: 'rotate(-4deg)', boxShadow: '0 1px 2px rgba(0,0,0,0.15)' }}
+            />
             <div className="flex items-center gap-3 mb-4">
               <Image
                 src="/logos/jobsingles-logo.png"
@@ -51,8 +55,12 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Legal */}
-          <div>
+          {/* Legal — with tape decoration */}
+          <div className="relative">
+            <div
+              className="absolute -top-2 right-8 w-12 h-5 rounded-sm hidden md:block"
+              style={{ background: 'rgba(255,255,255,0.08)', transform: 'rotate(5deg)', boxShadow: '0 1px 2px rgba(0,0,0,0.15)' }}
+            />
             <h4 className="text-xs uppercase tracking-widest font-bold text-brand-orange/60 mb-4">
               Rechtliches
             </h4>
@@ -86,6 +94,12 @@ export function Footer() {
           </a>
         </div>
       </div>
+
+      {/* Bottom corner tape */}
+      <div
+        className="absolute bottom-6 right-6 w-16 h-5 rounded-sm hidden md:block"
+        style={{ background: 'rgba(255,255,255,0.06)', transform: 'rotate(8deg)', boxShadow: '0 1px 2px rgba(0,0,0,0.1)' }}
+      />
     </footer>
   );
 }
