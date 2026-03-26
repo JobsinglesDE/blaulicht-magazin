@@ -16,7 +16,7 @@ export function Footer() {
             className="absolute -top-4 left-12 w-9 h-20 hidden md:block z-10"
             style={{
               background: 'rgba(30,30,30,0.7)',
-              transform: 'rotate(-80deg)',
+              transform: 'rotate(-5deg)',
               boxShadow: '0 2px 10px rgba(0,0,0,0.35)',
               clipPath: 'polygon(4% 0%, 98% 2%, 100% 18%, 96% 35%, 100% 52%, 97% 70%, 100% 88%, 95% 100%, 3% 98%, 0% 82%, 3% 65%, 0% 48%, 4% 30%, 0% 14%)',
             }}
