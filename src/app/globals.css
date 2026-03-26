@@ -260,11 +260,21 @@ body {
   animation: subtle-pulse 2.5s ease infinite;
 }
 
+/* === Heart Pulse === */
+@keyframes heart-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+.pulse-heart {
+  animation: heart-pulse 1.2s ease infinite;
+}
+
 /* === prefers-reduced-motion === */
 @media (prefers-reduced-motion: reduce) {
   .animated-gradient-line,
   .gradient-border,
-  .pulse-cta {
+  .pulse-cta,
+  .pulse-heart {
     animation: none;
   }
   .hover-lift:hover {
