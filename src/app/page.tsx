@@ -14,7 +14,7 @@ export default async function HomePage() {
   return (
     <>
       <PillarHero
-        title="Blaulicht Magazin"
+        title="Dein Herz kennt keinen Dienstplan"
         subtitle="Das Magazin für Singles bei Polizei, Feuerwehr und Sanität"
       />
 
