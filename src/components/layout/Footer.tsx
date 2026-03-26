@@ -5,33 +5,32 @@ export function Footer() {
 
   return (
     <footer className="bg-primary text-white/90 relative overflow-visible">
-      {/* Tape top-left — fast senkrecht, zerrissene Ränder */}
-      <div
-        className="absolute -top-6 left-[20%] w-10 h-24 hidden md:block"
-        style={{
-          background: 'rgba(255,255,255,0.42)',
-          transform: 'rotate(-78deg)',
-          boxShadow: '0 3px 14px rgba(0,0,0,0.2)',
-          clipPath: 'polygon(4% 0%, 98% 2%, 100% 18%, 96% 35%, 100% 52%, 97% 70%, 100% 88%, 95% 100%, 3% 98%, 0% 82%, 3% 65%, 0% 48%, 4% 30%, 0% 14%)',
-        }}
-      />
-      {/* Tape top-right */}
-      <div
-        className="absolute -top-5 right-[20%] w-24 h-8 hidden md:block"
-        style={{
-          background: 'rgba(255,255,255,0.42)',
-          transform: 'rotate(4deg)',
-          boxShadow: '0 3px 12px rgba(0,0,0,0.18)',
-          clipPath: 'polygon(2% 0%, 100% 3%, 97% 100%, 0% 98%)',
-        }}
-      />
-
       {/* Animated gradient accent line */}
       <div className="animated-gradient-line h-[3px]" />
 
       <div className="max-w-7xl mx-auto px-6 pt-14 pb-10">
         {/* Inner content area — slightly lighter surface */}
-        <div className="rounded-2xl p-8 md:p-10" style={{ background: 'rgba(255,255,255,0.06)' }}>
+        <div className="relative rounded-2xl p-8 md:p-10" style={{ background: 'rgba(255,255,255,0.06)' }}>
+          {/* Tape left — fast senkrecht, zerrissene Ränder, über dem Rand */}
+          <div
+            className="absolute -top-5 left-8 w-10 h-20 hidden md:block z-10"
+            style={{
+              background: 'rgba(255,255,255,0.45)',
+              transform: 'rotate(-82deg)',
+              boxShadow: '0 3px 14px rgba(0,0,0,0.22)',
+              clipPath: 'polygon(4% 0%, 98% 2%, 100% 18%, 96% 35%, 100% 52%, 97% 70%, 100% 88%, 95% 100%, 3% 98%, 0% 82%, 3% 65%, 0% 48%, 4% 30%, 0% 14%)',
+            }}
+          />
+          {/* Tape right — leicht schräg, über dem Rand */}
+          <div
+            className="absolute -top-4 right-10 w-24 h-8 hidden md:block z-10"
+            style={{
+              background: 'rgba(255,255,255,0.45)',
+              transform: 'rotate(5deg)',
+              boxShadow: '0 3px 12px rgba(0,0,0,0.2)',
+              clipPath: 'polygon(2% 0%, 100% 3%, 98% 100%, 0% 97%)',
+            }}
+          />
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
             {/* Brand */}
             <div>
