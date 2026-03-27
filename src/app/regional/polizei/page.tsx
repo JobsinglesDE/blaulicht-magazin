@@ -3,18 +3,26 @@ import { PillarHero } from '@/components/content/PillarHero';
 import { ArticleCard } from '@/components/content/ArticleCard';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Singles Polizei Schweiz — Alle Kantone',
-  description: 'Polizei Singles & Bekanntschaften in allen Schweizer Kantonen. Dates und Partnersuche für Blaulicht-Singles mit Schichtdienst-Erfahrung.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const cms = await reader.singletons.regionalPolizei.read();
+  return {
+    title: cms?.seoTitle || 'Singles Polizei Schweiz — Alle Kantone',
+    description: cms?.seoDescription || 'Polizei Singles & Bekanntschaften in allen Schweizer Kantonen.',
+  };
+}
 
 function toAnchor(kanton: string) {
   return kanton.toLowerCase().replace(/[\s-]+/g, '-').replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue');
 }
 
 export default async function PolizeiRegional() {
-  const all = await reader.collections.regional.all();
+  const [cms, all] = await Promise.all([
+    reader.singletons.regionalPolizei.read(),
+    reader.collections.regional.all(),
+  ]);
+
   const entries = all
     .filter((r) => r.entry.beruf === 'polizei')
     .sort((a, b) => a.entry.kanton.localeCompare(b.entry.kanton, 'de-CH'));
@@ -46,13 +54,10 @@ export default async function PolizeiRegional() {
         <div className="mb-12 mt-4 max-w-3xl">
           <h1 className="text-3xl font-bold mb-4">Singles Polizei Schweiz</h1>
           <p className="text-foreground/70 leading-relaxed mb-3">
-            Polizei-Singles kennen das: Schichtdienst, unregelmässige Arbeitszeiten und ein Alltag, den
-            Aussenstehende kaum nachvollziehen können. Auf <strong>blaulichtsingles.ch</strong> findest du
-            Singles aus der Kantonspolizei, Stadtpolizei und Gemeindepolizei — in deinem Kanton und schweizweit.
+            {cms?.intro1 || 'Polizei-Singles kennen das: Schichtdienst, unregelmässige Arbeitszeiten und ein Alltag, den Aussenstehende kaum nachvollziehen können.'}
           </p>
           <p className="text-foreground/70 leading-relaxed">
-            Alle {kantone.length} Deutschschweizer Kantone sind abgedeckt. Wähle deinen Kanton direkt unten
-            oder spring per Anker-Link zu deiner Region.
+            {cms?.intro2 || `Alle ${kantone.length} Kantone abgedeckt. Wähle deinen Kanton direkt unten oder spring per Anker-Link zu deiner Region.`}
           </p>
         </div>
 

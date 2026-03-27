@@ -8,6 +8,38 @@ export default config({
   ui: {
     brand: { name: 'Blaulicht Magazin' },
   },
+  singletons: {
+    regionalPolizei: singleton({
+      label: 'Regional — Polizei (Pillar-Page)',
+      path: 'content/singletons/regional-polizei',
+      schema: {
+        seoTitle: fields.text({ label: 'SEO Titel' }),
+        seoDescription: fields.text({ label: 'SEO Beschreibung', multiline: true }),
+        intro1: fields.text({ label: 'Intro Absatz 1', multiline: true }),
+        intro2: fields.text({ label: 'Intro Absatz 2', multiline: true }),
+      },
+    }),
+    regionalSanitaet: singleton({
+      label: 'Regional — Sanität (Pillar-Page)',
+      path: 'content/singletons/regional-sanitaet',
+      schema: {
+        seoTitle: fields.text({ label: 'SEO Titel' }),
+        seoDescription: fields.text({ label: 'SEO Beschreibung', multiline: true }),
+        intro1: fields.text({ label: 'Intro Absatz 1', multiline: true }),
+        intro2: fields.text({ label: 'Intro Absatz 2', multiline: true }),
+      },
+    }),
+    regionalFeuerwehr: singleton({
+      label: 'Regional — Feuerwehr (Pillar-Page)',
+      path: 'content/singletons/regional-feuerwehr',
+      schema: {
+        seoTitle: fields.text({ label: 'SEO Titel' }),
+        seoDescription: fields.text({ label: 'SEO Beschreibung', multiline: true }),
+        intro1: fields.text({ label: 'Intro Absatz 1', multiline: true }),
+        intro2: fields.text({ label: 'Intro Absatz 2', multiline: true }),
+      },
+    }),
+  },
   collections: {
     articles: collection({
       label: 'Artikel',

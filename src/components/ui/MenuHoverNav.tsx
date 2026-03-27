@@ -4,15 +4,21 @@ import { useState, useRef, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 
-const NAV_ITEMS = [
+type NavItem = {
+  label: string;
+  href: string;
+  dropdown?: { label: string; href: string; description?: string }[];
+};
+
+const NAV_ITEMS: NavItem[] = [
   { label: 'Startseite', href: '/' },
   {
     label: 'Singles & Partnersuche',
     href: '/singles-partnersuche',
     dropdown: [
-      { label: 'Polizei Dating', href: '/singles-partnersuche/polizei' },
-      { label: 'Sanität Dating', href: '/singles-partnersuche/sanitaet' },
-      { label: 'Feuerwehr Dating', href: '/singles-partnersuche/feuerwehr' },
+      { label: 'Polizei Dating', href: '/singles-partnersuche/polizei', description: 'Kantonspolizei & Stadtpolizei' },
+      { label: 'Sanität Dating', href: '/singles-partnersuche/sanitaet', description: 'Rettungsdienst & Notfall' },
+      { label: 'Feuerwehr Dating', href: '/singles-partnersuche/feuerwehr', description: 'Berufs- & Milizfeuerwehr' },
     ],
   },
   {
@@ -27,12 +33,9 @@ const NAV_ITEMS = [
     label: 'Regional',
     href: '/regional',
     dropdown: [
-      { label: 'Kanton Zürich', href: '/regional/zuerich' },
-      { label: 'Kanton Bern', href: '/regional/bern' },
-      { label: 'Kanton Luzern', href: '/regional/luzern' },
-      { label: 'Kanton Basel', href: '/regional/basel' },
-      { label: 'Kanton St. Gallen', href: '/regional/st-gallen' },
-      { label: 'Kanton Aargau', href: '/regional/aargau' },
+      { label: 'Polizei', href: '/regional/polizei', description: 'Singles aus allen Polizei-Kantonen' },
+      { label: 'Sanität', href: '/regional/sanitaet', description: 'Rettungsdienst in deinem Kanton' },
+      { label: 'Feuerwehr', href: '/regional/feuerwehr', description: 'Berufs- & Milizfeuerwehr regional' },
     ],
   },
   { label: 'Erfolgsgeschichten', href: '/erfolgsgeschichten' },
@@ -170,7 +173,10 @@ export function MenuHoverNav() {
                         }
                       `}
                     >
-                      {sub.label}
+                      <span className="font-medium">{sub.label}</span>
+                      {sub.description && (
+                        <span className="block text-xs text-foreground/40 mt-0.5">{sub.description}</span>
+                      )}
                     </a>
                   ))}
                 </div>

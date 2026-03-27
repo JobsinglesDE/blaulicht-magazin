@@ -3,18 +3,26 @@ import { PillarHero } from '@/components/content/PillarHero';
 import { ArticleCard } from '@/components/content/ArticleCard';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Singles Feuerwehr Schweiz — Alle Kantone',
-  description: 'Feuerwehr Singles & Bekanntschaften in allen Schweizer Kantonen. Dates und Partnersuche für Blaulicht-Singles aus Berufs- und Milizfeuerwehr.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const cms = await reader.singletons.regionalFeuerwehr.read();
+  return {
+    title: cms?.seoTitle || 'Singles Feuerwehr Schweiz — Alle Kantone',
+    description: cms?.seoDescription || 'Feuerwehr Singles & Bekanntschaften in allen Schweizer Kantonen.',
+  };
+}
 
 function toAnchor(kanton: string) {
   return kanton.toLowerCase().replace(/[\s-]+/g, '-').replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue');
 }
 
 export default async function FeuerwehrRegional() {
-  const all = await reader.collections.regional.all();
+  const [cms, all] = await Promise.all([
+    reader.singletons.regionalFeuerwehr.read(),
+    reader.collections.regional.all(),
+  ]);
+
   const entries = all
     .filter((r) => r.entry.beruf === 'feuerwehr')
     .sort((a, b) => a.entry.kanton.localeCompare(b.entry.kanton, 'de-CH'));
@@ -46,12 +54,10 @@ export default async function FeuerwehrRegional() {
         <div className="mb-12 mt-4 max-w-3xl">
           <h1 className="text-3xl font-bold mb-4">Singles Feuerwehr Schweiz</h1>
           <p className="text-foreground/70 leading-relaxed mb-3">
-            Ob Berufsfeuerwehr oder Milizfeuerwehr — der Korpsgeist verbindet. Unregelmässige Pikettdienste,
-            Übungen am Wochenende und Einsätze, die man nicht einfach beschreiben kann: Feuerwehr-Singles
-            suchen jemanden, der das versteht. Auf <strong>blaulichtsingles.ch</strong> findest du genau diese Menschen.
+            {cms?.intro1 || 'Ob Berufsfeuerwehr oder Milizfeuerwehr — der Korpsgeist verbindet.'}
           </p>
           <p className="text-foreground/70 leading-relaxed">
-            {kantone.length} Kantone abgedeckt. Spring direkt zu deiner Region oder scrolle durch alle Kantone.
+            {cms?.intro2 || `${kantone.length} Kantone abgedeckt. Spring direkt zu deiner Region oder scrolle durch alle Kantone.`}
           </p>
         </div>
 

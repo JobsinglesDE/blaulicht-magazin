@@ -3,18 +3,26 @@ import { PillarHero } from '@/components/content/PillarHero';
 import { ArticleCard } from '@/components/content/ArticleCard';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Singles Sanität Schweiz — Alle Kantone',
-  description: 'Sanität Singles & Bekanntschaften in allen Schweizer Kantonen. Dates und Partnersuche für Rettungssanitäter mit Schichtdienst-Erfahrung.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const cms = await reader.singletons.regionalSanitaet.read();
+  return {
+    title: cms?.seoTitle || 'Singles Sanität Schweiz — Alle Kantone',
+    description: cms?.seoDescription || 'Sanität Singles & Bekanntschaften in allen Schweizer Kantonen.',
+  };
+}
 
 function toAnchor(kanton: string) {
   return kanton.toLowerCase().replace(/[\s-]+/g, '-').replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue');
 }
 
 export default async function SanitaetRegional() {
-  const all = await reader.collections.regional.all();
+  const [cms, all] = await Promise.all([
+    reader.singletons.regionalSanitaet.read(),
+    reader.collections.regional.all(),
+  ]);
+
   const entries = all
     .filter((r) => r.entry.beruf === 'sanitaet')
     .sort((a, b) => a.entry.kanton.localeCompare(b.entry.kanton, 'de-CH'));
@@ -46,13 +54,10 @@ export default async function SanitaetRegional() {
         <div className="mb-12 mt-4 max-w-3xl">
           <h1 className="text-3xl font-bold mb-4">Singles Sanität Schweiz</h1>
           <p className="text-foreground/70 leading-relaxed mb-3">
-            Rettungssanitäter und Sanitäter wissen: der Schichtdienst macht klassisches Dating schwierig.
-            Wer versteht schon spontane Nachtschichten, emotionale Einsätze und den besonderen Korpsgeist
-            im Rettungsdienst? Auf <strong>blaulichtsingles.ch</strong> findest du Singles aus dem
-            Rettungsdienst — Menschen, die deinen Alltag kennen.
+            {cms?.intro1 || 'Rettungssanitäter und Sanitäter wissen: der Schichtdienst macht klassisches Dating schwierig.'}
           </p>
           <p className="text-foreground/70 leading-relaxed">
-            {kantone.length} Kantone abgedeckt. Spring direkt zu deiner Region oder scrolle durch alle Kantone.
+            {cms?.intro2 || `${kantone.length} Kantone abgedeckt. Spring direkt zu deiner Region oder scrolle durch alle Kantone.`}
           </p>
         </div>
 
