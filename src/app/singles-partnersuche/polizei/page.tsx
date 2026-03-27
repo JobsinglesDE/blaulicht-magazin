@@ -1,12 +1,12 @@
 import { reader } from '@/lib/keystatic';
 import { getArticleUrl } from '@/lib/routes';
 import { PillarHero } from '@/components/content/PillarHero';
-import { PillarArticleFeature } from '@/components/content/PillarArticleFeature';
 import { ArticleCard } from '@/components/content/ArticleCard';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { HeartButton } from '@/components/ui/HeartButton';
 import { CircularTestimonials } from '@/components/ui/CircularTestimonials';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { AnimatedGradientBorder } from '@/components/ui/AnimatedGradientBorder';
 
 export const metadata = {
   title: 'Polizei Dating Schweiz — Singles bei Kapo, Stadtpolizei & Fedpol',
@@ -37,42 +37,73 @@ const testimonials = [
   },
 ];
 
-const KEY_ARTICLES = [
+const SECTIONS = [
   {
-    title: 'Kreative Date-Ideen für Polizisten in der Schweiz',
-    excerpt: 'Schichtdienst und Liebe? So planst du unvergessliche Dates rund um deinen Dienstplan — von Outdoor-Abenteuern bis Feierabend-Cafés.',
-    href: '/singles-partnersuche/kreative-date-ideen-polizisten-schweiz',
-    icon: '💡',
+    title: '🛡️ Einstieg & Datingprofil',
+    intro: 'Der erste Schritt zur Partnersuche als Polizistin oder Polizist beginnt mit einem ehrlichen Profil. Uniform zeigen oder nicht? Wieviel vom Berufsalltag preisgeben? Diese Guides helfen dir, die richtigen Entscheidungen zu treffen.',
+    slugs: [
+      'polizei-datingprofil-uniform-oder-nicht',
+      'polizistin-sucht-dating-maennerberuf',
+      'partnersuche-polizei',
+      'polizei-dating-schweiz',
+    ],
   },
   {
-    title: 'Erstes Date nach der Nachtschicht',
-    excerpt: 'Müde aber verliebt? Was wirklich funktioniert, wenn du nach der Nachtschicht dein erstes Date hast.',
-    href: '/singles-partnersuche/erstes-date-nach-nachtschicht',
-    icon: '🌙',
+    title: '💬 Kennenlernen & Partnersuche',
+    intro: 'Wo und wie lernen Polizistinnen und Polizisten in der Schweiz jemanden kennen? Online-Dating, Korps-Events, Sportkurse — die Möglichkeiten sind vielfältiger als gedacht. Hier findest du konkrete Strategien für deinen Alltag.',
+    slugs: [
+      'polizist-kennenlernen',
+      'wo-polizisten-kennenlernen',
+      'polizist-sucht-frau',
+      'polizistin-sucht-mann',
+    ],
   },
   {
-    title: 'Partnersuche Ü50 als Polizist',
-    excerpt: 'Die zweite Liebe im Dienst — warum es nach 50 oft einfacher ist und wie du den Neuanfang wagst.',
-    href: '/singles-partnersuche/partnersuche-ue50-polizist',
-    icon: '❤️',
+    title: '📅 Date-Ideen',
+    intro: 'Schichtdienst macht spontane Dates schwierig — aber nicht unmöglich. Die besten Date-Ideen für Polizei-Singles sind flexibel, pikett-kompatibel und brauchen keinen wochenlangen Vorlauf.',
+    slugs: [
+      'erstes-date-nach-nachtschicht',
+      'kreative-date-ideen-polizisten-schweiz',
+    ],
+  },
+];
+
+const SECTIONS_AFTER_CTA = [
+  {
+    title: '❤️ Beziehung & Alltag',
+    intro: '148\'000 Überstunden, Angriffe, Scheidungsgerüchte — der Polizei-Beziehungsalltag hat seine eigenen Herausforderungen. Diese Artikel zeigen, wie Paare damit umgehen und was Studien wirklich sagen.',
+    slugs: [
+      'angriffe-polizei-partner-angst',
+      'ueberstunden-polizei-paare-zeit-finden',
+      'scheidungsrate-polizei-mythos-oder-realitaet',
+      'liebe-ueber-kantonsgrenzen-polizei',
+    ],
+  },
+  {
+    title: '🌟 Besondere Situationen',
+    intro: 'Partnersuche nach 50, Neuanfang nach der Scheidung, Beziehung über Kantonshauptorte hinweg — manche Situationen brauchen eigene Strategien.',
+    slugs: ['partnersuche-ue50-polizist'],
   },
 ];
 
 export default async function PolizeiPillar() {
   const articles = await reader.collections.articles.all();
-  const polizeiArticles = articles.filter(
-    (a) => a.entry.type === 'cluster' && a.entry.category === 'polizei',
-  );
+
+  function getSectionArticles(slugs: string[]) {
+    return slugs
+      .map((slug) => articles.find((a) => a.slug === slug))
+      .filter(Boolean) as typeof articles;
+  }
 
   return (
     <>
       <PillarHero
         title="Polizei Singles"
         texts={[
-          "Wer schützt Herz?",
-          "Liebe nach Dienst",
-          "Kapo Romanze",
-          "Polizei Singles",
+          'Wer schützt Herz?',
+          'Liebe nach Dienst',
+          'Kapo Romanze',
+          'Polizei Singles',
         ]}
         subtitle="Partnersuche für Polizistinnen und Polizisten — Schichtdienst, Verständnis und echte Verbindungen."
         colors={POLIZEI_COLORS}
@@ -87,33 +118,118 @@ export default async function PolizeiPillar() {
 
       {/* Intro */}
       <ScrollReveal>
-        <section className="max-w-3xl mx-auto px-6 py-8 text-center">
-          <p className="text-lg text-foreground/70 leading-relaxed">
-            Schichtarbeit, Einsätze, Pikett — als Polizistin oder Polizist in der Schweiz weisst du,
-            wie schwer es ist, jemanden zu finden, der deinen Alltag versteht. Genau dafür sind wir da.
-            Blaulichtsingles bringt Menschen zusammen, die wissen, was es heisst, für andere da zu sein.
-          </p>
+        <section className="max-w-3xl mx-auto px-6 py-8">
+          <AnimatedGradientBorder borderRadius={16} borderWidth={2}>
+            <div className="bg-surface-dark rounded-xl p-6 text-white/90">
+              <p className="text-base leading-relaxed">
+                Die Schweiz hat rund 18&apos;000 Polizistinnen und Polizisten — verteilt auf Kantonspolizeien,
+                Stadtpolizeien und das Fedpol. Was sie verbindet: Schichtdienst, Pikettdienst, ungeplante
+                Überstunden und ein Berufsalltag, der sich kaum erklären lässt — erst recht nicht beim
+                ersten Date.
+              </p>
+              <p className="text-base leading-relaxed mt-4">
+                Klassische Dating-Apps kennen keine Früh- und Spätschichten. Sie kennen kein «Ich hab
+                gerade einen Einsatz, können wir verschieben?» und kein Verständnis dafür, wenn du nach
+                einem harten Dienst einfach Stille brauchst. Das Ergebnis: unzählige Erklärungsmarathons,
+                halbherzig abgesagte Dates und Partner, die den Job nie wirklich verstehen werden.
+              </p>
+              <p className="text-base leading-relaxed mt-4">
+                Blaulichtsingles ist anders. Hier triffst du Menschen, die deinen Alltag aus eigener
+                Erfahrung kennen — oder zumindest respektieren und schätzen, was du täglich leistest.
+                Keine Ausreden nötig, kein Grundkurs in Polizeiarbeit. Echte Verbindungen, die halten,
+                weil sie auf gegenseitigem Verständnis aufgebaut sind. Meld dich an — dein Match wartet.
+              </p>
+            </div>
+          </AnimatedGradientBorder>
         </section>
       </ScrollReveal>
 
-      {/* 3 Key Cluster Articles — Big Feature Cards */}
+      {/* Top CTA */}
       <ScrollReveal>
-        <section className="max-w-6xl mx-auto px-6 py-8">
-          <h2 className="text-2xl font-bold mb-8">Deine Guides für die Partnersuche</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {KEY_ARTICLES.map((article) => (
-              <PillarArticleFeature
-                key={article.href}
-                title={article.title}
-                excerpt={article.excerpt}
-                href={article.href}
-                icon={<span>{article.icon}</span>}
-                accentColor="#1E50B4"
-              />
-            ))}
-          </div>
+        <section className="text-center py-6 px-6">
+          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin-polizei">
+            Jetzt kostenfrei mitmachen
+          </HeartButton>
         </section>
       </ScrollReveal>
+
+      {/* Thematic Sections — before middle CTA */}
+      {SECTIONS.map((section) => {
+        const sectionArticles = getSectionArticles(section.slugs);
+        if (sectionArticles.length === 0) return null;
+        return (
+          <ScrollReveal key={section.title}>
+            <section className="max-w-6xl mx-auto px-6 py-10">
+              <h2 className="text-2xl font-bold mb-8 pb-2 border-b-2 border-brand-orange">
+                {section.title}
+              </h2>
+              {section.intro && (
+                <p className="text-foreground/70 mb-8 leading-relaxed">{section.intro}</p>
+              )}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {sectionArticles.map((article) => (
+                  <ArticleCard
+                    key={article.slug}
+                    title={article.entry.title}
+                    excerpt={article.entry.excerpt}
+                    href={getArticleUrl(article.slug, article.entry.type, article.entry.series)}
+                    image={article.entry.featuredImage || undefined}
+                    category={article.entry.category}
+                    date={article.entry.publishedAt || undefined}
+                  />
+                ))}
+              </div>
+            </section>
+          </ScrollReveal>
+        );
+      })}
+
+      {/* Middle CTA */}
+      <ScrollReveal>
+        <section className="max-w-xl mx-auto px-6 py-10 text-center">
+          <AnimatedGradientBorder borderRadius={16} borderWidth={2}>
+            <div className="bg-background rounded-xl p-8 flex flex-col items-center gap-4">
+              <p className="text-lg font-semibold">
+                Jetzt Polizei-Singles in deiner Region finden
+              </p>
+              <HeartButton href="https://blaulichtsingles.ch/?AID=magazin-polizei">
+                Jetzt kostenlos registrieren
+              </HeartButton>
+            </div>
+          </AnimatedGradientBorder>
+        </section>
+      </ScrollReveal>
+
+      {/* Thematic Sections — after middle CTA */}
+      {SECTIONS_AFTER_CTA.map((section) => {
+        const sectionArticles = getSectionArticles(section.slugs);
+        if (sectionArticles.length === 0) return null;
+        return (
+          <ScrollReveal key={section.title}>
+            <section className="max-w-6xl mx-auto px-6 py-10">
+              <h2 className="text-2xl font-bold mb-8 pb-2 border-b-2 border-brand-orange">
+                {section.title}
+              </h2>
+              {section.intro && (
+                <p className="text-foreground/70 mb-8 leading-relaxed">{section.intro}</p>
+              )}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {sectionArticles.map((article) => (
+                  <ArticleCard
+                    key={article.slug}
+                    title={article.entry.title}
+                    excerpt={article.entry.excerpt}
+                    href={getArticleUrl(article.slug, article.entry.type, article.entry.series)}
+                    image={article.entry.featuredImage || undefined}
+                    category={article.entry.category}
+                    date={article.entry.publishedAt || undefined}
+                  />
+                ))}
+              </div>
+            </section>
+          </ScrollReveal>
+        );
+      })}
 
       {/* Testimonials */}
       <ScrollReveal>
@@ -121,37 +237,6 @@ export default async function PolizeiPillar() {
           <CircularTestimonials items={testimonials} />
         </section>
       </ScrollReveal>
-
-      {/* CTA */}
-      <ScrollReveal>
-        <section className="text-center py-8 px-6">
-          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin-polizei">
-            Jetzt kostenfrei mitmachen
-          </HeartButton>
-        </section>
-      </ScrollReveal>
-
-      {/* All Polizei Articles */}
-      {polizeiArticles.length > 0 && (
-        <ScrollReveal>
-          <section className="max-w-6xl mx-auto px-6 py-12">
-            <h2 className="text-2xl font-bold mb-8">Alle Polizei-Artikel</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {polizeiArticles.map((article) => (
-                <ArticleCard
-                  key={article.slug}
-                  title={article.entry.title}
-                  excerpt={article.entry.excerpt}
-                  href={getArticleUrl(article.slug, article.entry.type, article.entry.series)}
-                  image={article.entry.featuredImage || undefined}
-                  category={article.entry.category}
-                  date={article.entry.publishedAt || undefined}
-                />
-              ))}
-            </div>
-          </section>
-        </ScrollReveal>
-      )}
 
       {/* Bottom CTA */}
       <ScrollReveal>

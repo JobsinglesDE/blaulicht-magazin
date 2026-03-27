@@ -4,6 +4,7 @@ import { PillarArticleFeature } from '@/components/content/PillarArticleFeature'
 import { ArticleCard } from '@/components/content/ArticleCard';
 import { HeartButton } from '@/components/ui/HeartButton';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { AnimatedGradientBorder } from '@/components/ui/AnimatedGradientBorder';
 
 export const metadata = {
   title: 'Singles & Partnersuche',
@@ -34,9 +35,20 @@ const PILLARS = [
   },
 ];
 
+const WEITEREBERUFE_SLUGS = [
+  'blaulicht-single',
+  'einsatzkraefte-dating',
+  'pilot-sucht-frau',
+  'soldat-sucht-frau',
+  'tierarzt-sucht-frau',
+];
+
 export default async function SinglesPartnersuche() {
   const articles = await reader.collections.articles.all();
-  const clusterArticles = articles.filter((a) => a.entry.type === 'cluster');
+
+  const weitereBerufe = articles.filter((a) =>
+    WEITEREBERUFE_SLUGS.includes(a.slug)
+  );
 
   return (
     <>
@@ -53,10 +65,53 @@ export default async function SinglesPartnersuche() {
         subtitle="Partnersuche für Blaulicht-Berufe — von Polizei bis Sanität. Dein Guide für die Liebe neben dem Dienst."
       />
 
+      {/* Intro — AnimatedGradientBorder */}
+      <ScrollReveal>
+        <section className="max-w-3xl mx-auto px-6 py-12">
+          <AnimatedGradientBorder borderRadius={20} borderWidth={2}>
+            <div className="bg-gray-900 rounded-[18px] p-8 text-gray-100">
+              <h2 className="text-xl font-bold mb-4 text-white">Dating mit Blaulicht — anders, aber nicht schlechter</h2>
+              <p className="leading-relaxed text-gray-300">
+                Schichtdienst, Pikettbereitschaft, Nachtschicht am Wochenende — wer in einem Blaulicht-Beruf arbeitet,
+                kennt das. Dates, die kurzfristig ausfallen. Abende, die alleine vergehen, weil der Partner oder die
+                Partnerin gerade Alarm hat. Für Aussenstehende klingt das nach Stress. Und ja, manchmal ist es das auch.
+              </p>
+              <p className="mt-4 leading-relaxed text-gray-300">
+                Aber es gibt eine andere Seite: Wer in diesem Umfeld aufgewachsen ist oder selbst im Einsatz steht,
+                weiss, was Verlässlichkeit bedeutet. Was es heisst, füreinander da zu sein — auch wenn der Alltag
+                unberechenbar ist. Genau das verbindet Menschen mit Blaulicht-Hintergrund auf eine Art, die kaum
+                ein Dating-App-Algorithmus erklären kann.
+              </p>
+              <p className="mt-4 leading-relaxed text-gray-300">
+                In der Schweiz leben rund 100 000 Menschen, die täglich für Polizei, Feuerwehr oder Sanität
+                im Einsatz sind. Viele davon sind Single — nicht weil sie es wollen, sondern weil der Dienst
+                kaum Raum lässt, um die richtigen Menschen kennenzulernen. Genau hier setzt Blaulichtsingles.ch an:
+                eine Plattform, die versteht, was Pikett-kompatible Partnersuche wirklich bedeutet. Keine
+                Kompromisse. Echte Verbindungen — mit Menschen, die denselben Takt leben.
+              </p>
+            </div>
+          </AnimatedGradientBorder>
+        </section>
+      </ScrollReveal>
+
+      {/* CTA oben */}
+      <ScrollReveal>
+        <section className="text-center py-6 px-6">
+          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
+            Jetzt kostenfrei mitmachen
+          </HeartButton>
+        </section>
+      </ScrollReveal>
+
       {/* 3 Sub-Pillar Links */}
       <ScrollReveal>
         <section className="max-w-6xl mx-auto px-6 py-12">
-          <h2 className="text-2xl font-bold mb-8">Wähle deinen Beruf</h2>
+          <h2 className="text-2xl font-bold mb-4 pb-2 border-b-2 border-brand-orange">
+            Dein Beruf — deine Community
+          </h2>
+          <p className="text-foreground/70 mb-8 leading-relaxed">
+            Polizei, Feuerwehr oder Sanität — jeder Blaulicht-Beruf hat seine eigene Dating-Welt. Pikett-Realitäten, Schichtmodelle und emotionale Anforderungen unterscheiden sich. Wähle deinen Beruf und entdecke massgeschneiderte Guides für deine Partnersuche.
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {PILLARS.map((pillar) => (
               <PillarArticleFeature
@@ -72,13 +127,18 @@ export default async function SinglesPartnersuche() {
         </section>
       </ScrollReveal>
 
-      {/* All Cluster Articles */}
-      {clusterArticles.length > 0 && (
+      {/* Weitere Einsatzberufe */}
+      {weitereBerufe.length > 0 && (
         <ScrollReveal>
           <section className="max-w-6xl mx-auto px-6 py-12">
-            <h2 className="text-2xl font-bold mb-8">Alle Artikel</h2>
+            <h2 className="text-2xl font-bold mb-4 pb-2 border-b-2 border-brand-orange">
+              Weitere Einsatzberufe
+            </h2>
+            <p className="text-foreground/70 mb-8 leading-relaxed">
+              Piloten, Soldaten, Tierärzte und alle die für andere da sind — Partnersuche in Einsatzberufen hat gemeinsame Herausforderungen, egal welche Uniform.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {clusterArticles.map((article) => (
+              {weitereBerufe.map((article) => (
                 <ArticleCard
                   key={article.slug}
                   title={article.entry.title}
@@ -94,6 +154,7 @@ export default async function SinglesPartnersuche() {
         </ScrollReveal>
       )}
 
+      {/* CTA unten */}
       <ScrollReveal>
         <section className="text-center py-16 px-6">
           <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
