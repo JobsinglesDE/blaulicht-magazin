@@ -2,6 +2,8 @@ import { reader } from '@/lib/keystatic';
 import { notFound } from 'next/navigation';
 import { ArticleBody } from '@/components/content/ArticleBody';
 import { RegionalHero } from '@/components/content/RegionalHero';
+import { TableOfContents } from '@/components/content/TableOfContents';
+import { PillarBacklinkCard } from '@/components/content/PillarBacklinkCard';
 import { TakeawayBox } from '@/components/ui/TakeawayBox';
 import { FAQAccordion } from '@/components/ui/FAQAccordion';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
@@ -10,6 +12,33 @@ import type { Metadata } from 'next';
 
 function toSlug(kanton: string) {
   return kanton.toLowerCase().replace(/[\s-]+/g, '-').replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue');
+}
+
+function toId(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/ä/g, 'ae')
+    .replace(/ö/g, 'oe')
+    .replace(/ü/g, 'ue')
+    .replace(/ß/g, 'ss')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function extractH2s(content: any): { label: string; id: string }[] {
+  const node = 'node' in content ? content.node : content;
+  const items: { label: string; id: string }[] = [];
+  function walk(n: any) {
+    if (n?.type === 'heading' && n?.attributes?.level === 2) {
+      const text = (n.children ?? [])
+        .map((c: any) => (typeof c === 'string' ? c : c?.attributes?.content ?? ''))
+        .join('');
+      if (text) items.push({ label: text, id: toId(text) });
+    }
+    (n?.children ?? []).forEach(walk);
+  }
+  walk(node);
+  return items;
 }
 
 export async function generateStaticParams() {
@@ -65,7 +94,11 @@ export default async function RegionalDetail({ params }: { params: Promise<{ kan
           { label: article.title, href: `/regional/${toSlug(article.kanton)}/${slug}` },
         ]} />
 
+        <TableOfContents items={extractH2s(article.content)} />
+
         <ArticleBody content={article.content} />
+
+        <PillarBacklinkCard beruf={(article as any).beruf ?? 'polizei'} />
 
         {article.takeaways && article.takeaways.length > 0 && (
           <TakeawayBox items={article.takeaways} />
