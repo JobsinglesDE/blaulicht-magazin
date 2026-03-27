@@ -8,16 +8,16 @@ interface RegionalHeroProps {
 
 export function RegionalHero({ title, kanton, city, excerpt, image }: RegionalHeroProps) {
   return (
-    <section className="relative overflow-hidden">
+    <section className={`relative overflow-hidden ${image ? 'min-h-[320px] md:min-h-[400px]' : ''}`}>
       {/* Background Image */}
       {image && (
         <div className="absolute inset-0">
-          <img src={image} alt={`${kanton}${city ? ` – ${city}` : ''}`} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/40" />
+          <img src={image} alt={`${kanton}${city ? ` – ${city}` : ''}`} className="w-full h-full object-cover object-top" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/30" />
         </div>
       )}
 
-      <div className="relative max-w-4xl mx-auto px-6 pt-16 pb-12">
+      <div className="relative max-w-4xl mx-auto px-6 pt-20 pb-14">
         <div className="flex items-center gap-2 mb-6">
           <span className="text-xs uppercase tracking-widest font-bold text-brand-orange">
             {kanton}
