@@ -12,7 +12,7 @@ export function RegionalHero({ title, kanton, city, excerpt, image }: RegionalHe
       {/* Background Image */}
       {image && (
         <div className="absolute inset-0">
-          <img src={image} alt={`${kanton}${city ? ` – ${city}` : ''}`} className="w-full h-full object-cover object-top" />
+          <img src={image} alt={`${kanton}${city ? ` – ${city}` : ''}`} className="w-full h-full object-cover" style={{ objectPosition: '50% 25%' }} />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/30" />
         </div>
       )}
