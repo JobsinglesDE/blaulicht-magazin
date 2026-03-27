@@ -207,6 +207,62 @@ body {
   100% { transform: scale(0) translateY(-20px); opacity: 0; }
 }
 
+/* === Markdoc Article Prose — Tailwind preflight reset fix ===
+   Markdoc renders a wrapping <article> element without classes.
+   These rules restore blockquote, ul, ol, li styles inside .prose article. */
+
+.prose article p {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  line-height: 1.75;
+}
+
+.prose article blockquote {
+  border-left: 4px solid var(--brand-orange);
+  padding: 0.75rem 1.25rem;
+  margin: 2rem 0;
+  font-style: italic;
+  background: linear-gradient(135deg, rgba(255, 122, 0, 0.06), rgba(74, 144, 217, 0.04));
+  border-radius: 0 8px 8px 0;
+  color: inherit;
+}
+
+.prose article blockquote p {
+  margin: 0;
+}
+
+.prose article ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.prose article ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.prose article li {
+  margin: 0.4rem 0;
+  line-height: 1.7;
+}
+
+.prose article h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.prose article h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
 /* === Drop Cap — first paragraph in article prose === */
 .prose > p:first-of-type::first-letter {
   float: left;
