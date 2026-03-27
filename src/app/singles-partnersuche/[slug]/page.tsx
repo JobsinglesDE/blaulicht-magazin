@@ -4,6 +4,7 @@ import { getArticleUrl } from '@/lib/routes';
 import { ArticleBody } from '@/components/content/ArticleBody';
 import { ClusterHero } from '@/components/content/ClusterHero';
 import { TableOfContents } from '@/components/content/TableOfContents';
+import { PillarBacklinkCard } from '@/components/content/PillarBacklinkCard';
 import { CalloutBox } from '@/components/ui/CalloutBox';
 import { TakeawayBox } from '@/components/ui/TakeawayBox';
 import { FAQAccordion } from '@/components/ui/FAQAccordion';
@@ -118,6 +119,13 @@ export default async function ClusterArticle({ params }: { params: Promise<{ slu
         )}
 
         <ArticleBody content={article.content} />
+
+        {['polizei', 'sanitaet', 'feuerwehr'].includes(article.category) && (
+          <PillarBacklinkCard
+            beruf={article.category as 'polizei' | 'sanitaet' | 'feuerwehr'}
+            variant="partnersuche"
+          />
+        )}
 
         {/* CTA mid-article */}
         <div className="text-center py-8">
