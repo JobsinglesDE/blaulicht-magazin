@@ -51,10 +51,10 @@ export function articleJsonLd({
     author: {
       '@type': 'Person',
       name: authorName || 'Tommy Honold',
-      url: authorUrl || 'https://farmersingles.de/magazin/author/tommy/',
+      url: authorUrl || 'https://blaulichtsingles.ch/magazin/autor/tommy-honold',
       sameAs: [
         'https://www.facebook.com/thomashonold1/',
-        'https://farmersingles.de/magazin/author/tommy/',
+        'https://blaulichtsingles.ch/magazin/autor/tommy-honold',
       ],
     },
     publisher: {
