@@ -25,14 +25,18 @@ function toId(text: string) {
     .replace(/^-|-$/g, '');
 }
 
+function collectText(n: any): string {
+  if (typeof n === 'string') return n;
+  if (n?.type === 'text') return n.attributes?.content ?? '';
+  return (n?.children ?? []).map(collectText).join('');
+}
+
 function extractH2s(content: any): { label: string; id: string }[] {
   const node = 'node' in content ? content.node : content;
   const items: { label: string; id: string }[] = [];
   function walk(n: any) {
     if (n?.type === 'heading' && n?.attributes?.level === 2) {
-      const text = (n.children ?? [])
-        .map((c: any) => (typeof c === 'string' ? c : c?.attributes?.content ?? ''))
-        .join('');
+      const text = collectText(n);
       if (text) items.push({ label: text, id: toId(text) });
     }
     (n?.children ?? []).forEach(walk);
