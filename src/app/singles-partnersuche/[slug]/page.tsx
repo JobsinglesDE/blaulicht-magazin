@@ -118,6 +118,14 @@ export default async function ClusterArticle({ params }: { params: Promise<{ slu
           </CalloutBox>
         )}
 
+        {/* CTA top — dezenter Banner */}
+        <div className="my-8 rounded-xl bg-brand-orange/10 border border-brand-orange/20 p-6 text-center">
+          <p className="text-sm text-foreground/70 mb-3">Du bist bei Polizei, Feuerwehr oder Sanität?</p>
+          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
+            Jetzt kostenfrei anmelden
+          </HeartButton>
+        </div>
+
         <ArticleBody content={article.content} />
 
         {['polizei', 'sanitaet', 'feuerwehr'].includes(article.category) && (
@@ -127,8 +135,10 @@ export default async function ClusterArticle({ params }: { params: Promise<{ slu
           />
         )}
 
-        {/* CTA mid-article */}
-        <div className="text-center py-8">
+        {/* CTA mid-article — visueller Break */}
+        <div className="my-12 py-10 px-6 rounded-2xl bg-surface-dark text-white text-center">
+          <p className="text-lg font-bold mb-2">Genug gelesen?</p>
+          <p className="text-white/60 text-sm mb-5">Finde Singles, die deinen Alltag verstehen.</p>
           <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
             Jetzt kostenfrei mitmachen
           </HeartButton>
