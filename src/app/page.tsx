@@ -4,31 +4,12 @@ import { ArticleCard } from '@/components/content/ArticleCard';
 import { SuccessStory } from '@/components/content/SuccessStory';
 import { PillarHero } from '@/components/content/PillarHero';
 import { HeartButton } from '@/components/ui/HeartButton';
-import { CircularTestimonials } from '@/components/ui/CircularTestimonials';
 import { CarouselCards } from '@/components/ui/CarouselCards';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { AnimatedStats } from '@/components/ui/AnimatedCounter';
 import { MatchQuiz } from '@/components/ui/MatchQuiz';
 
 const rotations: Array<'left' | 'right' | 'slight'> = ['left', 'right', 'slight'];
-
-const testimonials = [
-  {
-    quote: 'Nach drei Jahren Schichtdienst dachte ich, das wird nie was mit der Liebe. Dann hab ich mich hier angemeldet — und nach zwei Wochen sass er neben mir im Café.',
-    name: 'Nadine K.',
-    role: 'Polizistin, Kapo Bern',
-  },
-  {
-    quote: 'Endlich jemand, der versteht, warum ich um 3 Uhr nachts angerufen werde. Hier wissen alle, was Schichtarbeit bedeutet.',
-    name: 'Marco R.',
-    role: 'Rettungssanitäter, SRK',
-  },
-  {
-    quote: 'Das Schönste war, dass ich nichts erklären musste. Sie kennt den Alltag, den Piepser, die Einsätze. Das verbindet.',
-    name: 'Thomas L.',
-    role: 'Berufsfeuerwehr Zürich',
-  },
-];
 
 export default async function HomePage() {
   const allArticles = await reader.collections.articles.all();
@@ -125,13 +106,6 @@ export default async function HomePage() {
               { value: 127, suffix: '', label: 'Erfolgspaare' },
             ]}
           />
-        </section>
-      </ScrollReveal>
-
-      {/* Testimonials */}
-      <ScrollReveal>
-        <section className="max-w-6xl mx-auto px-6">
-          <CircularTestimonials items={testimonials} />
         </section>
       </ScrollReveal>
 
