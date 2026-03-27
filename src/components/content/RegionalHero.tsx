@@ -13,7 +13,8 @@ export function RegionalHero({ title, kanton, city, excerpt, image }: RegionalHe
       {image && (
         <div className="absolute inset-0">
           <img src={image} alt={`${kanton}${city ? ` – ${city}` : ''}`} className="w-full h-full object-cover" style={{ objectPosition: '50% 25%' }} />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/30" />
+          {/* Dark scrim for text contrast in both light + dark mode */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/10" />
         </div>
       )}
 
@@ -24,16 +25,16 @@ export function RegionalHero({ title, kanton, city, excerpt, image }: RegionalHe
           </span>
           {city && (
             <>
-              <span className="text-foreground/20">·</span>
-              <span className="text-xs text-foreground/50">{city}</span>
+              <span className="text-white/40">·</span>
+              <span className="text-xs text-white/70">{city}</span>
             </>
           )}
         </div>
-        <h1 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight mb-4 leading-tight">
+        <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-4 leading-tight drop-shadow-lg">
           {title}
         </h1>
         {excerpt && (
-          <p className="text-lg text-foreground/60 max-w-2xl leading-relaxed">
+          <p className="text-lg text-white/80 max-w-2xl leading-relaxed drop-shadow">
             {excerpt}
           </p>
         )}
