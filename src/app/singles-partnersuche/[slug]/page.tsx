@@ -11,6 +11,7 @@ import { FAQAccordion } from '@/components/ui/FAQAccordion';
 import { HeartButton } from '@/components/ui/HeartButton';
 import { AuthorBio } from '@/components/ui/AuthorBio';
 import { CarouselCards } from '@/components/ui/CarouselCards';
+import { MatchQuiz } from '@/components/ui/MatchQuiz';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd, articleJsonLd, faqJsonLd } from '@/components/seo/JsonLd';
 
@@ -147,6 +148,12 @@ export default async function ClusterArticle({ params }: { params: Promise<{ slu
         {article.takeaways && article.takeaways.length > 0 && (
           <TakeawayBox items={article.takeaways} />
         )}
+
+        {/* Mini Quiz */}
+        <div className="my-12 py-8 px-6 rounded-2xl border border-foreground/10">
+          <p className="text-center text-sm font-bold text-foreground/50 uppercase tracking-widest mb-4">Finde deinen Match-Typ</p>
+          <MatchQuiz />
+        </div>
 
         {article.faqItems && article.faqItems.length > 0 && (
           <>
