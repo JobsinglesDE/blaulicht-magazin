@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   description:
     'Das Magazin für Singles bei Polizei, Feuerwehr und Sanität. Partnersuche, Erfolgsgeschichten und regionale Tipps.',
   metadataBase: new URL('https://blaulichtsingles.ch/magazin'),
+  verification: {
+    google: 'wX9Cm671l9E8x5f5BB72cAo-r_RcVHKKk3Eu0rr-fZM',
+  },
 };
 
 export default function RootLayout({
