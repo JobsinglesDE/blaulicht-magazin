@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getArticleUrl } from '@/lib/routes';
 import { ArticleBody } from '@/components/content/ArticleBody';
 import { ClusterHero } from '@/components/content/ClusterHero';
+import { TableOfContents } from '@/components/content/TableOfContents';
 import { CalloutBox } from '@/components/ui/CalloutBox';
 import { TakeawayBox } from '@/components/ui/TakeawayBox';
 import { FAQAccordion } from '@/components/ui/FAQAccordion';
@@ -11,6 +12,28 @@ import { AuthorBio } from '@/components/ui/AuthorBio';
 import { CarouselCards } from '@/components/ui/CarouselCards';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd, articleJsonLd, faqJsonLd } from '@/components/seo/JsonLd';
+
+function toId(text: string) {
+  return text.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+function collectText(n: any): string {
+  if (typeof n === 'string') return n;
+  if (n?.type === 'text') return n.attributes?.content ?? '';
+  return (n?.children ?? []).map(collectText).join('');
+}
+function extractH2s(content: any): { label: string; id: string }[] {
+  const node = 'node' in content ? content.node : content;
+  const items: { label: string; id: string }[] = [];
+  function walk(n: any) {
+    if (n?.type === 'heading' && n?.attributes?.level === 2) {
+      const text = collectText(n);
+      if (text) items.push({ label: text, id: toId(text) });
+    }
+    (n?.children ?? []).forEach(walk);
+  }
+  walk(node);
+  return items;
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -85,6 +108,8 @@ export default async function ClusterArticle({ params }: { params: Promise<{ slu
           { label: 'Singles & Partnersuche', href: '/singles-partnersuche' },
           { label: article.title, href: `/singles-partnersuche/${slug}` },
         ]} />
+
+        <TableOfContents items={extractH2s(article.content)} />
 
         {article.calloutQuestion && (
           <CalloutBox question={article.calloutQuestion}>

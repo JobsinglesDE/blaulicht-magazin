@@ -2,12 +2,35 @@ import { reader } from '@/lib/keystatic';
 import { notFound } from 'next/navigation';
 import { ArticleBody } from '@/components/content/ArticleBody';
 import { ClusterHero } from '@/components/content/ClusterHero';
+import { TableOfContents } from '@/components/content/TableOfContents';
 import { CalloutBox } from '@/components/ui/CalloutBox';
 import { TakeawayBox } from '@/components/ui/TakeawayBox';
 import { FAQAccordion } from '@/components/ui/FAQAccordion';
 import { HeartButton } from '@/components/ui/HeartButton';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd, articleJsonLd, faqJsonLd } from '@/components/seo/JsonLd';
+
+function toId(text: string) {
+  return text.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+function collectText(n: any): string {
+  if (typeof n === 'string') return n;
+  if (n?.type === 'text') return n.attributes?.content ?? '';
+  return (n?.children ?? []).map(collectText).join('');
+}
+function extractH2s(content: any): { label: string; id: string }[] {
+  const node = 'node' in content ? content.node : content;
+  const items: { label: string; id: string }[] = [];
+  function walk(n: any) {
+    if (n?.type === 'heading' && n?.attributes?.level === 2) {
+      const text = collectText(n);
+      if (text) items.push({ label: text, id: toId(text) });
+    }
+    (n?.children ?? []).forEach(walk);
+  }
+  walk(node);
+  return items;
+}
 
 export async function generateStaticParams() {
   const series = await reader.collections.series.all();
@@ -74,6 +97,8 @@ export default async function TatortArticle({ params }: { params: Promise<{ slug
           { label: 'Tatort Zürich', href: '/tv-news/tatort-zuerich' },
           { label: article.title, href: `/tv-news/tatort-zuerich/${slug}` },
         ]} />
+
+        <TableOfContents items={extractH2s(article.content)} />
 
         {'calloutQuestion' in article && article.calloutQuestion && (
           <CalloutBox question={article.calloutQuestion}>
