@@ -64,6 +64,8 @@ export default async function ClusterArticle({ params }: { params: Promise<{ slu
           url: `https://blaulichtsingles.ch/magazin/singles-partnersuche/${slug}`,
           image: article.featuredImage || undefined,
           datePublished: article.publishedAt || undefined,
+          authorName: author?.name,
+          authorUrl: author?.socialLinks?.find((l) => l.platform === 'Website')?.url,
         })}
       />
       {article.faqItems && article.faqItems.length > 0 && (

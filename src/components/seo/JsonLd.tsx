@@ -17,31 +17,58 @@ export function articleJsonLd({
   url,
   image,
   datePublished,
-  author,
+  dateModified,
+  authorName,
+  authorUrl,
 }: {
   title: string;
   description: string;
   url: string;
   image?: string;
   datePublished?: string;
-  author?: string;
+  dateModified?: string;
+  authorName?: string;
+  authorUrl?: string;
 }) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url,
+    },
     headline: title,
     description,
     url,
-    ...(image && { image }),
-    ...(datePublished && { datePublished }),
-    ...(author && {
-      author: { '@type': 'Person', name: author },
+    ...(image && {
+      image: {
+        '@type': 'ImageObject',
+        url: image,
+      },
     }),
+    ...(datePublished && { datePublished }),
+    ...(dateModified && { dateModified }),
+    author: {
+      '@type': 'Person',
+      name: authorName || 'Tommy Honold',
+      url: authorUrl || 'https://farmersingles.de/magazin/author/tommy/',
+      sameAs: [
+        'https://www.facebook.com/thomashonold1/',
+        'https://farmersingles.de/magazin/author/tommy/',
+      ],
+    },
     publisher: {
       '@type': 'Organization',
       name: 'Blaulicht Magazin',
       url: 'https://blaulichtsingles.ch/magazin',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://blaulichtsingles.ch/magazin/wp-content/uploads/2025/02/cropped-cropped-cropped-cropped-JS-logo-Menu-orange-2-e1740614328941-3.png',
+        width: 512,
+        height: 512,
+      },
     },
+    inLanguage: 'de-CH',
   };
 }
 
