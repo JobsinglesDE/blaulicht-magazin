@@ -20,6 +20,7 @@ export function articleJsonLd({
   dateModified,
   authorName,
   authorUrl,
+  isNews,
 }: {
   title: string;
   description: string;
@@ -29,10 +30,11 @@ export function articleJsonLd({
   dateModified?: string;
   authorName?: string;
   authorUrl?: string;
+  isNews?: boolean;
 }) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
+    '@type': isNews ? 'NewsArticle' : 'BlogPosting',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': url,
