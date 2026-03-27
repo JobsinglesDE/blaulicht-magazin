@@ -6,13 +6,28 @@ import { TakeawayBox } from '@/components/ui/TakeawayBox';
 import { FAQAccordion } from '@/components/ui/FAQAccordion';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd, articleJsonLd, faqJsonLd } from '@/components/seo/JsonLd';
+import type { Metadata } from 'next';
+
+function toSlug(kanton: string) {
+  return kanton.toLowerCase().replace(/[\s-]+/g, '-').replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue');
+}
 
 export async function generateStaticParams() {
   const all = await reader.collections.regional.all();
   return all.map((r) => ({
-    kanton: r.entry.kanton.toLowerCase().replace(/\s+/g, '-'),
+    kanton: toSlug(r.entry.kanton),
     slug: r.slug,
   }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ kanton: string; slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const article = await reader.collections.regional.read(slug);
+  if (!article) return {};
+  return {
+    title: article.seoTitle || article.title,
+    description: article.seoDescription || article.excerpt,
+  };
 }
 
 export default async function RegionalDetail({ params }: { params: Promise<{ kanton: string; slug: string }> }) {
@@ -26,7 +41,7 @@ export default async function RegionalDetail({ params }: { params: Promise<{ kan
         data={articleJsonLd({
           title: article.title,
           description: article.excerpt,
-          url: `https://blaulichtsingles.ch/magazin/regional/${kanton}/${slug}`,
+          url: `https://blaulichtsingles.ch/magazin/regional/${toSlug(kanton)}/${slug}`,
           image: article.featuredImage || undefined,
           datePublished: article.publishedAt || undefined,
         })}
@@ -46,8 +61,8 @@ export default async function RegionalDetail({ params }: { params: Promise<{ kan
       <div className="max-w-3xl mx-auto px-6 py-12">
         <Breadcrumbs items={[
           { label: 'Regional', href: '/regional' },
-          { label: article.kanton, href: `/regional/${kanton}` },
-          { label: article.title, href: `/regional/${kanton}/${slug}` },
+          { label: article.kanton, href: `/regional/${toSlug(article.kanton)}` },
+          { label: article.title, href: `/regional/${toSlug(article.kanton)}/${slug}` },
         ]} />
 
         <ArticleBody content={article.content} />
