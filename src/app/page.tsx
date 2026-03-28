@@ -14,7 +14,9 @@ const rotations: Array<'left' | 'right' | 'slight'> = ['left', 'right', 'slight'
 export default async function HomePage() {
   const allArticles = await reader.collections.articles.all();
   const stories = await reader.collections.stories.all();
+  const allSeries = await reader.collections.series.all();
   const articles = allArticles.filter((a) => a.entry.status !== 'draft');
+  const tvNews = allSeries.filter((s) => s.entry.status !== 'draft').slice(0, 3);
 
   const carouselItems = articles.slice(0, 8).map((article) => ({
     title: article.entry.title,
@@ -140,6 +142,49 @@ export default async function HomePage() {
                   image={story.entry.featuredImage || undefined}
                   rotation={rotations[i % 3]}
                 />
+              ))}
+            </div>
+          </section>
+        </ScrollReveal>
+      )}
+
+      {/* TV News */}
+      {tvNews.length > 0 && (
+        <ScrollReveal>
+          <section className="max-w-6xl mx-auto px-6 py-12">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-3xl font-bold">TV News</h2>
+              <a href="/tv-news" className="text-brand-orange hover:underline text-sm font-semibold">
+                Alle TV News &rarr;
+              </a>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {tvNews.map((article) => (
+                <a
+                  key={article.slug}
+                  href={`/tv-news/${article.entry.seriesId}/${article.slug}`}
+                  className="group relative rounded-2xl overflow-hidden min-h-[240px] hover:shadow-xl transition-all"
+                >
+                  {article.entry.featuredImage && (
+                    <img
+                      src={article.entry.featuredImage}
+                      alt={article.entry.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      style={{ objectPosition: '50% 20%' }}
+                      loading="lazy"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                  <div className="relative flex flex-col justify-end h-full p-5">
+                    <span className="text-[10px] uppercase tracking-widest font-bold text-brand-orange mb-1">
+                      {article.entry.seriesId === 'tatort-zuerich' ? '«Tatort» Zürich' : 'Der Bergdoktor'}
+                    </span>
+                    <h3 className="text-lg font-bold text-white mb-1 group-hover:text-brand-orange transition-colors line-clamp-2">
+                      {article.entry.title}
+                    </h3>
+                    <p className="text-white/60 text-sm line-clamp-2">{article.entry.excerpt}</p>
+                  </div>
+                </a>
               ))}
             </div>
           </section>
