@@ -120,38 +120,38 @@ export default function UeberUns() {
       <ScrollReveal>
         <section className="max-w-3xl mx-auto px-6 py-8">
           <h2 className="text-2xl font-bold mb-6">Thomas Honold — Steckbrief</h2>
-          <div className="bg-surface-dark rounded-2xl p-6 md:p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div className="rounded-2xl p-6 md:p-8 border border-foreground/10" style={{ background: 'rgba(255,255,255,0.05)' }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-white">
               <div>
-                <p className="text-foreground/50 text-xs uppercase tracking-wide mb-1">Name</p>
+                <p className="text-brand-orange text-xs uppercase tracking-wide mb-1">Name</p>
                 <p className="font-semibold">Thomas Honold</p>
               </div>
               <div>
-                <p className="text-foreground/50 text-xs uppercase tracking-wide mb-1">Rolle</p>
+                <p className="text-brand-orange text-xs uppercase tracking-wide mb-1">Rolle</p>
                 <p className="font-semibold">Gründer & CEO Jobsingles-Netzwerk</p>
               </div>
               <div>
-                <p className="text-foreground/50 text-xs uppercase tracking-wide mb-1">Ausbildung</p>
+                <p className="text-brand-orange text-xs uppercase tracking-wide mb-1">Ausbildung</p>
                 <p className="font-semibold">Koch & Küchenmeister (IHK)</p>
               </div>
               <div>
-                <p className="text-foreground/50 text-xs uppercase tracking-wide mb-1">Militär</p>
+                <p className="text-brand-orange text-xs uppercase tracking-wide mb-1">Militär</p>
                 <p className="font-semibold">Marine-Koch & Feldkoch (Bundeswehr)</p>
               </div>
               <div>
-                <p className="text-foreground/50 text-xs uppercase tracking-wide mb-1">Stationen</p>
+                <p className="text-brand-orange text-xs uppercase tracking-wide mb-1">Stationen</p>
                 <p className="font-semibold">Traube Tonbach · Hummer Bar Zürich · Mettnaustube</p>
               </div>
               <div>
-                <p className="text-foreground/50 text-xs uppercase tracking-wide mb-1">Netzwerk seit</p>
+                <p className="text-brand-orange text-xs uppercase tracking-wide mb-1">Netzwerk seit</p>
                 <p className="font-semibold">2008 — 15+ Dating-Portale</p>
               </div>
               <div>
-                <p className="text-foreground/50 text-xs uppercase tracking-wide mb-1">Kontakt</p>
+                <p className="text-brand-orange text-xs uppercase tracking-wide mb-1">Kontakt</p>
                 <p className="font-semibold">jobsingles@gmail.com</p>
               </div>
               <div>
-                <p className="text-foreground/50 text-xs uppercase tracking-wide mb-1">Standort</p>
+                <p className="text-brand-orange text-xs uppercase tracking-wide mb-1">Standort</p>
                 <p className="font-semibold">Radolfzell am Bodensee</p>
               </div>
             </div>
