@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { ArticleBody } from '@/components/content/ArticleBody';
 import { ClusterHero } from '@/components/content/ClusterHero';
 import { TableOfContents } from '@/components/content/TableOfContents';
+import { StickyTOC } from '@/components/content/StickyTOC';
 import { CalloutBox } from '@/components/ui/CalloutBox';
 import { TakeawayBox } from '@/components/ui/TakeawayBox';
 import { FAQAccordion } from '@/components/ui/FAQAccordion';
@@ -90,6 +91,8 @@ export default async function TatortArticle({ params }: { params: Promise<{ slug
         image={article.featuredImage || undefined}
         date={article.publishedAt || undefined}
       />
+
+      <StickyTOC items={extractH2s(article.content)} />
 
       <div className="max-w-3xl mx-auto px-6 py-12">
         <Breadcrumbs items={[
