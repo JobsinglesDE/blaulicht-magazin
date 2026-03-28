@@ -189,7 +189,7 @@ export default config({
         }),
         seriesId: fields.select({
           label: 'Serie',
-          defaultValue: 'assistenzaerzte',
+          defaultValue: 'tatort-zuerich',
           options: [
             { label: 'Tatort Zürich (Schweizer Fernsehen)', value: 'tatort-zuerich' },
             { label: 'Der Bergdoktor (ZDF)', value: 'bergdoktor' },
