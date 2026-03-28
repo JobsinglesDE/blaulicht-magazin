@@ -1,4 +1,6 @@
 import { reader } from '@/lib/keystatic';
+import Link from 'next/link';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 
 export const metadata = {
   title: 'Tatort Zürich — News & Hintergründe',
@@ -42,13 +44,22 @@ export default async function TatortZuerich() {
         </div>
       </section>
       <section className="max-w-6xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <Breadcrumbs items={[
+          { label: 'TV News', href: '/tv-news' },
+          { label: 'Tatort Zürich', href: '/tv-news/tatort-zuerich' },
+        ]} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
           {articles.map((article) => (
             <a key={article.slug} href={`/tv-news/tatort-zuerich/${article.slug}`} className="bg-surface-dark rounded-lg p-6 hover:ring-2 hover:ring-brand-orange transition-all">
               <h3 className="text-xl font-semibold">{article.entry.title}</h3>
               <p className="text-foreground/60 mt-2">{article.entry.excerpt}</p>
             </a>
           ))}
+        </div>
+        <div className="mt-8">
+          <Link href="/tv-news" className="text-brand-orange font-semibold hover:underline text-sm">
+            ← Zurück zu TV News
+          </Link>
         </div>
       </section>
     </div>
