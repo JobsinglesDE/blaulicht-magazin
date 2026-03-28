@@ -33,13 +33,13 @@ export default async function HomePage() {
             className="w-full h-full object-cover"
             style={{ objectPosition: '50% 15%' }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
         </div>
-        <div className="relative max-w-4xl mx-auto px-6 pt-56 md:pt-72 pb-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 drop-shadow-lg">
+        <div className="relative max-w-4xl mx-auto px-6 flex flex-col justify-end min-h-[420px] md:min-h-[560px] pb-10">
+          <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-2 drop-shadow-lg text-center">
             Blaulicht<span className="text-brand-orange">singles</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow">
+          <p className="text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow text-center">
             Das Magazin für Singles bei Polizei, Feuerwehr und Sanität
           </p>
         </div>
