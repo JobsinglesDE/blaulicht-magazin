@@ -2,7 +2,6 @@ import { reader } from '@/lib/keystatic';
 import { getArticleUrl } from '@/lib/routes';
 import { ArticleCard } from '@/components/content/ArticleCard';
 import { SuccessStory } from '@/components/content/SuccessStory';
-import { PillarHero } from '@/components/content/PillarHero';
 import { HeartButton } from '@/components/ui/HeartButton';
 import { CarouselCards } from '@/components/ui/CarouselCards';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
@@ -26,19 +25,25 @@ export default async function HomePage() {
 
   return (
     <>
-      <PillarHero
-        title="Blaulichtsingles"
-        texts={[
-          "Held sucht Herz",
-          "Notruf Liebe",
-          "Einsatz Herz",
-          "Dein Match",
-          "Blaulicht Herz",
-          "Frei. Verliebt.",
-          "Blaulicht Singles",
-        ]}
-        subtitle="Das Magazin für Singles bei Polizei, Feuerwehr und Sanität"
-      />
+      <section className="relative overflow-hidden min-h-[360px] md:min-h-[480px]">
+        <div className="absolute inset-0">
+          <img
+            src="/images/hero-startseite.webp"
+            alt="Blaulicht-Singles — Polizei, Feuerwehr, Sanität und Ärzte auf einer Brücke in der Schweiz"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: '50% 30%' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+        </div>
+        <div className="relative max-w-4xl mx-auto px-6 pt-28 pb-16 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 drop-shadow-lg">
+            Blaulicht<span className="text-brand-orange">singles</span>
+          </h1>
+          <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow">
+            Das Magazin für Singles bei Polizei, Feuerwehr und Sanität
+          </p>
+        </div>
+      </section>
 
       {/* Neueste Artikel — Grid */}
       <ScrollReveal>

@@ -12,6 +12,8 @@ const roboto = Roboto({
   subsets: ['latin'],
 });
 
+const BASE_URL = 'https://blaulichtsingles.ch/magazin';
+
 export const metadata: Metadata = {
   title: {
     default: 'Blaulicht Magazin — Dating für Blaulicht-Singles',
@@ -19,7 +21,23 @@ export const metadata: Metadata = {
   },
   description:
     'Das Magazin für Singles bei Polizei, Feuerwehr und Sanität. Partnersuche, Erfolgsgeschichten und regionale Tipps.',
-  metadataBase: new URL('https://blaulichtsingles.ch/magazin'),
+  metadataBase: new URL(BASE_URL),
+  alternates: { canonical: BASE_URL },
+  openGraph: {
+    title: 'Blaulicht Magazin — Dating für Blaulicht-Singles',
+    description: 'Das Magazin für Singles bei Polizei, Feuerwehr und Sanität.',
+    url: BASE_URL,
+    type: 'website',
+    siteName: 'Blaulicht Magazin',
+    locale: 'de_CH',
+    images: [{ url: `${BASE_URL}/images/hero-startseite.webp`, width: 1256, height: 710, alt: 'Blaulicht-Singles — Polizei, Feuerwehr, Sanität und Ärzte' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blaulicht Magazin — Dating für Blaulicht-Singles',
+    description: 'Das Magazin für Singles bei Polizei, Feuerwehr und Sanität.',
+    images: [`${BASE_URL}/images/hero-startseite.webp`],
+  },
   verification: {
     google: 'wX9Cm671l9E8x5f5BB72cAo-r_RcVHKKk3Eu0rr-fZM',
   },
