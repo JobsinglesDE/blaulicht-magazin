@@ -110,10 +110,23 @@ export default async function HomePage() {
         </section>
       </ScrollReveal>
 
+      {/* Stats */}
+      <ScrollReveal>
+        <section className="max-w-4xl mx-auto px-6 py-12">
+          <AnimatedStats
+            items={[
+              { value: 2300, suffix: '+', label: 'Registrierte Singles' },
+              { value: 85, suffix: '%', label: 'Blaulicht-Berufe' },
+              { value: 127, suffix: '', label: 'Erfolgspaare' },
+            ]}
+          />
+        </section>
+      </ScrollReveal>
+
       {/* Erfolgsgeschichten */}
       {stories.length > 0 && (
         <ScrollReveal>
-          <section className="max-w-6xl mx-auto px-6 py-16">
+          <section className="max-w-6xl mx-auto px-6 py-12">
             <h2 className="text-3xl font-bold mb-8">Erfolgsgeschichten</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
               {stories.slice(0, 3).map((story, i) => (
@@ -139,19 +152,6 @@ export default async function HomePage() {
           <CarouselCards title="Mehr entdecken" items={carouselItems.slice(3)} />
         </ScrollReveal>
       )}
-
-      {/* Stats */}
-      <ScrollReveal>
-        <section className="max-w-4xl mx-auto px-6 py-16">
-          <AnimatedStats
-            items={[
-              { value: 2300, suffix: '+', label: 'Registrierte Singles' },
-              { value: 85, suffix: '%', label: 'Blaulicht-Berufe' },
-              { value: 127, suffix: '', label: 'Erfolgspaare' },
-            ]}
-          />
-        </section>
-      </ScrollReveal>
 
       {/* Quiz */}
       <ScrollReveal>
