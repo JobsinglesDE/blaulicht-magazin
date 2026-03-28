@@ -38,17 +38,38 @@ function extractH2s(content: any): { label: string; id: string }[] {
   return items;
 }
 
+const BASE_URL = 'https://blaulichtsingles.ch/magazin';
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const article = await reader.collections.articles.read(slug);
   if (!article) return {};
+
+  const title = article.seoTitle || article.title;
+  const description = article.seoDescription || article.excerpt;
+  const url = `${BASE_URL}/singles-partnersuche/${slug}`;
+  const image = article.featuredImage
+    ? `${BASE_URL}${article.featuredImage}`
+    : `${BASE_URL}/logos/jobsingles-logo.png`;
+
   return {
-    title: article.seoTitle || article.title,
-    description: article.seoDescription || article.excerpt,
+    title,
+    description,
+    alternates: { canonical: url },
     openGraph: {
-      title: article.seoTitle || article.title,
-      description: article.seoDescription || article.excerpt,
-      images: article.featuredImage ? [article.featuredImage] : [],
+      title,
+      description,
+      url,
+      type: 'article',
+      images: [{ url: image, width: 1256, height: 710, alt: title }],
+      siteName: 'Blaulicht Magazin',
+      locale: 'de_CH',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
     },
   };
 }
@@ -87,8 +108,8 @@ export default async function ClusterArticle({ params }: { params: Promise<{ slu
         data={articleJsonLd({
           title: article.title,
           description: article.excerpt,
-          url: `https://blaulichtsingles.ch/magazin/singles-partnersuche/${slug}`,
-          image: article.featuredImage || undefined,
+          url: `${BASE_URL}/singles-partnersuche/${slug}`,
+          image: article.featuredImage ? `${BASE_URL}${article.featuredImage}` : undefined,
           datePublished: article.publishedAt || undefined,
           authorName: author?.name,
           authorUrl: author?.socialLinks?.find((l) => l.platform === 'Website')?.url ?? undefined,

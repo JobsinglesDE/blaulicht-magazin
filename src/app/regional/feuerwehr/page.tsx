@@ -5,11 +5,17 @@ import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import type { Metadata } from 'next';
 
+const BASE_URL = 'https://blaulichtsingles.ch/magazin';
+
 export async function generateMetadata(): Promise<Metadata> {
   const cms = await reader.singletons.regionalFeuerwehr.read();
+  const title = cms?.seoTitle || 'Singles Feuerwehr Schweiz — Alle Kantone';
+  const description = cms?.seoDescription || 'Feuerwehr Singles & Bekanntschaften in allen Schweizer Kantonen.';
   return {
-    title: cms?.seoTitle || 'Singles Feuerwehr Schweiz — Alle Kantone',
-    description: cms?.seoDescription || 'Feuerwehr Singles & Bekanntschaften in allen Schweizer Kantonen.',
+    title, description,
+    alternates: { canonical: `${BASE_URL}/regional/feuerwehr` },
+    openGraph: { title, description, url: `${BASE_URL}/regional/feuerwehr`, type: 'website', siteName: 'Blaulicht Magazin', locale: 'de_CH', images: [{ url: `${BASE_URL}/logos/jobsingles-logo.png`, alt: title }] },
+    twitter: { card: 'summary_large_image', title, description, images: [`${BASE_URL}/logos/jobsingles-logo.png`] },
   };
 }
 

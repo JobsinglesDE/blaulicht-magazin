@@ -5,11 +5,17 @@ import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import type { Metadata } from 'next';
 
+const BASE_URL = 'https://blaulichtsingles.ch/magazin';
+
 export async function generateMetadata(): Promise<Metadata> {
   const cms = await reader.singletons.regionalSanitaet.read();
+  const title = cms?.seoTitle || 'Singles Sanität Schweiz — Alle Kantone';
+  const description = cms?.seoDescription || 'Sanität Singles & Bekanntschaften in allen Schweizer Kantonen.';
   return {
-    title: cms?.seoTitle || 'Singles Sanität Schweiz — Alle Kantone',
-    description: cms?.seoDescription || 'Sanität Singles & Bekanntschaften in allen Schweizer Kantonen.',
+    title, description,
+    alternates: { canonical: `${BASE_URL}/regional/sanitaet` },
+    openGraph: { title, description, url: `${BASE_URL}/regional/sanitaet`, type: 'website', siteName: 'Blaulicht Magazin', locale: 'de_CH', images: [{ url: `${BASE_URL}/logos/jobsingles-logo.png`, alt: title }] },
+    twitter: { card: 'summary_large_image', title, description, images: [`${BASE_URL}/logos/jobsingles-logo.png`] },
   };
 }
 
