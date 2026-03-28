@@ -59,12 +59,36 @@ export default async function HomePage() {
         ]}
       />
 
-      {/* Neueste Artikel — Grid */}
+      {/* Neueste Artikel — Bento Grid */}
       <ScrollReveal>
         <section className="max-w-6xl mx-auto px-6 py-16">
           <h2 className="text-3xl font-bold mb-8">Neueste Artikel</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {articles.slice(0, 3).map((article) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {articles.length > 0 && (
+              <a
+                href={getArticleUrl(articles[0].slug, articles[0].entry.type, articles[0].entry.series)}
+                className="group md:col-span-2 relative rounded-2xl overflow-hidden min-h-[320px] hover:shadow-xl transition-all"
+              >
+                {articles[0].entry.featuredImage && (
+                  <img
+                    src={articles[0].entry.featuredImage}
+                    alt={articles[0].entry.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="relative flex flex-col justify-end h-full p-8">
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-brand-orange mb-2">
+                    {articles[0].entry.category}
+                  </span>
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:text-brand-orange transition-colors">
+                    {articles[0].entry.title}
+                  </h3>
+                  <p className="text-white/70 line-clamp-2 max-w-2xl">{articles[0].entry.excerpt}</p>
+                </div>
+              </a>
+            )}
+            {articles.slice(1, 3).map((article) => (
               <ArticleCard
                 key={article.slug}
                 title={article.entry.title}
@@ -76,7 +100,7 @@ export default async function HomePage() {
               />
             ))}
             {articles.length === 0 && (
-              <p className="text-foreground/50 col-span-3 text-center py-12">
+              <p className="text-foreground/50 col-span-2 text-center py-12">
                 Noch keine Artikel. Erstelle welche unter{' '}
                 <a href="/keystatic" className="text-brand-orange underline">/keystatic</a>
               </p>

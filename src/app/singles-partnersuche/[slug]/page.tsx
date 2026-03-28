@@ -13,6 +13,7 @@ import { AuthorBio } from '@/components/ui/AuthorBio';
 import { CarouselCards } from '@/components/ui/CarouselCards';
 import { MatchQuiz } from '@/components/ui/MatchQuiz';
 import { AnimatedGradientBorder } from '@/components/ui/AnimatedGradientBorder';
+import { StickyTOC } from '@/components/content/StickyTOC';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd, articleJsonLd, faqJsonLd } from '@/components/seo/JsonLd';
 
@@ -126,6 +127,8 @@ export default async function ClusterArticle({ params }: { params: Promise<{ slu
         image={article.featuredImage || undefined}
         date={article.publishedAt || undefined}
       />
+
+      <StickyTOC items={extractH2s(article.content)} />
 
       <div className="max-w-3xl mx-auto px-6 py-12">
         <Breadcrumbs items={[

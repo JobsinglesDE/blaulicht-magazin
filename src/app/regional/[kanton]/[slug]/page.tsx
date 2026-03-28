@@ -9,6 +9,7 @@ import { FAQAccordion } from '@/components/ui/FAQAccordion';
 import { HeartButton } from '@/components/ui/HeartButton';
 import { MatchQuiz } from '@/components/ui/MatchQuiz';
 import { AnimatedGradientBorder } from '@/components/ui/AnimatedGradientBorder';
+import { StickyTOC } from '@/components/content/StickyTOC';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd, articleJsonLd, faqJsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
@@ -119,6 +120,8 @@ export default async function RegionalDetail({ params }: { params: Promise<{ kan
         excerpt={article.excerpt}
         image={article.featuredImage || undefined}
       />
+
+      <StickyTOC items={extractH2s(article.content)} />
 
       <div className="max-w-3xl mx-auto px-6 py-12">
         <Breadcrumbs items={[

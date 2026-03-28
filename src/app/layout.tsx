@@ -6,6 +6,7 @@ import { Footer } from '@/components/layout/Footer';
 import { BottomNav } from '@/components/layout/BottomNav';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import { StickyCTA } from '@/components/ui/StickyCTA';
+import { ReadingProgress } from '@/components/ui/ReadingProgress';
 
 const roboto = Roboto({
   variable: '--font-roboto',
@@ -52,6 +53,7 @@ export default function RootLayout({
     <html lang="de-CH" className={`${roboto.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans">
         <ThemeProvider theme="light">
+          <ReadingProgress />
           <Header />
           <main className="flex-1 pt-20 pb-20 md:pb-0">{children}</main>
           <Footer />

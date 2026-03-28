@@ -129,7 +129,14 @@ body {
 .polaroid-2 { transform: rotate(3deg); }
 .polaroid-3 { transform: rotate(-1deg); }
 
-/* === Spotlight Heart (via SpotlightHero component) === */
+/* === Spotlight Gradient (mouse-tracking, set via JS) === */
+.spotlight-gradient {
+  background: radial-gradient(
+    600px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    rgba(74, 144, 217, 0.08),
+    transparent 40%
+  );
+}
 
 /* === Animated Gradient Line (Header + Footer) === */
 .animated-gradient-line {
