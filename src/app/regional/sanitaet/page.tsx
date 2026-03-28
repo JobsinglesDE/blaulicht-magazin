@@ -76,7 +76,7 @@ export default async function SanitaetRegional() {
                 <a
                   key={kanton}
                   href={`#${toAnchor(kanton)}`}
-                  className="px-3 py-1.5 text-sm rounded-full bg-surface-dark border border-brand-orange/20 hover:border-brand-orange hover:text-brand-orange transition-colors"
+                  className="px-3 py-1.5 text-sm rounded-full bg-surface-dark text-white border border-brand-orange/20 hover:border-brand-orange hover:text-brand-orange transition-colors"
                 >
                   {kanton}
                 </a>
