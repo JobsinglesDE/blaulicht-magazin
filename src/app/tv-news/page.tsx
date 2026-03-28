@@ -36,7 +36,7 @@ export default async function TVNews() {
         </div>
         <div className="relative max-w-4xl mx-auto px-6 flex flex-col justify-end min-h-[320px] md:min-h-[440px] pb-4">
           <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-2 drop-shadow-lg text-center">
-            <span className="text-brand-orange">TV</span> News
+            <span className="text-brand-orange">TV</span> — News
           </h1>
           <div className="flex justify-center gap-8 mb-2">
             <span className="text-sm md:text-base font-semibold text-white/90 uppercase tracking-widest drop-shadow">Tatort Zürich</span>
