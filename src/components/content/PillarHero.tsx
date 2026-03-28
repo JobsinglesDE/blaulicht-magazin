@@ -12,7 +12,7 @@ interface PillarHeroProps {
 export function PillarHero({ title, texts, subtitle, image, colors }: PillarHeroProps) {
   return (
     <SpotlightHero>
-      <section className="relative overflow-hidden pt-1 pb-6 md:pt-2 md:pb-20">
+      <section className="relative overflow-hidden pt-1 pb-2 md:pt-2 md:pb-4">
         {/* Background */}
         <div className="absolute inset-0 particle-overlay opacity-50" />
         {image && (
