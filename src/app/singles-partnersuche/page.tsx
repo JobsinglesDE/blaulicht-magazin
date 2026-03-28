@@ -1,4 +1,5 @@
 import { reader } from '@/lib/keystatic';
+import { PillarHero } from '@/components/content/PillarHero';
 import { PillarArticleFeature } from '@/components/content/PillarArticleFeature';
 import { ArticleCard } from '@/components/content/ArticleCard';
 import { HeartButton } from '@/components/ui/HeartButton';
@@ -57,19 +58,29 @@ export default async function SinglesPartnersuche() {
             src="/images/hero-singles-partnersuche.webp"
             alt="Blaulicht-Singles Partnersuche — Polizei, Feuerwehr, Sanität und Ärzte beim Kaffee in der Schweizer Altstadt"
             className="w-full h-full object-cover"
-            style={{ objectPosition: '50% 15%' }}
+            style={{ objectPosition: '50% 5%' }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
         </div>
-        <div className="relative max-w-4xl mx-auto px-6 flex flex-col justify-end min-h-[320px] md:min-h-[440px] pb-6">
+        <div className="relative max-w-4xl mx-auto px-6 flex flex-col justify-end min-h-[320px] md:min-h-[440px] pb-4">
           <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-2 drop-shadow-lg text-center">
-            Singles & Partnersuche
+            <span className="text-brand-orange">Singles</span> & Partnersuche
           </h1>
-          <p className="text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow text-center">
-            Partnersuche für Blaulicht-Berufe — von Polizei bis Sanität. Dein Guide für die Liebe neben dem Dienst.
-          </p>
         </div>
       </section>
+
+      <PillarHero
+        title="Partnersuche"
+        texts={[
+          "Schicht Liebe",
+          "Wer rettet dich?",
+          "Dein Match",
+          "Herz Zentrale",
+          "Liebe Piepser",
+          "Partnersuche",
+        ]}
+        subtitle="Partnersuche für Blaulicht-Berufe — von Polizei bis Sanität. Dein Guide für die Liebe neben dem Dienst."
+      />
 
       {/* Intro — AnimatedGradientBorder */}
       <ScrollReveal>

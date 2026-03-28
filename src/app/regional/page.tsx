@@ -1,4 +1,5 @@
 import { reader } from '@/lib/keystatic';
+import { PillarHero } from '@/components/content/PillarHero';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 export const metadata = {
@@ -51,15 +52,18 @@ export default async function Regional() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
         </div>
-        <div className="relative max-w-4xl mx-auto px-6 flex flex-col justify-end min-h-[320px] md:min-h-[440px] pb-6">
+        <div className="relative max-w-4xl mx-auto px-6 flex flex-col justify-end min-h-[320px] md:min-h-[440px] pb-4">
           <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-2 drop-shadow-lg text-center">
-            Regional
+            <span className="text-brand-orange">Singles</span> Regional finden
           </h1>
-          <p className="text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow text-center">
-            Blaulicht-Singles in deinem Kanton — regionale Tipps, lokale Orte, echte Verbindungen.
-          </p>
         </div>
       </section>
+
+      <PillarHero
+        title="Regional"
+        texts={['Liebe Dialekt', 'Singles vor Ort', 'Dein Kanton', 'Nähe verbindet', 'Regional']}
+        subtitle="Blaulicht-Singles in deinem Kanton — regionale Tipps, lokale Orte, echte Verbindungen."
+      />
 
       <section className="max-w-5xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

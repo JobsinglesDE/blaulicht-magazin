@@ -40,9 +40,6 @@ export default async function HomePage() {
           <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-2 drop-shadow-lg text-center">
             Blaulicht<span className="text-brand-orange">singles</span>
           </h1>
-          <p className="text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow text-center">
-            Das Magazin für Singles bei Polizei, Feuerwehr und Sanität
-          </p>
         </div>
       </section>
 
