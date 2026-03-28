@@ -35,7 +35,7 @@ export default async function HomePage() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
         </div>
-        <div className="relative max-w-4xl mx-auto px-6 pt-28 pb-16 text-center">
+        <div className="relative max-w-4xl mx-auto px-6 pt-56 md:pt-72 pb-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4 drop-shadow-lg">
             Blaulicht<span className="text-brand-orange">singles</span>
           </h1>
