@@ -57,26 +57,27 @@ export function ArticleBody({ content, insertAfterH2, insertElement }: Props) {
     );
   }
 
-  // Split rendered content at the Nth H2
-  const rendered = Markdoc.renderers.react(renderable, React) as React.ReactElement;
-  const children = React.Children.toArray(rendered.props.children);
+  // Split the Markdoc tree at the Nth H2, before rendering
+  const topChildren = Array.isArray(renderable) ? renderable : (renderable as any)?.children ?? [];
   let h2Count = 0;
   let splitIndex = -1;
 
-  for (let i = 0; i < children.length; i++) {
-    const child = children[i] as any;
-    if (child?.type === 'h2' || child?.props?.id) {
+  for (let i = 0; i < topChildren.length; i++) {
+    const child = topChildren[i];
+    const tag = typeof child === 'object' && child !== null && 'name' in child ? (child as any).name : null;
+    if (tag === 'h2') {
       h2Count++;
       if (h2Count === insertAfterH2) {
-        // Find the next H2 or end — insert after this section
-        for (let j = i + 1; j < children.length; j++) {
-          const next = children[j] as any;
-          if (next?.type === 'h2' || next?.props?.id) {
+        // Insert before the NEXT h2
+        for (let j = i + 1; j < topChildren.length; j++) {
+          const next = topChildren[j];
+          const nextTag = typeof next === 'object' && next !== null && 'name' in next ? (next as any).name : null;
+          if (nextTag === 'h2') {
             splitIndex = j;
             break;
           }
         }
-        if (splitIndex === -1) splitIndex = Math.min(i + 4, children.length);
+        if (splitIndex === -1) splitIndex = Math.min(i + 4, topChildren.length);
         break;
       }
     }
@@ -85,19 +86,23 @@ export function ArticleBody({ content, insertAfterH2, insertElement }: Props) {
   if (splitIndex === -1) {
     return (
       <div className={proseClasses}>
-        {children}
+        {Markdoc.renderers.react(renderable, React)}
       </div>
     );
   }
 
+  // Build two separate trees
+  const firstHalf = { ...renderable as any, children: topChildren.slice(0, splitIndex) };
+  const secondHalf = { ...renderable as any, children: topChildren.slice(splitIndex) };
+
   return (
     <>
       <div className={proseClasses}>
-        {children.slice(0, splitIndex)}
+        {Markdoc.renderers.react(firstHalf, React)}
       </div>
       {insertElement}
       <div className={proseClasses}>
-        {children.slice(splitIndex)}
+        {Markdoc.renderers.react(secondHalf, React)}
       </div>
     </>
   );
