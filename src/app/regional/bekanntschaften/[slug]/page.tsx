@@ -9,6 +9,7 @@ import { HeartButton } from '@/components/ui/HeartButton';
 import { TakeawayBox } from '@/components/ui/TakeawayBox';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { PillarBacklinkCard } from '@/components/content/PillarBacklinkCard';
+import { BekanntschaftenCrossLinks } from '@/components/content/BekanntschaftenCrossLinks';
 import { JsonLd, articleJsonLd, faqJsonLd } from '@/components/seo/JsonLd';
 
 function toId(text: string) {
@@ -95,6 +96,10 @@ export default async function BekanntschaftenArticle({ params }: { params: Promi
         <TableOfContents items={extractH2s(article.content)} />
         <ArticleBody content={article.content} />
 
+        <BekanntschaftenCrossLinks city={article.city || ''} />
+
+        <PillarBacklinkCard variant="bekanntschaften" />
+
         {article.takeaways && article.takeaways.length > 0 && (
           <TakeawayBox items={article.takeaways} />
         )}
@@ -105,8 +110,6 @@ export default async function BekanntschaftenArticle({ params }: { params: Promi
             <FAQAccordion items={article.faqItems} />
           </>
         )}
-
-        <PillarBacklinkCard variant="bekanntschaften" />
 
         <div className="text-center py-8">
           <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
