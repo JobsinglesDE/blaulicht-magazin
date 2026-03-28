@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/erfolgsgeschichten/ernst-65-ruth-55-beim-zweiten-mal-wussten-wir-was-zaehlt",
+      "destination": "/erfolgsgeschichten/erfolgsgeschichte-ernst-ruth-blaulichtsingles",
+      "permanent": true
+    },
+    {
+      "source": "/erfolgsgeschichten/nina-34-joel-36-er-hat-mich-angerufen-wegen-einer-katze",
+      "destination": "/erfolgsgeschichten/erfolgsgeschichte-nina-joel-blaulichtsingles",
+      "permanent": true
+    },
+    {
+      "source": "/erfolgsgeschichten/sabine-38-peter-43-ich-hatte-vergessen-wie-sich-das-anfuehlt",
+      "destination": "/erfolgsgeschichten/erfolgsgeschichte-sabine-peter-blaulichtsingles",
+      "permanent": true
+    }
+  ]
+}
