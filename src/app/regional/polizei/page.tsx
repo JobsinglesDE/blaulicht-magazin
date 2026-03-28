@@ -85,30 +85,32 @@ export default async function PolizeiRegional() {
           </nav>
         )}
 
-        {/* Kompaktes Kanton-Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {Array.from(byKanton.entries()).map(([kanton, kantonsEntries]) => (
-            <ScrollReveal key={kanton}>
-              <div id={toAnchor(kanton)} className="scroll-mt-24">
-                <a
-                  href={`/regional/${toAnchor(kanton)}/${kantonsEntries[0].slug}`}
-                  className="block rounded-xl bg-surface-dark text-white p-5 hover:ring-2 hover:ring-brand-orange hover-lift transition-all group h-full"
-                >
-                  <h2 className="text-lg font-bold mb-1 group-hover:text-brand-orange transition-colors">
-                    {kanton}
-                  </h2>
-                  <p className="text-white/50 text-xs mb-3">
-                    {kantonsEntries.length} {kantonsEntries.length === 1 ? 'Artikel' : 'Artikel'}
+        {/* Kompaktes Kanton-Grid mit Mini-Bild */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {entries.map((entry) => (
+            <ScrollReveal key={entry.slug}>
+              <a
+                href={`/regional/${toAnchor(entry.entry.kanton)}/${entry.slug}`}
+                className="flex gap-3 items-center rounded-xl bg-surface hover-lift p-3 border border-foreground/5 hover:ring-2 hover:ring-brand-orange transition-all group"
+                id={toAnchor(entry.entry.kanton)}
+              >
+                {entry.entry.featuredImage ? (
+                  <img
+                    src={entry.entry.featuredImage}
+                    alt={entry.entry.title}
+                    className="w-16 h-16 rounded-lg object-cover flex-none"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-16 h-16 rounded-lg bg-surface-dark flex-none flex items-center justify-center text-2xl">🚔</div>
+                )}
+                <div className="min-w-0">
+                  <p className="font-bold text-sm text-foreground group-hover:text-brand-orange transition-colors truncate">
+                    {entry.entry.city || entry.entry.kanton}
                   </p>
-                  <ul className="space-y-1">
-                    {kantonsEntries.map((entry) => (
-                      <li key={entry.slug} className="text-white/70 text-sm truncate">
-                        → {entry.entry.city || entry.entry.title.split('—')[0]?.trim()}
-                      </li>
-                    ))}
-                  </ul>
-                </a>
-              </div>
+                  <p className="text-xs text-foreground/50 truncate">{entry.entry.kanton}</p>
+                </div>
+              </a>
             </ScrollReveal>
           ))}
         </div>
