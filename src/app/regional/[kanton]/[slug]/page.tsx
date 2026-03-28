@@ -6,6 +6,9 @@ import { TableOfContents } from '@/components/content/TableOfContents';
 import { PillarBacklinkCard } from '@/components/content/PillarBacklinkCard';
 import { TakeawayBox } from '@/components/ui/TakeawayBox';
 import { FAQAccordion } from '@/components/ui/FAQAccordion';
+import { HeartButton } from '@/components/ui/HeartButton';
+import { MatchQuiz } from '@/components/ui/MatchQuiz';
+import { AnimatedGradientBorder } from '@/components/ui/AnimatedGradientBorder';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd, articleJsonLd, faqJsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
@@ -126,6 +129,16 @@ export default async function RegionalDetail({ params }: { params: Promise<{ kan
 
         <TableOfContents items={extractH2s(article.content)} />
 
+        {/* CTA oben */}
+        <AnimatedGradientBorder borderRadius={12} borderWidth={2} className="my-8">
+          <div className="p-6 text-center">
+            <p className="text-sm text-foreground/70 mb-3">Du bist bei Polizei, Feuerwehr oder Sanität?</p>
+            <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
+              Jetzt kostenfrei anmelden
+            </HeartButton>
+          </div>
+        </AnimatedGradientBorder>
+
         <ArticleBody content={article.content} />
 
         <PillarBacklinkCard beruf={(article as any).beruf ?? 'polizei'} />
@@ -134,12 +147,27 @@ export default async function RegionalDetail({ params }: { params: Promise<{ kan
           <TakeawayBox items={article.takeaways} />
         )}
 
+        {/* Mini Quiz */}
+        <AnimatedGradientBorder borderRadius={16} borderWidth={2} className="my-12">
+          <div className="py-8 px-6">
+            <p className="text-center text-sm font-bold text-foreground/50 uppercase tracking-widest mb-4">Finde deinen Match-Typ</p>
+            <MatchQuiz />
+          </div>
+        </AnimatedGradientBorder>
+
         {article.faqItems && article.faqItems.length > 0 && (
           <>
             <h2 className="text-2xl font-bold mt-16 mb-2">Häufige Fragen</h2>
             <FAQAccordion items={article.faqItems} />
           </>
         )}
+
+        {/* CTA unten */}
+        <div className="text-center py-12">
+          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
+            Jetzt kostenfrei mitmachen
+          </HeartButton>
+        </div>
       </div>
     </>
   );
