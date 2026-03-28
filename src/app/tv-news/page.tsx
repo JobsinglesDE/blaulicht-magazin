@@ -3,14 +3,14 @@ import { SeriesCard } from '@/components/content/SeriesCard';
 
 export const metadata = {
   title: 'TV News',
-  description: 'Serien-Artikel zu Sendungen im Schweizer Fernsehen — Die Assistenzärzte, Tatort Zürich und mehr.',
+  description: 'Das echte Leben der TV-Stars — Tatort Zürich, Der Bergdoktor und mehr. Was die Darsteller privat machen.',
 };
 
 export default async function TVNews() {
   const seriesArticles = await reader.collections.series.all();
   const published = seriesArticles.filter((s) => s.entry.status !== 'draft');
 
-  const assistenzaerzte = published.filter((s) => s.entry.seriesId === 'assistenzaerzte');
+  const bergdoktor = published.filter((s) => s.entry.seriesId === 'bergdoktor');
   const tatort = published.filter((s) => s.entry.seriesId === 'tatort-zuerich');
 
   return (
@@ -20,29 +20,14 @@ export default async function TVNews() {
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <h1 className="text-3xl md:text-5xl font-bold mb-4 particle-text">TV News</h1>
           <p className="text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed">
-            Dating-Perspektiven aus beliebten Schweizer TV-Serien — Fiktion trifft auf echtes Leben.
+            Das echte Leben der TV-Stars — was die Darsteller aus «Tatort» Zürich und «Der Bergdoktor» privat machen.
           </p>
         </div>
       </section>
 
       <section className="max-w-6xl mx-auto px-6 py-16">
-        <h2 className="text-2xl font-bold mb-6">Die Assistenzärzte (Schweizer Fernsehen)</h2>
+        <h2 className="text-2xl font-bold mb-6">«Tatort» Zürich</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {assistenzaerzte.map((article, i) => (
-            <SeriesCard
-              key={article.slug}
-              title={article.entry.title}
-              excerpt={article.entry.excerpt}
-              href={`/tv-news/assistenzaerzte/${article.slug}`}
-              image={article.entry.featuredImage || undefined}
-              seriesLabel="Die Assistenzärzte"
-              episodeNumber={i + 1}
-            />
-          ))}
-        </div>
-
-        <h2 className="text-2xl font-bold mb-6">Tatort Zürich (Schweizer Fernsehen)</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {tatort.map((article, i) => (
             <SeriesCard
               key={article.slug}
@@ -51,6 +36,21 @@ export default async function TVNews() {
               href={`/tv-news/tatort-zuerich/${article.slug}`}
               image={article.entry.featuredImage || undefined}
               seriesLabel="Tatort Zürich"
+              episodeNumber={i + 1}
+            />
+          ))}
+        </div>
+
+        <h2 className="text-2xl font-bold mb-6">Der Bergdoktor</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {bergdoktor.map((article, i) => (
+            <SeriesCard
+              key={article.slug}
+              title={article.entry.title}
+              excerpt={article.entry.excerpt}
+              href={`/tv-news/bergdoktor/${article.slug}`}
+              image={article.entry.featuredImage || undefined}
+              seriesLabel="Der Bergdoktor"
               episodeNumber={i + 1}
             />
           ))}

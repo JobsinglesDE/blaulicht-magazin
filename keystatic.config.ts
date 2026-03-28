@@ -191,8 +191,8 @@ export default config({
           label: 'Serie',
           defaultValue: 'assistenzaerzte',
           options: [
-            { label: 'Die Assistenzärzte (Schweizer Fernsehen)', value: 'assistenzaerzte' },
             { label: 'Tatort Zürich (Schweizer Fernsehen)', value: 'tatort-zuerich' },
+            { label: 'Der Bergdoktor (ZDF)', value: 'bergdoktor' },
           ],
         }),
         isNews: fields.checkbox({ label: 'News-Artikel (NewsArticle JSON-LD)', defaultValue: false }),

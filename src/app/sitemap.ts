@@ -20,8 +20,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/singles-partnersuche/feuerwehr`, priority: 0.8, changeFrequency: 'weekly' },
     { url: `${BASE}/singles-partnersuche/sanitaet`, priority: 0.8, changeFrequency: 'weekly' },
     { url: `${BASE}/tv-news`, priority: 0.7, changeFrequency: 'weekly' },
-    { url: `${BASE}/tv-news/assistenzaerzte`, priority: 0.7, changeFrequency: 'weekly' },
     { url: `${BASE}/tv-news/tatort-zuerich`, priority: 0.7, changeFrequency: 'weekly' },
+    { url: `${BASE}/tv-news/bergdoktor`, priority: 0.7, changeFrequency: 'weekly' },
     { url: `${BASE}/regional`, priority: 0.7, changeFrequency: 'monthly' },
     { url: `${BASE}/erfolgsgeschichten`, priority: 0.6, changeFrequency: 'monthly' },
   ];

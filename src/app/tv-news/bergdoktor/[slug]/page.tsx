@@ -6,6 +6,7 @@ import { TableOfContents } from '@/components/content/TableOfContents';
 import { CalloutBox } from '@/components/ui/CalloutBox';
 import { TakeawayBox } from '@/components/ui/TakeawayBox';
 import { FAQAccordion } from '@/components/ui/FAQAccordion';
+import { HeartButton } from '@/components/ui/HeartButton';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd, articleJsonLd, faqJsonLd } from '@/components/seo/JsonLd';
 
@@ -34,11 +35,28 @@ function extractH2s(content: any): { label: string; id: string }[] {
 export async function generateStaticParams() {
   const series = await reader.collections.series.all();
   return series
-    .filter((s) => s.entry.seriesId === 'assistenzaerzte' && s.entry.status !== 'draft')
+    .filter((s) => s.entry.seriesId === 'bergdoktor' && s.entry.status !== 'draft')
     .map((s) => ({ slug: s.slug }));
 }
 
-export default async function AssistenzaerzteArticle({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const article = await reader.collections.series.read(slug);
+  if (!article) return {};
+  const seoTitle = article.seoTitle;
+  const seoDescription = article.seoDescription;
+  return {
+    title: seoTitle || article.title,
+    description: seoDescription || article.excerpt,
+    openGraph: {
+      title: seoTitle || article.title,
+      description: seoDescription || article.excerpt,
+      images: article.featuredImage ? [article.featuredImage] : [],
+    },
+  };
+}
+
+export default async function BergdoktorArticle({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
   const article = await reader.collections.series.read(slug, { resolveLinkedFiles: true });
@@ -46,6 +64,7 @@ export default async function AssistenzaerzteArticle({ params }: { params: Promi
   if (article.status === 'draft') notFound();
 
   const hasFaq = 'faqItems' in article && article.faqItems && article.faqItems.length > 0;
+  const isNews = 'isNews' in article ? (article as any).isNews : false;
 
   return (
     <>
@@ -53,9 +72,11 @@ export default async function AssistenzaerzteArticle({ params }: { params: Promi
         data={articleJsonLd({
           title: article.title,
           description: article.excerpt,
-          url: `https://blaulichtsingles.ch/magazin/tv-news/assistenzaerzte/${slug}`,
+          url: `https://blaulichtsingles.ch/magazin/tv-news/bergdoktor/${slug}`,
           image: article.featuredImage || undefined,
           datePublished: article.publishedAt || undefined,
+          dateModified: article.publishedAt || undefined,
+          isNews,
         })}
       />
       {hasFaq && (
@@ -65,7 +86,7 @@ export default async function AssistenzaerzteArticle({ params }: { params: Promi
       <ClusterHero
         title={article.title}
         excerpt={article.excerpt}
-        category="Die Assistenzärzte"
+        category="Der Bergdoktor"
         image={article.featuredImage || undefined}
         date={article.publishedAt || undefined}
       />
@@ -73,8 +94,8 @@ export default async function AssistenzaerzteArticle({ params }: { params: Promi
       <div className="max-w-3xl mx-auto px-6 py-12">
         <Breadcrumbs items={[
           { label: 'TV News', href: '/tv-news' },
-          { label: 'Die Assistenzärzte', href: '/tv-news/assistenzaerzte' },
-          { label: article.title, href: `/tv-news/assistenzaerzte/${slug}` },
+          { label: 'Der Bergdoktor', href: '/tv-news/bergdoktor' },
+          { label: article.title, href: `/tv-news/bergdoktor/${slug}` },
         ]} />
 
         <TableOfContents items={extractH2s(article.content)} />
@@ -87,7 +108,7 @@ export default async function AssistenzaerzteArticle({ params }: { params: Promi
 
         <ArticleBody content={article.content} />
 
-        {'takeaways' in article && article.takeaways && article.takeaways.length > 0 && (
+        {'takeaways' in article && article.takeaways && (article.takeaways as string[]).length > 0 && (
           <TakeawayBox items={article.takeaways as string[]} />
         )}
 
@@ -97,6 +118,12 @@ export default async function AssistenzaerzteArticle({ params }: { params: Promi
             <FAQAccordion items={(article as any).faqItems} />
           </>
         )}
+
+        <div className="text-center py-8">
+          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
+            Jetzt kostenfrei mitmachen
+          </HeartButton>
+        </div>
       </div>
     </>
   );

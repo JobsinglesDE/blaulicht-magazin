@@ -25,8 +25,8 @@ const NAV_ITEMS: NavItem[] = [
     label: 'TV News',
     href: '/tv-news',
     dropdown: [
-      { label: 'Die Assistenzärzte', href: '/tv-news/assistenzaerzte' },
-      { label: 'Tatort Zürich', href: '/tv-news/tatort-zuerich' },
+      { label: '«Tatort» Zürich', href: '/tv-news/tatort-zuerich' },
+      { label: 'Der Bergdoktor', href: '/tv-news/bergdoktor' },
     ],
   },
   {

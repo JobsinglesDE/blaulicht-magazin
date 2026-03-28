@@ -5,8 +5,8 @@ export function getArticleUrl(slug: string, type: string, series?: string): stri
     case 'regional':
       return `/regional/${slug}`;
     case 'serie':
-      if (series === 'assistenzaerzte') return `/tv-news/assistenzaerzte/${slug}`;
       if (series === 'tatort-zuerich') return `/tv-news/tatort-zuerich/${slug}`;
+      if (series === 'bergdoktor') return `/tv-news/bergdoktor/${slug}`;
       return `/tv-news/${slug}`;
     case 'story':
       return `/erfolgsgeschichten/${slug}`;
