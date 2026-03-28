@@ -8,6 +8,7 @@ import { FAQAccordion } from '@/components/ui/FAQAccordion';
 import { HeartButton } from '@/components/ui/HeartButton';
 import { TakeawayBox } from '@/components/ui/TakeawayBox';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { PillarBacklinkCard } from '@/components/content/PillarBacklinkCard';
 import { JsonLd, articleJsonLd, faqJsonLd } from '@/components/seo/JsonLd';
 
 function toId(text: string) {
@@ -104,6 +105,8 @@ export default async function BekanntschaftenArticle({ params }: { params: Promi
             <FAQAccordion items={article.faqItems} />
           </>
         )}
+
+        <PillarBacklinkCard variant="regional" beruf="polizei" />
 
         <div className="text-center py-8">
           <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">

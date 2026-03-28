@@ -16,13 +16,21 @@ export default async function BekanntschaftenPillar() {
 
   return (
     <div data-theme="dark" className="bg-background text-foreground min-h-screen">
-      <section className="relative overflow-hidden py-20 md:py-32">
-        <div className="absolute inset-0 particle-overlay opacity-50" />
-        <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold mb-4 particle-text">
+      <section className="relative overflow-hidden min-h-[320px] md:min-h-[440px]">
+        <div className="absolute inset-0">
+          <img
+            src="/images/hero-bekanntschaften.webp"
+            alt="Blaulicht-Singles treffen sich in einer Schweizer Stadt"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: '50% 20%' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+        </div>
+        <div className="relative max-w-4xl mx-auto px-6 flex flex-col justify-end min-h-[320px] md:min-h-[440px] pb-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-2 drop-shadow-lg text-center">
             Bekanntschaften in der <span className="text-brand-orange">Schweiz</span>
           </h1>
-          <p className="text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow text-center">
             Blaulicht-Singles kennenlernen — in deiner Stadt, mit Menschen die deinen Alltag verstehen.
           </p>
         </div>
