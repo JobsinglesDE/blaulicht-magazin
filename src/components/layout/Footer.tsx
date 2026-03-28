@@ -82,16 +82,13 @@ export function Footer() {
                 <a href="https://blaulichtsingles.ch" className="text-sm text-white/75 hover:text-brand-orange transition-colors">
                   Blaulichtsingles.ch
                 </a>
-                <a href="https://farmersingles.de" className="text-sm text-white/75 hover:text-brand-orange transition-colors">
-                  Farmersingles.de
-                </a>
-                <a href="https://singlebuure.ch" className="text-sm text-white/75 hover:text-brand-orange transition-colors">
-                  Singlebuure.ch
-                </a>
-                <a href="https://jobsingles.de" className="text-sm text-white/75 hover:text-brand-orange transition-colors">
-                  Jobsingles.de
+                <a href="https://jobsingles.de" rel="nofollow" className="text-sm text-white/75 hover:text-brand-orange transition-colors">
+                  Jobsingles.de — Das Netzwerk
                 </a>
               </nav>
+              <p className="text-[10px] text-white/30 mt-3">
+                Teil des Jobsingles-Netzwerks mit 15+ Berufs-Dating-Portalen
+              </p>
             </div>
 
             {/* Rechtliches */}
