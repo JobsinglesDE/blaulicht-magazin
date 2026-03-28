@@ -3,7 +3,7 @@ import { AnimatedGradientBorder } from '@/components/ui/AnimatedGradientBorder';
 
 type Beruf = 'polizei' | 'sanitaet' | 'feuerwehr';
 type SeriesId = 'tatort-zuerich' | 'bergdoktor';
-type Variant = 'regional' | 'partnersuche' | 'tv-news';
+type Variant = 'regional' | 'partnersuche' | 'tv-news' | 'bekanntschaften';
 
 interface Props {
   beruf?: Beruf;
@@ -61,6 +61,24 @@ const TV_NEWS: Record<SeriesId, { heading: string; text: string; seriesHref: str
 };
 
 export function PillarBacklinkCard({ beruf, seriesId, variant = 'regional' }: Props) {
+  if (variant === 'bekanntschaften') {
+    return (
+      <AnimatedGradientBorder borderRadius={12} borderWidth={2} className="mt-12 mb-8">
+        <div className="p-6">
+          <p className="font-bold text-foreground mb-1">
+            Bekanntschaften in der Schweiz — alle Städte
+          </p>
+          <p className="text-sm text-foreground/70 mb-3">
+            Entdecke Blaulicht-Singles in weiteren Schweizer Grossstädten — von Zürich bis Genf.
+          </p>
+          <Link href="/regional/bekanntschaften" className="text-brand-orange font-semibold hover:underline text-sm">
+            Alle Bekanntschaften-Städte →
+          </Link>
+        </div>
+      </AnimatedGradientBorder>
+    );
+  }
+
   if (variant === 'tv-news' && seriesId) {
     const c = TV_NEWS[seriesId];
     return (

@@ -106,7 +106,7 @@ export default async function BekanntschaftenArticle({ params }: { params: Promi
           </>
         )}
 
-        <PillarBacklinkCard variant="regional" beruf="polizei" />
+        <PillarBacklinkCard variant="bekanntschaften" />
 
         <div className="text-center py-8">
           <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
