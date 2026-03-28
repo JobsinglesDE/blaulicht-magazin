@@ -33,7 +33,7 @@ const faqItems = [
 
 export default function UeberUns() {
   return (
-    <>
+    <div data-theme="dark" className="bg-background text-foreground min-h-screen">
       <JsonLd data={faqJsonLd(faqItems)} />
 
       {/* Hero */}
@@ -176,6 +176,6 @@ export default function UeberUns() {
           </HeartButton>
         </section>
       </ScrollReveal>
-    </>
+    </div>
   );
 }
