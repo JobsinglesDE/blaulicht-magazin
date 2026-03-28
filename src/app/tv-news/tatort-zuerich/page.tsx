@@ -1,8 +1,17 @@
 import { reader } from '@/lib/keystatic';
 
 export const metadata = {
-  title: 'Tatort Zürich (Schweizer Fernsehen)',
-  description: 'Dating-Artikel rund um die Schweizer Fernsehen-Serie Tatort Zürich.',
+  title: 'Tatort Zürich — News & Hintergründe',
+  description: 'Tatort Zürich: Neue Folgen, Drehorte an der Limmat und das Privatleben der Ermittler — Grandjean, Ott und die Zürcher Krimi-Welt.',
+  openGraph: {
+    title: 'Tatort Zürich — News & Hintergründe | Blaulicht-Singles Magazin',
+    description: 'Neue Folgen, Drehorte an der Limmat und das Privatleben der Ermittler.',
+    images: [{ url: '/images/hero-tatort-zuerich.webp', width: 2940, height: 1626, alt: 'Kommissar im Trenchcoat steht im Regen vor der Zürcher Altstadt mit Grossmünster und Polizeiauto' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/images/hero-tatort-zuerich.webp'],
+  },
 };
 
 export default async function TatortZuerich() {
@@ -13,10 +22,23 @@ export default async function TatortZuerich() {
 
   return (
     <div data-theme="dark" className="bg-background text-foreground min-h-screen">
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">Tatort Zürich</h1>
-          <p className="text-foreground/80">Schweizer Fernsehen-Serie — Liebe und Verbrechen in Zürich.</p>
+      <section className="relative overflow-hidden min-h-[320px] md:min-h-[440px]">
+        <div className="absolute inset-0">
+          <img
+            src="/images/hero-tatort-zuerich.webp"
+            alt="Kommissar im Trenchcoat steht im Regen vor der Zürcher Altstadt mit Grossmünster und Polizeiauto"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: '50% 20%' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+        </div>
+        <div className="relative max-w-4xl mx-auto px-6 flex flex-col justify-end min-h-[320px] md:min-h-[440px] pb-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-2 drop-shadow-lg text-center">
+            <span className="text-brand-orange">Tatort</span> Zürich
+          </h1>
+          <p className="text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow text-center">
+            Neue Folgen, Drehorte an der Limmat und das Privatleben der Ermittler.
+          </p>
         </div>
       </section>
       <section className="max-w-6xl mx-auto px-4 py-12">

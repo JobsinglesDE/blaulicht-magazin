@@ -1,8 +1,17 @@
 import { reader } from '@/lib/keystatic';
 
 export const metadata = {
-  title: 'Der Bergdoktor (ZDF)',
-  description: 'Dating-Artikel rund um die ZDF-Serie Der Bergdoktor — Hans Sigl, Ronja Forcher und das Leben hinter den Kulissen.',
+  title: 'Der Bergdoktor — News & Hintergründe',
+  description: 'Der Bergdoktor: Hans Sigl, Ronja Forcher und das Privatleben der Stars aus den Tiroler Bergen — Drehorte, neue Staffeln und Dating-Perspektiven.',
+  openGraph: {
+    title: 'Der Bergdoktor — News & Hintergründe | Blaulicht-Singles Magazin',
+    description: 'Hans Sigl, Ronja Forcher und das Privatleben der Stars aus den Tiroler Bergen.',
+    images: [{ url: '/images/hero-bergdoktor.webp', width: 2940, height: 1626, alt: 'Arzt im weissen Kittel blickt von einer Alp auf ein Schweizer Bergdorf mit schneebedeckten Gipfeln' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/images/hero-bergdoktor.webp'],
+  },
 };
 
 export default async function Bergdoktor() {
@@ -13,10 +22,23 @@ export default async function Bergdoktor() {
 
   return (
     <div data-theme="dark" className="bg-background text-foreground min-h-screen">
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">Der Bergdoktor</h1>
-          <p className="text-foreground/80">ZDF-Serie — Das Privatleben der Stars aus den Tiroler Bergen.</p>
+      <section className="relative overflow-hidden min-h-[320px] md:min-h-[440px]">
+        <div className="absolute inset-0">
+          <img
+            src="/images/hero-bergdoktor.webp"
+            alt="Arzt im weissen Kittel blickt von einer Alp auf ein Schweizer Bergdorf mit schneebedeckten Gipfeln"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: '50% 20%' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+        </div>
+        <div className="relative max-w-4xl mx-auto px-6 flex flex-col justify-end min-h-[320px] md:min-h-[440px] pb-4">
+          <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-2 drop-shadow-lg text-center">
+            Der <span className="text-brand-orange">Bergdoktor</span>
+          </h1>
+          <p className="text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed drop-shadow text-center">
+            Hans Sigl, Ronja Forcher und das Privatleben der Stars aus den Tiroler Bergen.
+          </p>
         </div>
       </section>
       <section className="max-w-6xl mx-auto px-4 py-12">
