@@ -1,6 +1,7 @@
 import { reader } from '@/lib/keystatic';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { SeriesCard } from '@/components/content/SeriesCard';
 import { SendetermineWidget } from '@/components/content/SendetermineWidget';
 
 export const metadata = {
@@ -49,12 +50,24 @@ export default async function TatortZuerich() {
           { label: 'TV News', href: '/tv-news' },
           { label: 'Tatort Zürich', href: '/tv-news/tatort-zuerich' },
         ]} />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+
+        <div className="max-w-3xl mt-8 mb-10">
+          <p className="text-foreground/80 leading-relaxed">
+            Grandjean und Ott ermitteln an der Limmat — aber was treiben Anna Pieri Zuercher und Carol Schuler neben dem Dreh? Musik-Karrieren, Filmpreise und ein Leben zwischen Biel, Berlin und Winterthur. Hier gibts die persönlichen Geschichten hinter dem Zürcher Tatort-Team.
+          </p>
+        </div>
+
+        <h2 className="text-xl font-bold mb-6">Alle Artikel</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {articles.map((article) => (
-            <a key={article.slug} href={`/tv-news/tatort-zuerich/${article.slug}`} className="bg-surface-dark rounded-lg p-6 hover:ring-2 hover:ring-brand-orange transition-all">
-              <h3 className="text-xl font-semibold">{article.entry.title}</h3>
-              <p className="text-foreground/60 mt-2">{article.entry.excerpt}</p>
-            </a>
+            <SeriesCard
+              key={article.slug}
+              title={article.entry.title}
+              excerpt={article.entry.excerpt}
+              href={`/tv-news/tatort-zuerich/${article.slug}`}
+              image={article.entry.featuredImage || undefined}
+              seriesLabel="Tatort Zürich"
+            />
           ))}
         </div>
         <div className="mt-12">
