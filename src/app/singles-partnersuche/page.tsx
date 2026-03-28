@@ -58,7 +58,7 @@ export default async function SinglesPartnersuche() {
             src="/images/hero-singles-partnersuche.webp"
             alt="Blaulicht-Singles Partnersuche — Polizei, Feuerwehr, Sanität und Ärzte beim Kaffee in der Schweizer Altstadt"
             className="w-full h-full object-cover"
-            style={{ objectPosition: '50% 5%' }}
+            style={{ objectPosition: '50% 20%' }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
         </div>
