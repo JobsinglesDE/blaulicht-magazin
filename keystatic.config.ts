@@ -283,6 +283,7 @@ export default config({
           publicPath: '/images/stories/',
         }),
         content: fields.markdoc({ label: 'Geschichte' }),
+        isFeatured: fields.checkbox({ label: 'Auf ICONY-Startseite anzeigen (max. 3)', defaultValue: false }),
         publishedAt: fields.date({ label: 'Veröffentlicht am' }),
         seoTitle: fields.text({ label: 'SEO Titel' }),
         seoDescription: fields.text({ label: 'SEO Beschreibung' }),
