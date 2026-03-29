@@ -1,6 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 const ITEMS = [
   {
@@ -56,7 +57,7 @@ export function BottomNav() {
     <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden glass-nav border-t border-white/5">
       <div className="flex items-center justify-around h-16">
         {ITEMS.map((item) => (
-          <a
+          <Link
             key={item.label}
             href={item.href}
             className={`
@@ -66,7 +67,7 @@ export function BottomNav() {
           >
             {item.icon}
             <span className="text-[10px] font-bold">{item.label}</span>
-          </a>
+          </Link>
         ))}
       </div>
     </nav>

@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 type NavItem = {
@@ -123,7 +124,7 @@ export function MenuHoverNav() {
                 if (item.dropdown) handleDropdownLeave();
               }}
             >
-              <a
+              <Link
                 href={item.href}
                 className={`
                   px-4 py-2 text-xs uppercase tracking-widest font-bold transition-colors duration-200 relative block
@@ -151,7 +152,7 @@ export function MenuHoverNav() {
                     className="absolute bottom-0 left-4 right-4 h-0.5 bg-brand-orange"
                   />
                 )}
-              </a>
+              </Link>
 
               {/* Dropdown */}
               {item.dropdown && openDropdown === item.label && (
@@ -163,7 +164,7 @@ export function MenuHoverNav() {
                   onMouseLeave={handleDropdownLeave}
                 >
                   {item.dropdown.map((sub) => (
-                    <a
+                    <Link
                       key={sub.href}
                       href={sub.href}
                       className={`
@@ -178,7 +179,7 @@ export function MenuHoverNav() {
                       {sub.description && (
                         <span className="block text-xs text-foreground/40 mt-0.5">{sub.description}</span>
                       )}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               )}
@@ -204,7 +205,7 @@ export function MenuHoverNav() {
           <nav className="flex flex-col p-6 gap-1">
             {NAV_ITEMS.map((item) => (
               <div key={item.label}>
-                <a
+                <Link
                   href={item.href}
                   className={`
                     block py-3 px-4 text-lg font-bold transition-colors rounded-lg
@@ -215,11 +216,11 @@ export function MenuHoverNav() {
                   `}
                 >
                   {item.label}
-                </a>
+                </Link>
                 {item.dropdown && (
                   <div className="ml-4 border-l-2 border-brand-orange/20 pl-4">
                     {item.dropdown.map((sub) => (
-                      <a
+                      <Link
                         key={sub.href}
                         href={sub.href}
                         className={`
@@ -231,7 +232,7 @@ export function MenuHoverNav() {
                         `}
                       >
                         {sub.label}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 )}
