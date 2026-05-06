@@ -1,4 +1,15 @@
 import { config, fields, collection, singleton } from '@keystatic/core';
+import { block } from '@keystatic/core/content-components';
+
+const articleComponents = {
+  youtube: block({
+    label: 'YouTube',
+    schema: {
+      url: fields.url({ label: 'URL', description: 'YouTube watch- oder Shorts-URL' }),
+      title: fields.text({ label: 'Titel', description: 'Optional', }),
+    },
+  }),
+};
 
 export default config({
   storage: {
@@ -103,7 +114,7 @@ export default config({
         }),
         calloutQuestion: fields.text({ label: 'Callout Frage' }),
         calloutAnswer: fields.text({ label: 'Callout Antwort', multiline: true }),
-        content: fields.markdoc({ label: 'Inhalt' }),
+        content: fields.markdoc({ label: 'Inhalt', components: articleComponents }),
         faqItems: fields.array(
           fields.object({
             question: fields.text({ label: 'Frage' }),
@@ -179,7 +190,7 @@ export default config({
           label: 'Bild-Credit',
           description: 'Urhebernennung unter dem Bild. Beispiel: "Foto: ZDF/Sabine Finger Fotografie" oder "© Superbass / CC BY-SA 4.0 via Wikimedia Commons". Pflicht bei Pressebildern.',
         }),
-        content: fields.markdoc({ label: 'Inhalt' }),
+        content: fields.markdoc({ label: 'Inhalt', components: articleComponents }),
         faqItems: fields.array(
           fields.object({
             question: fields.text({ label: 'Frage' }),
@@ -226,7 +237,7 @@ export default config({
           label: 'Bild-Credit',
           description: 'Urhebernennung unter dem Bild. Beispiel: "Foto: ZDF/Sabine Finger Fotografie" oder "© Superbass / CC BY-SA 4.0 via Wikimedia Commons". Pflicht bei Pressebildern.',
         }),
-        content: fields.markdoc({ label: 'Inhalt' }),
+        content: fields.markdoc({ label: 'Inhalt', components: articleComponents }),
         faqItems: fields.array(
           fields.object({
             question: fields.text({ label: 'Frage' }),
@@ -300,7 +311,7 @@ export default config({
         }),
         calloutQuestion: fields.text({ label: 'Callout Frage' }),
         calloutAnswer: fields.text({ label: 'Callout Antwort', multiline: true }),
-        content: fields.markdoc({ label: 'Inhalt' }),
+        content: fields.markdoc({ label: 'Inhalt', components: articleComponents }),
         faqItems: fields.array(
           fields.object({
             question: fields.text({ label: 'Frage' }),
