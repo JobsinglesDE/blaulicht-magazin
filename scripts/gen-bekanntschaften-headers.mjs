@@ -82,7 +82,7 @@ const COMMON = [
 
 async function genOne(slug, city) {
   const outDir = path.join(OUT_ROOT, `bekanntschaften-${slug}`);
-  const outPath = path.join(outDir, 'featuredImage.webp');
+  const outPath = path.join(outDir, `bekanntschaften-${slug}.webp`);
   if (fs.existsSync(outPath)) { console.log(`⏭  ${slug}: bereits vorhanden`); return; }
   fs.mkdirSync(outDir, { recursive: true });
 
