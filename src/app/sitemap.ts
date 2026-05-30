@@ -23,6 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/tv-news`, priority: 0.7, changeFrequency: 'weekly' },
     { url: `${BASE}/tv-news/tatort-zuerich`, priority: 0.7, changeFrequency: 'weekly' },
     { url: `${BASE}/tv-news/bergdoktor`, priority: 0.7, changeFrequency: 'weekly' },
+    { url: `${BASE}/promi-aerzte-schweiz`, priority: 0.8, changeFrequency: 'weekly' },
     { url: `${BASE}/ueber-uns`, priority: 0.6, changeFrequency: 'monthly' },
     { url: `${BASE}/regional`, priority: 0.7, changeFrequency: 'monthly' },
     { url: `${BASE}/regional/bekanntschaften`, priority: 0.7, changeFrequency: 'monthly' },

@@ -83,6 +83,7 @@ export default config({
             { label: 'Regional', value: 'regional' },
             { label: 'Serie', value: 'serie' },
             { label: 'Story', value: 'story' },
+            { label: 'Promi-Arzt', value: 'promi-arzt' },
           ],
         }),
         series: fields.select({

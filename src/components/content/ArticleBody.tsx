@@ -84,9 +84,17 @@ const markdocConfig = {
       },
       transform(node: any, config: any) {
         const children = node.transformChildren(config);
-        const href = prefixInternalHref(node.attributes.href);
+        const rawHref = node.attributes.href as string;
+        const href = prefixInternalHref(rawHref);
         const attrs: Record<string, string> = { href };
         if (node.attributes.title) attrs.title = node.attributes.title;
+        // Externe Links (http/https mit Host != eigener Seite) erhalten automatisch
+        // rel="nofollow noopener" + target="_blank" für E-E-A-T-Quellenangaben.
+        const isExternal = /^https?:\/\//i.test(rawHref) && !/^https?:\/\/(www\.)?blaulichtsingles\.ch/i.test(rawHref);
+        if (isExternal) {
+          attrs.rel = 'nofollow noopener';
+          attrs.target = '_blank';
+        }
         return new Markdoc.Tag('a', attrs, children);
       },
     },

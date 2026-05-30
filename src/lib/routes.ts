@@ -10,6 +10,8 @@ export function getArticleUrl(slug: string, type: string, series?: string): stri
       return `/tv-news/${slug}`;
     case 'story':
       return `/erfolgsgeschichten/${slug}`;
+    case 'promi-arzt':
+      return `/promi-aerzte-schweiz/${slug}`;
     default:
       return `/singles-partnersuche/${slug}`;
   }
