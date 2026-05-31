@@ -27,7 +27,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/ueber-uns`, priority: 0.6, changeFrequency: 'monthly' },
     { url: `${BASE}/regional`, priority: 0.7, changeFrequency: 'monthly' },
     { url: `${BASE}/regional/bekanntschaften`, priority: 0.7, changeFrequency: 'monthly' },
+    { url: `${BASE}/regional/feuerwehr`, priority: 0.7, changeFrequency: 'monthly' },
+    { url: `${BASE}/regional/polizei`, priority: 0.7, changeFrequency: 'monthly' },
+    { url: `${BASE}/regional/sanitaet`, priority: 0.7, changeFrequency: 'monthly' },
     { url: `${BASE}/erfolgsgeschichten`, priority: 0.6, changeFrequency: 'monthly' },
+    { url: `${BASE}/kontakt`, priority: 0.4, changeFrequency: 'yearly' },
   ];
 
   const articlePages: MetadataRoute.Sitemap = articles.map((a) => ({
