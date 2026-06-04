@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { AnimatedGradientBorder } from '@/components/ui/AnimatedGradientBorder';
+import { getPersonHubUrl } from '@/lib/routes';
 
 type Beruf = 'polizei' | 'sanitaet' | 'feuerwehr';
 type SeriesId = 'tatort-zuerich' | 'bergdoktor';
@@ -9,6 +10,8 @@ interface Props {
   beruf?: Beruf;
   seriesId?: SeriesId;
   variant?: Variant;
+  person?: string;
+  personName?: string;
 }
 
 const REGIONAL = {
@@ -60,7 +63,7 @@ const TV_NEWS: Record<SeriesId, { heading: string; text: string; seriesHref: str
   },
 };
 
-export function PillarBacklinkCard({ beruf, seriesId, variant = 'regional' }: Props) {
+export function PillarBacklinkCard({ beruf, seriesId, variant = 'regional', person, personName }: Props) {
   if (variant === 'bekanntschaften') {
     return (
       <AnimatedGradientBorder borderRadius={12} borderWidth={2} className="mt-12 mb-8">
@@ -93,6 +96,14 @@ export function PillarBacklinkCard({ beruf, seriesId, variant = 'regional' }: Pr
             <Link href={c.pillarHref} className="text-foreground/60 font-semibold hover:underline text-sm">
               {c.pillarCta}
             </Link>
+            {person && personName && (
+              <Link
+                href={getPersonHubUrl(person, seriesId)}
+                className="text-brand-orange font-semibold hover:underline text-sm"
+              >
+                Mehr zu {personName} →
+              </Link>
+            )}
           </div>
         </div>
       </AnimatedGradientBorder>

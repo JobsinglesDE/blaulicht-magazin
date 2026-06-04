@@ -5,6 +5,7 @@ import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { SeriesCard } from '@/components/content/SeriesCard';
 import { SendetermineWidget } from '@/components/content/SendetermineWidget';
 import { withBasePath } from '@/lib/url';
+import { getPersonHubUrl } from '@/lib/routes';
 
 export const metadata = {
   title: 'Tatort Zürich — News & Hintergründe',
@@ -26,6 +27,11 @@ export default async function TatortZuerich() {
   const articles = allSeries
     .filter((s) => s.entry.seriesId === 'tatort-zuerich' && s.entry.status !== 'draft')
     .sort((a, b) => String(b.entry.publishedAt ?? '').localeCompare(String(a.entry.publishedAt ?? '')));
+
+  const allPersons = await reader.collections.persons.all();
+  const persons = allPersons.filter(
+    (p) => p.entry.show === 'tatort-zuerich' && p.entry.status !== 'draft'
+  );
 
   return (
     <div data-theme="dark" className="bg-background text-foreground min-h-screen">
@@ -66,6 +72,47 @@ export default async function TatortZuerich() {
         <div className="flex justify-center mt-8 mb-12">
           <SendetermineWidget seriesId="tatort-zuerich" />
         </div>
+
+        {persons.length > 0 && (
+          <section className="mb-14">
+            <h2 className="text-xl font-bold mb-6">Die Stars</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
+              {persons.map((p) => (
+                <Link
+                  key={p.slug}
+                  href={getPersonHubUrl(p.slug, 'tatort-zuerich')}
+                  className="group flex flex-col items-center text-center gap-3"
+                >
+                  {p.entry.featuredImage ? (
+                    <div className="w-24 h-24 rounded-full overflow-hidden ring-2 ring-brand-orange/30 group-hover:ring-brand-orange transition-all">
+                      <Image
+                        src={p.entry.featuredImage}
+                        alt={p.entry.name}
+                        width={96}
+                        height={96}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-24 h-24 rounded-full bg-foreground/10 flex items-center justify-center ring-2 ring-brand-orange/30 group-hover:ring-brand-orange transition-all">
+                      <span className="text-3xl font-bold text-foreground/40">
+                        {p.entry.name.charAt(0)}
+                      </span>
+                    </div>
+                  )}
+                  <div>
+                    <p className="font-semibold text-sm text-foreground group-hover:text-brand-orange transition-colors leading-tight">
+                      {p.entry.name}
+                    </p>
+                    {p.entry.role && (
+                      <p className="text-xs text-foreground/50 mt-0.5">{p.entry.role}</p>
+                    )}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         <h2 className="text-xl font-bold mb-6">Alle Artikel</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

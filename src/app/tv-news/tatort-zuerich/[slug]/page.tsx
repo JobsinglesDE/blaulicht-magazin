@@ -66,6 +66,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+function slugToName(slug: string): string {
+  return slug
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}
+
 export default async function TatortArticle({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
@@ -76,6 +83,16 @@ export default async function TatortArticle({ params }: { params: Promise<{ slug
     ? await reader.collections.authors.read((article as any).author)
     : null;
   if (article.status === 'draft') notFound();
+
+  const articlePerson: string | undefined = (article as any).person || undefined;
+  let personName: string | undefined;
+  if (articlePerson) {
+    const allPersons = await reader.collections.persons.all();
+    const matched = allPersons.find((p) => p.slug === articlePerson);
+    if (matched) {
+      personName = matched.entry.name;
+    }
+  }
 
   const hasFaq = 'faqItems' in article && article.faqItems && article.faqItems.length > 0;
   const isNews = 'isNews' in article ? (article as any).isNews : false;
@@ -163,7 +180,12 @@ export default async function TatortArticle({ params }: { params: Promise<{ slug
 
         <RelatedSeriesArticles currentSlug={slug} currentSeriesId={article.seriesId} />
 
-        <PillarBacklinkCard variant="tv-news" seriesId="tatort-zuerich" />
+        <PillarBacklinkCard
+          variant="tv-news"
+          seriesId="tatort-zuerich"
+          person={personName ? articlePerson : undefined}
+          personName={personName}
+        />
 
         <div className="text-center py-8">
           <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
