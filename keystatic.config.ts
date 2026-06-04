@@ -343,6 +343,85 @@ export default config({
         tags: fields.array(fields.text({ label: 'Tag' }), { label: 'Tags' }),
         seoTitle: fields.text({ label: 'SEO Titel' }),
         seoDescription: fields.text({ label: 'SEO Beschreibung' }),
+        person: fields.text({
+          label: 'Person-Slug (z.B. hans-sigl) — Personen-Hub-Verknüpfung, optional',
+          defaultValue: '',
+        }),
+        publishedAt: fields.date({ label: 'Veröffentlicht am' }),
+      },
+    }),
+
+    persons: collection({
+      label: 'Personen (TV-Cast)',
+      slugField: 'slug',
+      path: 'content/persons/*',
+      schema: {
+        slug: fields.slug({ name: { label: 'Slug' } }),
+        name: fields.text({ label: 'Name' }),
+        role: fields.text({ label: 'Rolle (z.B. Hauptdarstellerin, Regisseur)' }),
+        show: fields.select({
+          label: 'Show',
+          defaultValue: 'bergdoktor',
+          options: [
+            { label: 'Der Bergdoktor', value: 'bergdoktor' },
+            { label: 'Tatort Zürich', value: 'tatort-zuerich' },
+          ],
+        }),
+        status: fields.select({
+          label: 'Status',
+          defaultValue: 'published',
+          options: [
+            { label: 'Draft', value: 'draft' },
+            { label: 'Published', value: 'published' },
+          ],
+        }),
+        focusKeyword: fields.text({
+          label: 'Focus-Keyword',
+          description: 'Haupt-Keyword fuer SEO-Check (z.B. "Hans Sigl Bergdoktor"). Aktiviert 7 Yoast-Style-Checks im SEO-Score-Widget.',
+        }),
+        intro: fields.text({ label: 'Intro (Teaser-Text unter Hero)', multiline: true }),
+        creditLine: fields.text({
+          label: 'Credit-Line',
+          description: 'Urhebernennung des Personenbilds. Beispiel: "Foto: ZDF/Erika Hauri"',
+        }),
+        steckbrief: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Label' }),
+            value: fields.text({ label: 'Wert' }),
+          }),
+          {
+            label: 'Steckbrief',
+            itemLabel: (props) => props.fields.label.value,
+          }
+        ),
+        bio: fields.markdoc({ label: 'Bio (ausführlich)', components: articleComponents }),
+        featuredImage: fields.image({
+          label: 'Personenbild',
+          directory: 'public/images/persons',
+          publicPath: '/images/persons/',
+        }),
+        featuredImageAlt: fields.text({
+          label: 'Alt-Text Personenbild',
+          description: 'Beschreibung des Bild-Motivs (SEO + Barrierefreiheit). Beispiel: "Hans Sigl als Dr. Martin Gruber im weißen Arztkittel".',
+        }),
+        featuredImageCredit: fields.text({
+          label: 'Bild-Credit',
+          description: 'Urhebernennung unter dem Bild. Beispiel: "Foto: ZDF/Erika Hauri". Pflicht bei Pressebildern.',
+        }),
+        author: fields.relationship({ label: 'Autor', collection: 'authors' }),
+        faqItems: fields.array(
+          fields.object({
+            question: fields.text({ label: 'Frage' }),
+            answer: fields.text({ label: 'Antwort', multiline: true }),
+          }),
+          {
+            label: 'FAQ',
+            itemLabel: (props) => props.fields.question.value,
+          }
+        ),
+        takeaways: fields.array(fields.text({ label: 'Punkt' }), { label: 'Das Wichtigste' }),
+        seoTitle: fields.text({ label: 'SEO Titel' }),
+        seoDescription: fields.text({ label: 'SEO Beschreibung', multiline: true }),
         publishedAt: fields.date({ label: 'Veröffentlicht am' }),
       },
     }),

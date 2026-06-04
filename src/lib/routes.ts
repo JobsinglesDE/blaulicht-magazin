@@ -1,3 +1,7 @@
+export function getPersonHubUrl(slug: string, show: string = 'bergdoktor'): string {
+  return `/tv-news/${show}/person/${slug}`;
+}
+
 export function getArticleUrl(slug: string, type: string, series?: string): string {
   switch (type) {
     case 'cluster':

@@ -154,6 +154,34 @@ export function extractYoutubeEmbed(content: unknown): { videoId: string; title:
   return found;
 }
 
+export function personJsonLd({
+  name,
+  role,
+  image,
+  url,
+  sameAs,
+}: {
+  name: string;
+  role?: string;
+  image?: string;
+  url: string;
+  sameAs?: string[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name,
+    url,
+    ...(role && { jobTitle: role }),
+    ...(image && {
+      image: image.startsWith('http')
+        ? image
+        : `https://blaulichtsingles.ch${image.startsWith('/') ? '' : '/'}${image}`,
+    }),
+    ...(sameAs && sameAs.length > 0 && { sameAs }),
+  };
+}
+
 export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
   return {
     '@context': 'https://schema.org',
