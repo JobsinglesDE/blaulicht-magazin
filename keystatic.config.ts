@@ -95,6 +95,22 @@ export default config({
             { label: 'Tatort Zürich (Schweizer Fernsehen)', value: 'tatort-zuerich' },
           ],
         }),
+        // Netzwerk-Parität (gastro/medic): show + person als eigene Felder.
+        // blaulicht routet TV weiterhin via series/series-Collection; show/person ergänzend.
+        show: fields.select({
+          label: 'Show (TV)',
+          defaultValue: '',
+          options: [
+            { label: '— (keine)', value: '' },
+            { label: 'Tatort Zürich', value: 'tatort-zuerich' },
+            { label: 'Die Assistenzärzte', value: 'assistenzaerzte' },
+            { label: 'Der Bergdoktor', value: 'bergdoktor' },
+          ],
+        }),
+        person: fields.text({
+          label: 'Person-Slug (z.B. hans-sigl) — optional',
+          defaultValue: '',
+        }),
         excerpt: fields.text({ label: 'Auszug', multiline: true }),
         featuredImage: fields.image({
           label: 'Beitragsbild',
