@@ -22,6 +22,17 @@ export const metadata: Metadata = {
   description:
     'Das Magazin für Singles bei Polizei, Feuerwehr und Sanität. Partnersuche, Erfolgsgeschichten und regionale Tipps.',
   metadataBase: new URL(BASE_URL),
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
   openGraph: {
     title: '❤️ Blaulicht Magazin — Dating für Blaulicht-Singles',
     description: 'Das Magazin für Singles bei Polizei, Feuerwehr und Sanität.',

@@ -127,7 +127,7 @@ export default async function SinglesPartnersuche() {
       {/* CTA oben */}
       <ScrollReveal>
         <section className="text-center py-6 px-6">
-          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
+          <HeartButton href="https://blaulichtsingles.ch/registration/?AID=magazin">
             Jetzt kostenfrei mitmachen
           </HeartButton>
         </section>
@@ -188,7 +188,7 @@ export default async function SinglesPartnersuche() {
       {/* CTA unten */}
       <ScrollReveal>
         <section className="text-center py-16 px-6">
-          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
+          <HeartButton href="https://blaulichtsingles.ch/registration/?AID=magazin">
             Jetzt kostenfrei mitmachen
           </HeartButton>
         </section>

@@ -46,7 +46,7 @@ const CITY_LINKS: Record<string, CrossLink[]> = {
 const FALLBACK_LINKS: CrossLink[] = [
   { label: 'Alle Bekanntschaften', href: '/regional/bekanntschaften', icon: '💙' },
   { label: 'Singles & Partnersuche', href: '/singles-partnersuche', icon: '💕' },
-  { label: 'Blaulichtsingles.ch', href: 'https://blaulichtsingles.ch/?AID=magazin', icon: '🔵' },
+  { label: 'Blaulichtsingles.ch', href: 'https://blaulichtsingles.ch/registration/?AID=magazin', icon: '🔵' },
 ];
 
 export function BekanntschaftenCrossLinks({ city }: Props) {

@@ -240,7 +240,7 @@ export default async function SanitaetPillar() {
       {/* 4. CTA oben */}
       <ScrollReveal>
         <section className="text-center py-6 px-6">
-          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin-sanitaet">
+          <HeartButton href="https://blaulichtsingles.ch/registration/?AID=magazin-sanitaet">
             Jetzt kostenfrei mitmachen
           </HeartButton>
         </section>
@@ -279,7 +279,7 @@ export default async function SanitaetPillar() {
               <p className="text-white/80 mb-6 text-base">
                 Hunderte Sanitäts-Singles in der Schweiz sind bereits dabei — mach jetzt mit.
               </p>
-              <HeartButton href="https://blaulichtsingles.ch/?AID=magazin-sanitaet">
+              <HeartButton href="https://blaulichtsingles.ch/registration/?AID=magazin-sanitaet">
                 Jetzt Sanitäts-Singles kennenlernen
               </HeartButton>
             </div>
@@ -317,7 +317,7 @@ export default async function SanitaetPillar() {
           <p className="text-foreground/60 mb-8 max-w-lg mx-auto">
             Hunderte Sanitäter-Singles in der Schweiz warten auf dich.
           </p>
-          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin-sanitaet">
+          <HeartButton href="https://blaulichtsingles.ch/registration/?AID=magazin-sanitaet">
             Jetzt kostenfrei mitmachen
           </HeartButton>
         </section>

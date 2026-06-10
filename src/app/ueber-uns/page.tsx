@@ -178,7 +178,7 @@ export default function UeberUns() {
           <p className="text-foreground/60 mb-8 max-w-lg mx-auto">
             Tausende Blaulicht-Singles warten auf dich.
           </p>
-          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
+          <HeartButton href="https://blaulichtsingles.ch/registration/?AID=magazin">
             Jetzt kostenfrei mitmachen
           </HeartButton>
         </section>

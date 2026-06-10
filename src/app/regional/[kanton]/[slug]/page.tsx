@@ -166,7 +166,7 @@ export default async function RegionalDetail({ params }: { params: Promise<{ kan
             <AnimatedGradientBorder borderRadius={12} borderWidth={2} className="my-8">
               <div className="p-6 text-center">
                 <p className="text-sm text-foreground/70 mb-3">Du bist bei Polizei, Feuerwehr oder Sanität?</p>
-                <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
+                <HeartButton href="https://blaulichtsingles.ch/registration/?AID=magazin">
                   Jetzt kostenfrei anmelden
                 </HeartButton>
               </div>
@@ -197,7 +197,7 @@ export default async function RegionalDetail({ params }: { params: Promise<{ kan
 
         {/* CTA unten */}
         <div className="text-center py-12">
-          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
+          <HeartButton href="https://blaulichtsingles.ch/registration/?AID=magazin">
             Jetzt kostenfrei mitmachen
           </HeartButton>
         </div>

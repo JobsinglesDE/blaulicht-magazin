@@ -183,7 +183,7 @@ export default async function PolizeiPillar() {
       {/* Top CTA */}
       <ScrollReveal>
         <section className="text-center py-6 px-6">
-          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin-polizei">
+          <HeartButton href="https://blaulichtsingles.ch/registration/?AID=magazin-polizei">
             Jetzt kostenfrei mitmachen
           </HeartButton>
         </section>
@@ -229,7 +229,7 @@ export default async function PolizeiPillar() {
               <p className="text-lg font-semibold">
                 Jetzt Polizei-Singles in deiner Region finden
               </p>
-              <HeartButton href="https://blaulichtsingles.ch/?AID=magazin-polizei">
+              <HeartButton href="https://blaulichtsingles.ch/registration/?AID=magazin-polizei">
                 Jetzt kostenlos registrieren
               </HeartButton>
             </div>
@@ -283,7 +283,7 @@ export default async function PolizeiPillar() {
           <p className="text-foreground/60 mb-8 max-w-lg mx-auto">
             Tausende Polizei-Singles in der Schweiz warten auf dich.
           </p>
-          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin-polizei">
+          <HeartButton href="https://blaulichtsingles.ch/registration/?AID=magazin-polizei">
             Jetzt kostenfrei mitmachen
           </HeartButton>
         </section>

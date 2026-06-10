@@ -23,6 +23,7 @@ export function HeartButton({ href, children, className = '' }: HeartButtonProps
     <span className={`gradient-border inline-block !rounded-full !p-[3px] ${className}`}>
     <a
       href={href}
+      rel="nofollow noopener"
       className={`
         group relative inline-flex items-center gap-2 px-6 py-3 md:gap-3 md:px-9 md:py-4
         text-base md:text-lg font-bold text-white

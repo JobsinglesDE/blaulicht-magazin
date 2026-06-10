@@ -115,7 +115,7 @@ export function MatchQuiz() {
             <p className="text-foreground/70 mb-6">{result.text}</p>
             <div className="flex gap-3 justify-center">
               <a
-                href="https://blaulichtsingles.ch/?AID=magazin-quiz"
+                href="https://blaulichtsingles.ch/registration/?AID=magazin-quiz"
                 className="px-6 py-3 bg-[#429A45] text-white font-bold rounded-full hover:shadow-lg transition-all"
               >
                 Jetzt Match finden

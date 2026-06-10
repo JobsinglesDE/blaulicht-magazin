@@ -167,7 +167,7 @@ export async function PersonHubPage({ slug, show }: PersonHubPageProps) {
 
         {/* CTA */}
         <div className="text-center py-8">
-          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin">
+          <HeartButton href="https://blaulichtsingles.ch/registration/?AID=magazin">
             Jetzt kostenfrei mitmachen
           </HeartButton>
         </div>

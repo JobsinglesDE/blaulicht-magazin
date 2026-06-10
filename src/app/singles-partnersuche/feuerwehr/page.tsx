@@ -197,7 +197,7 @@ export default async function FeuerwehrPillar() {
       {/* CTA oben */}
       <ScrollReveal>
         <section className="text-center py-6 px-6">
-          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin-feuerwehr">
+          <HeartButton href="https://blaulichtsingles.ch/registration/?AID=magazin-feuerwehr">
             Jetzt kostenfrei mitmachen
           </HeartButton>
         </section>
@@ -270,7 +270,7 @@ export default async function FeuerwehrPillar() {
               <p className="text-white/90 text-lg font-semibold mb-6">
                 Feuerwehr-Singles in deiner Region
               </p>
-              <HeartButton href="https://blaulichtsingles.ch/?AID=magazin-feuerwehr">
+              <HeartButton href="https://blaulichtsingles.ch/registration/?AID=magazin-feuerwehr">
                 Jetzt Match finden
               </HeartButton>
             </div>
@@ -324,7 +324,7 @@ export default async function FeuerwehrPillar() {
           <p className="text-foreground/60 mb-8 max-w-lg mx-auto">
             Hunderte Feuerwehr-Singles in der Schweiz warten auf dich.
           </p>
-          <HeartButton href="https://blaulichtsingles.ch/?AID=magazin-feuerwehr">
+          <HeartButton href="https://blaulichtsingles.ch/registration/?AID=magazin-feuerwehr">
             Jetzt kostenfrei mitmachen
           </HeartButton>
         </section>
