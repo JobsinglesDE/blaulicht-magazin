@@ -35,7 +35,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE}/kontakt`, priority: 0.4, changeFrequency: 'yearly' },
   ];
 
-  const articlePages: MetadataRoute.Sitemap = articles.map((a) => ({
+  const articlePages: MetadataRoute.Sitemap = articles
+    .filter((a) => a.entry.status === 'published')
+    .map((a) => ({
     url: `${BASE}${getArticleUrl(a.slug, a.entry.type, a.entry.series)}`,
     lastModified: a.entry.publishedAt ? new Date(a.entry.publishedAt) : undefined,
     priority: a.entry.type === 'cluster' ? 0.8 : 0.7,
