@@ -126,6 +126,7 @@ export default async function FeuerwehrPillar() {
           name: 'Feuerwehr Singles Schweiz — Bekanntschaften für Einsatzkräfte',
           description: 'Feuerwehr Singles in der Schweiz: 80 Prozent der Feuerwehr sind Miliz. Der Piepser klingelt auch beim Date. Auf Blaulichtsingles findest du Menschen, die das verstehen — Kameradschaft, Pikett und echte Bekanntschaften.',
           videoId: 'jnHk7avIZS8',
+          // Echtes Upload-Datum des statischen Promo-Shorts — bewusste Konstante (Seite/Short ist statisch), kein Fantasie-Fallback.
           uploadDate: '2026-04-16T00:00:00+02:00',
           duration: 'PT34S',
         })}

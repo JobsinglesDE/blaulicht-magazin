@@ -125,6 +125,7 @@ export default async function ClusterArticle({ params }: { params: Promise<{ slu
           name: 'Partnersuche Polizei Schweiz — Guide für Blaulicht-Singles',
           description: 'Schichtarbeit, Pikettdienst und emotionale Belastung machen Dating für Schweizer Polizistinnen und Polizisten besonders schwer. Dieser Guide zeigt den Weg.',
           videoId: 'VQQ07ejarHg',
+          // Echtes Upload-Datum des statischen Promo-Shorts — bewusste Konstante (Seite/Short ist statisch), kein Fantasie-Fallback.
           uploadDate: '2026-04-16T00:00:00+02:00',
           duration: 'PT33S',
         })} />

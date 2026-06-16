@@ -120,7 +120,7 @@ export default async function TatortArticle({ params }: { params: Promise<{ slug
             name: ytEmbed.title || article.title,
             description: article.excerpt,
             videoId: ytEmbed.videoId,
-            uploadDate: article.publishedAt || new Date().toISOString().slice(0, 10),
+            uploadDate: article.publishedAt || undefined,
           })}
         />
       )}

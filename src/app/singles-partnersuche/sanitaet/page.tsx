@@ -177,6 +177,7 @@ export default async function SanitaetPillar() {
         name: 'Partnersuche als Sanitäter & Arzt — Bekanntschaften im Rettungsdienst',
         description: 'Schichtdienst, Pikettdienst, Zwölf-Stunden-Schichten — wer versteht das schon? Auf Blaulichtsingles findest du Menschen, denen du nichts erklären musst.',
         videoId: '0Rqk6EoZk2g',
+        // Echtes Upload-Datum des statischen Promo-Shorts — bewusste Konstante (Seite/Short ist statisch), kein Fantasie-Fallback.
         uploadDate: '2026-04-16T00:00:00+02:00',
         duration: 'PT37S',
       })} />
