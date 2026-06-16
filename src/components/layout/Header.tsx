@@ -10,7 +10,7 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/logos/jobsingles-logo.webp"
+            src="/logos/jobsingles-icon-512.webp"
             alt="Jobsingles Network"
             width={44}
             height={44}
