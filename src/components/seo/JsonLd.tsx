@@ -35,12 +35,7 @@ export function siteGraphJsonLd() {
         '@id': ORG_ID,
         name: 'Blaulicht Magazin',
         url: SITE_BASE,
-        logo: {
-          '@type': 'ImageObject',
-          url: `${SITE_BASE}/logos/jobsingles-logo.png`,
-          width: 200,
-          height: 200,
-        },
+        logo: `${SITE_BASE}/logos/jobsingles-logo.png`,
         sameAs: ['https://www.facebook.com/thomashonold1/'],
       },
     ],
@@ -92,7 +87,12 @@ export function articleJsonLd({
         'https://blaulichtsingles.ch/magazin/autor/tommy-honold',
       ],
     },
-    publisher: { '@id': ORG_ID },
+    publisher: {
+      '@type': 'Organization',
+      '@id': ORG_ID,
+      name: 'Blaulicht Magazin',
+      logo: `${SITE_BASE}/logos/jobsingles-logo.png`,
+    },
     isPartOf: { '@id': WEBSITE_ID },
     inLanguage: 'de-CH',
   };
