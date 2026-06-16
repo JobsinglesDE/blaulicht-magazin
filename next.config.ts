@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
     '/wp-json/wp/v2/posts': ['./content/**/*'],
   },
   images: {
+    // Vercel-Image-Optimizer-Quota erschoepft (account-weit 402) -> WebP direkt ausliefern.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
