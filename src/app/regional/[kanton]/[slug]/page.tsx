@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: { params: Promise<{ kanton: s
   const url = `${BASE_URL}/regional/${toSlug(kanton)}/${slug}`;
   const image = article.featuredImage
     ? `${BASE_URL}${article.featuredImage}`
-    : `${BASE_URL}/logos/jobsingles-logo.png`;
+    : `${BASE_URL}/logos/jobsingles-logo.webp`;
 
   // Stadt-Variants (slug endet mit -stadt) → canonical auf Kanton-Variant (gleicher Beruf+Ort, weniger Cannibalization)
   const isStadt = slug.endsWith('-stadt');

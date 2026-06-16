@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const url = `${BASE_URL}/singles-partnersuche/${slug}`;
   const image = article.featuredImage
     ? `${BASE_URL}${article.featuredImage}`
-    : `${BASE_URL}/logos/jobsingles-logo.png`;
+    : `${BASE_URL}/logos/jobsingles-logo.webp`;
 
   return {
     title,

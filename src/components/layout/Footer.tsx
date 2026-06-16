@@ -37,7 +37,7 @@ export function Footer() {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <Image
-                  src="/logos/jobsingles-logo.png"
+                  src="/logos/jobsingles-logo.webp"
                   alt="Jobsingles Network"
                   width={36}
                   height={36}
