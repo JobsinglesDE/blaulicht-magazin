@@ -10,7 +10,8 @@ const nextConfig: NextConfig = {
   },
   images: {
     // Vercel-Image-Optimizer-Quota erschoepft (account-weit 402) -> WebP direkt ausliefern.
-    unoptimized: true,
+    loader: 'custom',
+    loaderFile: './image-loader.ts',
     remotePatterns: [
       {
         protocol: 'https',
