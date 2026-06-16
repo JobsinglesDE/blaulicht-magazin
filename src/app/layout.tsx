@@ -6,6 +6,7 @@ import { Footer } from '@/components/layout/Footer';
 import { BottomNav } from '@/components/layout/BottomNav';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import { ClientEnhancements } from '@/components/layout/ClientEnhancements';
+import { JsonLd, siteGraphJsonLd } from '@/components/seo/JsonLd';
 
 const roboto = Roboto({
   variable: '--font-roboto',
@@ -68,6 +69,7 @@ export default function RootLayout({
   return (
     <html lang="de-CH" className={`${roboto.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans">
+        <JsonLd data={siteGraphJsonLd()} />
         <ThemeProvider theme="light">
           <Header />
           <main className="flex-1 pt-20 pb-20 md:pb-0">{children}</main>

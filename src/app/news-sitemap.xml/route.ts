@@ -16,7 +16,7 @@ export async function GET() {
   const newsEntries: NewsEntry[] = [];
 
   for (const a of articles) {
-    if (!a.entry.publishedAt) continue;
+    if (a.entry.status !== 'published' || !a.entry.publishedAt) continue;
     const pubDate = new Date(a.entry.publishedAt);
     if (pubDate < twoDaysAgo) continue;
 
@@ -32,7 +32,7 @@ export async function GET() {
   }
 
   for (const s of series) {
-    if (!s.entry.publishedAt) continue;
+    if (s.entry.status !== 'published' || !s.entry.publishedAt) continue;
     const pubDate = new Date(s.entry.publishedAt);
     if (pubDate < twoDaysAgo) continue;
 

@@ -7,7 +7,7 @@ import { HeartButton } from '@/components/ui/HeartButton';
 import { CircularTestimonials } from '@/components/ui/CircularTestimonials';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { AnimatedGradientBorder } from '@/components/ui/AnimatedGradientBorder';
-import { JsonLd, collectionPageJsonLd, breadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { JsonLd, collectionPageJsonLd } from '@/components/seo/JsonLd';
 
 const POLIZEI_URL = 'https://blaulichtsingles.ch/magazin/singles-partnersuche/polizei';
 
@@ -125,13 +125,6 @@ export default async function PolizeiPillar() {
           url: 'https://blaulichtsingles.ch/magazin/singles-partnersuche/polizei',
           items: schemaItems,
         })}
-      />
-      <JsonLd
-        data={breadcrumbJsonLd([
-          { name: 'Magazin', url: 'https://blaulichtsingles.ch/magazin' },
-          { name: 'Singles & Partnersuche', url: 'https://blaulichtsingles.ch/magazin/singles-partnersuche' },
-          { name: 'Polizei Dating', url: 'https://blaulichtsingles.ch/magazin/singles-partnersuche/polizei' },
-        ])}
       />
       <PillarHero
         title="Polizei Singles"

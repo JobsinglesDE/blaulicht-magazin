@@ -7,7 +7,7 @@ import { HeartButton } from '@/components/ui/HeartButton';
 import { CircularTestimonials } from '@/components/ui/CircularTestimonials';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { AnimatedGradientBorder } from '@/components/ui/AnimatedGradientBorder';
-import { JsonLd, collectionPageJsonLd, breadcrumbJsonLd, videoJsonLd } from '@/components/seo/JsonLd';
+import { JsonLd, collectionPageJsonLd, videoJsonLd } from '@/components/seo/JsonLd';
 
 const FEUERWEHR_URL = 'https://blaulichtsingles.ch/magazin/singles-partnersuche/feuerwehr';
 
@@ -120,13 +120,6 @@ export default async function FeuerwehrPillar() {
           url: 'https://blaulichtsingles.ch/magazin/singles-partnersuche/feuerwehr',
           items: schemaItems,
         })}
-      />
-      <JsonLd
-        data={breadcrumbJsonLd([
-          { name: 'Magazin', url: 'https://blaulichtsingles.ch/magazin' },
-          { name: 'Singles & Partnersuche', url: 'https://blaulichtsingles.ch/magazin/singles-partnersuche' },
-          { name: 'Feuerwehr Dating', url: 'https://blaulichtsingles.ch/magazin/singles-partnersuche/feuerwehr' },
-        ])}
       />
       <JsonLd
         data={videoJsonLd({

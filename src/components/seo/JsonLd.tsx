@@ -11,6 +11,42 @@ export function JsonLd({ data }: JsonLdProps) {
   );
 }
 
+// Stabile Entity-Graph-Wurzeln — auf jeder Seite via layout.tsx emittiert,
+// andere Schema-Nodes (Article/CollectionPage) referenzieren sie per @id.
+export const SITE_BASE = 'https://blaulichtsingles.ch/magazin';
+export const WEBSITE_ID = `${SITE_BASE}#website`;
+export const ORG_ID = `${SITE_BASE}#organization`;
+
+/** Site-weiter Entity-Graph (WebSite + Organization). CH-Seite → de-CH. */
+export function siteGraphJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': WEBSITE_ID,
+        url: SITE_BASE,
+        name: 'Blaulicht Magazin',
+        inLanguage: 'de-CH',
+        publisher: { '@id': ORG_ID },
+      },
+      {
+        '@type': 'Organization',
+        '@id': ORG_ID,
+        name: 'Blaulicht Magazin',
+        url: SITE_BASE,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${SITE_BASE}/logos/jobsingles-logo.png`,
+          width: 200,
+          height: 200,
+        },
+        sameAs: ['https://www.facebook.com/thomashonold1/'],
+      },
+    ],
+  };
+}
+
 export function articleJsonLd({
   title,
   description,
@@ -56,17 +92,8 @@ export function articleJsonLd({
         'https://blaulichtsingles.ch/magazin/autor/tommy-honold',
       ],
     },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Blaulicht Magazin',
-      url: 'https://blaulichtsingles.ch/magazin',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://blaulichtsingles.ch/magazin/logos/jobsingles-logo.png',
-        width: 200,
-        height: 200,
-      },
-    },
+    publisher: { '@id': ORG_ID },
+    isPartOf: { '@id': WEBSITE_ID },
     inLanguage: 'de-CH',
   };
 }
@@ -213,11 +240,7 @@ export function collectionPageJsonLd({
     description,
     url,
     inLanguage: 'de-CH',
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'Blaulicht Magazin',
-      url: 'https://blaulichtsingles.ch/magazin',
-    },
+    isPartOf: { '@id': WEBSITE_ID },
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: items.length,

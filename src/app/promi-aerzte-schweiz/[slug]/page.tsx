@@ -11,7 +11,7 @@ import { FAQAccordion } from '@/components/ui/FAQAccordion';
 import { HeartButton } from '@/components/ui/HeartButton';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { ArticleByline } from '@/components/content/ArticleByline';
-import { JsonLd, articleJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { JsonLd, articleJsonLd, faqJsonLd } from '@/components/seo/JsonLd';
 import { AuthorBio } from '@/components/ui/AuthorBio';
 
 function toId(text: string) {
@@ -90,13 +90,6 @@ export default async function PromiArztArticle({ params }: { params: Promise<{ s
         })}
       />
       {hasFaq && <JsonLd data={faqJsonLd((article as any).faqItems)} />}
-      <JsonLd
-        data={breadcrumbJsonLd([
-          { name: 'Startseite', url: 'https://blaulichtsingles.ch/' },
-          { name: 'Promi-Ärzte Schweiz', url: 'https://blaulichtsingles.ch/magazin/promi-aerzte-schweiz' },
-          { name: article.title, url },
-        ])}
-      />
 
       <ClusterHero
         title={article.title}

@@ -8,7 +8,7 @@ import { CircularTestimonials } from '@/components/ui/CircularTestimonials';
 import { AnimatedStats } from '@/components/ui/AnimatedCounter';
 import { AnimatedGradientBorder } from '@/components/ui/AnimatedGradientBorder';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
-import { JsonLd, collectionPageJsonLd, breadcrumbJsonLd, videoJsonLd } from '@/components/seo/JsonLd';
+import { JsonLd, collectionPageJsonLd, videoJsonLd } from '@/components/seo/JsonLd';
 
 const SANITAET_URL = 'https://blaulichtsingles.ch/magazin/singles-partnersuche/sanitaet';
 
@@ -172,13 +172,6 @@ export default async function SanitaetPillar() {
           url: 'https://blaulichtsingles.ch/magazin/singles-partnersuche/sanitaet',
           items: schemaItems,
         })}
-      />
-      <JsonLd
-        data={breadcrumbJsonLd([
-          { name: 'Magazin', url: 'https://blaulichtsingles.ch/magazin' },
-          { name: 'Singles & Partnersuche', url: 'https://blaulichtsingles.ch/magazin/singles-partnersuche' },
-          { name: 'Sanität Dating', url: 'https://blaulichtsingles.ch/magazin/singles-partnersuche/sanitaet' },
-        ])}
       />
       <JsonLd data={videoJsonLd({
         name: 'Partnersuche als Sanitäter & Arzt — Bekanntschaften im Rettungsdienst',

@@ -12,7 +12,7 @@ import { AnimatedGradientBorder } from '@/components/ui/AnimatedGradientBorder';
 import { StickyTOC } from '@/components/content/StickyTOC';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { ArticleByline } from '@/components/content/ArticleByline';
-import { JsonLd, articleJsonLd, faqJsonLd, placeJsonLd, breadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { JsonLd, articleJsonLd, faqJsonLd, placeJsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
 
 function toSlug(kanton: string) {
@@ -123,14 +123,6 @@ export default async function RegionalDetail({ params }: { params: Promise<{ kan
           url: `${BASE_URL}/regional/${toSlug(kanton)}/${slug}`,
           kanton: article.kanton,
         })}
-      />
-      <JsonLd
-        data={breadcrumbJsonLd([
-          { name: 'Magazin', url: BASE_URL },
-          { name: 'Regional', url: `${BASE_URL}/regional` },
-          { name: article.kanton, url: `${BASE_URL}/regional/${toSlug(article.kanton)}` },
-          { name: article.title, url: `${BASE_URL}/regional/${toSlug(kanton)}/${slug}` },
-        ])}
       />
       {article.faqItems && article.faqItems.length > 0 && (
         <JsonLd data={faqJsonLd(article.faqItems)} />

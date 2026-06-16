@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { reader } from '@/lib/keystatic';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
-import { JsonLd, collectionPageJsonLd, breadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { JsonLd, collectionPageJsonLd } from '@/components/seo/JsonLd';
 
 const HUB_URL = 'https://blaulichtsingles.ch/magazin/promi-aerzte-schweiz';
 
@@ -64,12 +64,6 @@ export default async function PromiAerzteSchweizHub() {
             url: `https://blaulichtsingles.ch/magazin/promi-aerzte-schweiz/${p.slug}`,
           })),
         })}
-      />
-      <JsonLd
-        data={breadcrumbJsonLd([
-          { name: 'Startseite', url: 'https://blaulichtsingles.ch/' },
-          { name: 'Promi-Ärzte Schweiz', url: HUB_URL },
-        ])}
       />
 
       <section className="relative overflow-hidden min-h-[300px] md:min-h-[400px] flex items-center">
