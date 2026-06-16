@@ -131,7 +131,7 @@ export function Footer() {
             href="https://www.youtube.com/@Blaulichtsingles_CH"
             target="_blank"
             rel="noopener"
-            aria-label="BlaulichtSingles auf YouTube"
+            aria-label="@Blaulichtsingles_CH auf YouTube"
             className="flex items-center gap-2 text-white/60 hover:text-brand-orange transition-colors group"
           >
             <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" viewBox="0 0 256 180" className="w-6 h-6 group-hover:scale-110 transition-transform">
