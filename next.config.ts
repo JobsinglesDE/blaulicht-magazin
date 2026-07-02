@@ -54,6 +54,18 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // Option-B-Konsolidierung (2026-07-02): Die 0-Impr Dating-Regional-Spokes tragen kein
+  // eigenes Suchvolumen (DFS CH: Blaulicht-Dating ~30/mo). Statt 145 tote Seiten bleibt ein
+  // fokussiertes, rankbares Portal: alle Kanton-Spokes 301 auf ihren Beruf-Pillar, alle
+  // bekanntschaften-Ortsseiten auf den bekanntschaften-Hub. Slug-Muster: {beruf}-singles-{kanton}.
+  async redirects() {
+    return [
+      { source: '/regional/:kanton/feuerwehr-singles-:ort', destination: '/regional/feuerwehr', permanent: true },
+      { source: '/regional/:kanton/polizei-singles-:ort', destination: '/regional/polizei', permanent: true },
+      { source: '/regional/:kanton/sanitaet-singles-:ort', destination: '/regional/sanitaet', permanent: true },
+      { source: '/regional/bekanntschaften/:slug', destination: '/regional/bekanntschaften', permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -97,14 +97,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
     }));
 
+  // Option-B-Konsolidierung (2026-07-02): Die 0-Impr Dating-Regional-Spokes (regional/*
+  // + bekanntschaften/*) werden per 301 auf die Pillars konsolidiert (siehe next.config
+  // redirects) und deshalb NICHT mehr in der Sitemap gelistet. Nur die Pillars/Kanton-Hubs
+  // + echter Content (Artikel/Serien/Promi-Ärzte/Storys) bleiben.
+  void regionalPages;
+  void bekanntschaftenPages;
   return [
     ...staticPages,
     ...articlePages,
     ...kantonPages,
-    ...regionalPages,
     ...seriesPages,
     ...personPages,
-    ...bekanntschaftenPages,
     ...storyPages,
     ...authorPages,
   ];
