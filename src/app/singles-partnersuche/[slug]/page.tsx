@@ -16,7 +16,8 @@ import { AnimatedGradientBorder } from '@/components/ui/AnimatedGradientBorder';
 import { StickyTOC } from '@/components/content/StickyTOC';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { ArticleByline } from '@/components/content/ArticleByline';
-import { JsonLd, articleJsonLd, faqJsonLd, videoJsonLd } from '@/components/seo/JsonLd';
+import { JsonLd, articleJsonLd, faqJsonLd, videoJsonLd, occupationSalaryJsonLd } from '@/components/seo/JsonLd';
+import { POLIZEI_CH_GEHALT_ROWS, POLIZEI_CH_GEHALT_QUELLE } from '@/lib/polizei-ch-gehalt-daten';
 
 function toId(text: string) {
   return text.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -120,6 +121,16 @@ export default async function ClusterArticle({ params }: { params: Promise<{ slu
       {article.faqItems && article.faqItems.length > 0 && (
         <JsonLd data={faqJsonLd(article.faqItems)} />
       )}
+      {slug === 'polizei-gehalt-schweiz' && (() => {
+        const s = occupationSalaryJsonLd({
+          name: 'Polizist / Polizistin (Schweiz)',
+          description: 'Lohn in der Schweizer Polizei nach Ausbildungsphase (Kantonspolizei Zürich).',
+          url: `${BASE_URL}/singles-partnersuche/${slug}`,
+          rows: POLIZEI_CH_GEHALT_ROWS,
+          quelle: POLIZEI_CH_GEHALT_QUELLE,
+        });
+        return s ? <JsonLd data={s} /> : null;
+      })()}
       {slug === 'partnersuche-polizei' && (
         <JsonLd data={videoJsonLd({
           name: 'Partnersuche Polizei Schweiz — Guide für Blaulicht-Singles',

@@ -282,3 +282,56 @@ export function placeJsonLd({
     },
   };
 }
+
+// Occupation/Salary-Schema (portiert von handwerk/medic; CHF + Schweiz für blaulicht).
+export function occupationSalaryJsonLd({
+  name,
+  description,
+  url,
+  area = 'Schweiz',
+  currency = 'CHF',
+  rows,
+  quelle,
+}: {
+  name: string;
+  description?: string;
+  url: string;
+  area?: string;
+  currency?: string;
+  rows: { gruppe: string; median: string; q1?: string; q3?: string }[];
+  quelle?: string;
+}) {
+  const toNum = (s?: string) => {
+    if (!s) return null;
+    const n = parseInt(s.replace(/[^0-9]/g, ''), 10);
+    return Number.isFinite(n) && n > 0 ? n : null;
+  };
+  const dist = rows
+    .map((r) => {
+      const median = toNum(r.median);
+      if (!median) return null;
+      const p25 = toNum(r.q1);
+      const p75 = toNum(r.q3);
+      return {
+        '@type': 'MonetaryAmountDistribution',
+        name: r.gruppe,
+        currency,
+        duration: 'P1M',
+        median,
+        ...(p25 ? { percentile25: p25 } : {}),
+        ...(p75 ? { percentile75: p75 } : {}),
+      };
+    })
+    .filter(Boolean);
+  if (dist.length === 0) return null;
+  const desc = [description, quelle ? `Quelle: ${quelle}` : null].filter(Boolean).join(' ');
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Occupation',
+    name,
+    ...(desc ? { description: desc } : {}),
+    mainEntityOfPage: url,
+    occupationLocation: { '@type': 'Country', name: area },
+    estimatedSalary: dist,
+  };
+}
