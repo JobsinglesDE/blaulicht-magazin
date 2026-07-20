@@ -64,6 +64,17 @@ const nextConfig: NextConfig = {
       { source: '/regional/:kanton/polizei-singles-:ort', destination: '/regional/polizei', permanent: true },
       { source: '/regional/:kanton/sanitaet-singles-:ort', destination: '/regional/sanitaet', permanent: true },
       { source: '/regional/bekanntschaften/:slug', destination: '/regional/bekanntschaften', permanent: true },
+      // 2026-07-20 Persoenlichkeitsrecht: Artikel, die ueber Ehepartner oder Vermoegen
+      // realer Aerzte spekulieren, entfernt. Auf einer Dating-Plattform wird daraus
+      // werbliche Vereinnahmung (§§ 22, 23 KUG). Fachliche Artikel bleiben.
+      { source: '/promi-aerzte-schweiz/promi-thierry-carrel-vermoegen', destination: '/promi-aerzte-schweiz', permanent: true },
+      { source: '/promi-aerzte-schweiz/promi-thierry-carrel-frau', destination: '/promi-aerzte-schweiz', permanent: true },
+      { source: '/promi-aerzte-schweiz/promi-gregor-hasler-frau-privat', destination: '/promi-aerzte-schweiz', permanent: true },
+      { source: '/promi-aerzte-schweiz/promi-samuel-stutz-frau', destination: '/promi-aerzte-schweiz', permanent: true },
+      { source: '/promi-aerzte-schweiz/promi-daniel-koch-frau', destination: '/promi-aerzte-schweiz', permanent: true },
+      { source: '/promi-aerzte-schweiz/promi-juerg-haecki-frau', destination: '/promi-aerzte-schweiz', permanent: true },
+      { source: '/promi-aerzte-schweiz/promi-werner-mang-frau', destination: '/promi-aerzte-schweiz', permanent: true },
+      { source: '/promi-aerzte-schweiz/promi-werner-mang-vermoegen', destination: '/promi-aerzte-schweiz', permanent: true },
     ];
   },
 };
