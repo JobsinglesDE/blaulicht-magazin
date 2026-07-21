@@ -75,6 +75,8 @@ const nextConfig: NextConfig = {
       { source: '/promi-aerzte-schweiz/promi-juerg-haecki-frau', destination: '/promi-aerzte-schweiz', permanent: true },
       { source: '/promi-aerzte-schweiz/promi-werner-mang-frau', destination: '/promi-aerzte-schweiz', permanent: true },
       { source: '/promi-aerzte-schweiz/promi-werner-mang-vermoegen', destination: '/promi-aerzte-schweiz', permanent: true },
+      // 2026-07-21 Tommy: blaulicht-News-Produktion pausiert, heutigen Artikel entfernt → Serien-Hub statt 404.
+      { source: '/tv-news/bergdoktor/bergdoktor-benjamin-raue-ellmau-debut', destination: '/tv-news/bergdoktor', permanent: true },
     ];
   },
 };
