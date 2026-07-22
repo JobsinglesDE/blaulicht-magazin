@@ -23,15 +23,6 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: 'TV News & Promis',
-    href: '/tv-news',
-    dropdown: [
-      { label: '«Tatort» Zürich', href: '/tv-news/tatort-zuerich' },
-      { label: 'Der Bergdoktor', href: '/tv-news/bergdoktor' },
-      { label: 'Promi-Ärzte Schweiz', href: '/promi-aerzte-schweiz', description: 'Die bekanntesten TV-Mediziner der Schweiz' },
-    ],
-  },
-  {
     label: 'Singles Regional',
     href: '/regional',
     dropdown: [
