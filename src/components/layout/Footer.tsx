@@ -62,6 +62,9 @@ export function Footer() {
                 <Link href="/singles-partnersuche" className="text-sm text-white/75 hover:text-brand-orange transition-colors">
                   Singles & Partnersuche
                 </Link>
+                <Link href="/tv-news" className="text-sm text-white/75 hover:text-brand-orange transition-colors">
+                  TV News
+                </Link>
                 <Link href="/studien" className="text-sm text-white/75 hover:text-brand-orange transition-colors">
                   Studien
                 </Link>
