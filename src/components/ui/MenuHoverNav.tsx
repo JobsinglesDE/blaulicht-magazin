@@ -41,6 +41,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: 'Bekanntschaften', href: '/regional/bekanntschaften', description: 'Blaulicht-Singles in deiner Stadt' },
     ],
   },
+  { label: 'Studien', href: '/studien' },
   { label: 'Erfolgsgeschichten', href: '/erfolgsgeschichten' },
 ];
 

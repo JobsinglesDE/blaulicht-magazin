@@ -84,6 +84,7 @@ export default config({
             { label: 'Serie', value: 'serie' },
             { label: 'Story', value: 'story' },
             { label: 'Promi-Arzt', value: 'promi-arzt' },
+            { label: 'Studie', value: 'studie' },
           ],
         }),
         series: fields.select({
@@ -145,6 +146,35 @@ export default config({
         takeaways: fields.array(fields.text({ label: 'Punkt' }), {
           label: 'Das Wichtigste',
         }),
+        // ── Studien-Felder (nur fuer Typ "Studie") — wiederverwendbar fuer amtliche
+        // Reanalyse ODER eigene Mitgliederbefragung. Gleiche Daten-Viz, gleiches
+        // Dataset-JSON-LD. Rendert nur, wenn befuellt. ──
+        studieMethodik: fields.text({
+          label: 'Studie · Methodik',
+          multiline: true,
+          description: 'z.B. "Reanalyse amtlicher Statistik" oder "Online-Mitgliederbefragung". Erscheint in der Methodik-Box.',
+        }),
+        studieDatengrundlage: fields.text({ label: 'Studie · Datengrundlage / Zeitraum' }),
+        studieStichprobe: fields.text({ label: 'Studie · Stichprobe / n (optional)' }),
+        studieInstitut: fields.text({ label: 'Studie · Institut / Herausgeber' }),
+        studieDatenpunkte: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Label' }),
+            wert: fields.text({ label: 'Wert (Zahl ohne Einheit)' }),
+            einheit: fields.text({ label: 'Einheit (%, Mio, …)' }),
+            vergleich: fields.text({ label: 'Vergleichswert (optional, fuer Balken)' }),
+            quelle: fields.text({ label: 'Quelle' }),
+          }),
+          { label: 'Studie · Kernzahlen (Daten-Viz)', itemLabel: (props) => props.fields.label.value }
+        ),
+        studieQuellen: fields.array(
+          fields.object({
+            titel: fields.text({ label: 'Titel' }),
+            autorJahr: fields.text({ label: 'Autor / Jahr' }),
+            url: fields.text({ label: 'URL' }),
+          }),
+          { label: 'Studie · Quellen', itemLabel: (props) => props.fields.titel.value }
+        ),
         status: fields.select({
           label: 'Status',
           defaultValue: 'published',

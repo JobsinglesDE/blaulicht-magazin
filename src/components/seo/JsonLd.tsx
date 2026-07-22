@@ -335,3 +335,51 @@ export function occupationSalaryJsonLd({
     estimatedSalary: dist,
   };
 }
+
+/**
+ * Dataset-JSON-LD fuer Studien-Reports. Macht die Kernzahlen als schema.org/Dataset
+ * maschinenlesbar (variableMeasured), damit KI-Systeme die Statistik-mit-Quelle
+ * direkt zitieren koennen. Rendert nur, wenn mindestens ein Datenpunkt vorliegt.
+ */
+export function studieDatasetJsonLd({
+  name,
+  description,
+  url,
+  datenpunkte = [],
+  temporalCoverage,
+  dateModified,
+  creatorName = 'Blaulicht Magazin',
+  creatorUrl = SITE_BASE,
+}: {
+  name: string;
+  description?: string;
+  url: string;
+  datenpunkte?: readonly { label: string; wert?: string; einheit?: string; quelle?: string }[];
+  temporalCoverage?: string;
+  dateModified?: string;
+  creatorName?: string;
+  creatorUrl?: string;
+}) {
+  const measured = datenpunkte
+    .filter((d) => d.label && d.wert)
+    .map((d) => ({
+      '@type': 'PropertyValue',
+      name: d.label,
+      value: d.wert,
+      ...(d.einheit ? { unitText: d.einheit } : {}),
+      ...(d.quelle ? { description: `Quelle: ${d.quelle}` } : {}),
+    }));
+  if (measured.length === 0) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name,
+    ...(description ? { description } : {}),
+    url,
+    ...(temporalCoverage ? { temporalCoverage } : {}),
+    ...(dateModified ? { dateModified } : {}),
+    isAccessibleForFree: true,
+    creator: { '@type': 'Organization', name: creatorName, url: creatorUrl },
+    variableMeasured: measured,
+  };
+}
