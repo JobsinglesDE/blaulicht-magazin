@@ -43,6 +43,16 @@ function extractH2s(content: any): { label: string; id: string }[] {
 
 const BASE_URL = 'https://blaulichtsingles.ch/magazin';
 
+/**
+ * Echte Pressefotos erkennt man am Credit mit Quellenangabe. Sie duerfen NIE als
+ * KI gekennzeichnet werden — das waere selbst irrefuehrend (§ 5 UWG) und entwertet
+ * die Lizenzangabe des Rechteinhabers.
+ */
+function istEchtesFoto(credit?: string | null): boolean {
+  if (!credit) return false;
+  return /Foto:|Wikimedia|CC[- ]BY|GFDL|dpa|Getty|imago|ZDF|RTL|SRF|ARD|MDR|NDR|SWR|SAT\.1|ProSieben|VOX|Joyn|Verlag|Pressefoto|Autorenfoto/i.test(credit);
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const article = await reader.collections.articles.read(slug);
@@ -152,7 +162,7 @@ export default async function ClusterArticle({ params }: { params: Promise<{ slu
         date={article.publishedAt || undefined}
         /* News nutzen echte Pressebilder, alles andere ist KI-generiert
            (Art. 50 Abs. 4 KI-VO). */
-        aiGenerated={!article.isNews}
+        aiGenerated={!article.isNews && !istEchtesFoto(article.featuredImageCredit)}
       />
 
       <StickyTOC items={extractH2s(article.content)} />
