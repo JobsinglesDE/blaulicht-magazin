@@ -104,6 +104,9 @@ export default async function StudieArticle({ params }: { params: Promise<{ slug
         imageAlt={article.featuredImageAlt || undefined}
         imageCredit={article.featuredImageCredit || undefined}
         date={article.publishedAt || undefined}
+      /* News nutzen echte Pressebilder, alles andere ist KI-generiert
+         (Art. 50 Abs. 4 KI-VO). */
+      aiGenerated
       />
 
       <div className="max-w-3xl mx-auto px-6 py-12">

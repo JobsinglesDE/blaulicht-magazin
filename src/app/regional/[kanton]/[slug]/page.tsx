@@ -136,6 +136,9 @@ export default async function RegionalDetail({ params }: { params: Promise<{ kan
         image={article.featuredImage || undefined}
         imageAlt={article.featuredImageAlt || undefined}
         imageCredit={article.featuredImageCredit || undefined}
+      /* News nutzen echte Pressebilder, alles andere ist KI-generiert
+         (Art. 50 Abs. 4 KI-VO). */
+      aiGenerated
       />
 
       <StickyTOC items={extractH2s(article.content)} />

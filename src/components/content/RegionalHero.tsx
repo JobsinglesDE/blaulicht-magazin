@@ -8,9 +8,11 @@ interface RegionalHeroProps {
   image?: string;
   imageAlt?: string;
   imageCredit?: string;
+  /** KI-generiertes Bild — Kennzeichnung nach Art. 50 Abs. 4 KI-VO. */
+  aiGenerated?: boolean;
 }
 
-export function RegionalHero({ title, kanton, city, excerpt, image, imageAlt, imageCredit }: RegionalHeroProps) {
+export function RegionalHero({ title, kanton, city, excerpt, image, imageAlt, imageCredit, aiGenerated }: RegionalHeroProps) {
   return (
     <section className={`relative overflow-hidden ${image ? 'min-h-[320px] md:min-h-[400px]' : ''}`}>
       {/* Background Image */}
@@ -52,9 +54,19 @@ export function RegionalHero({ title, kanton, city, excerpt, image, imageAlt, im
           </p>
         )}
       </div>
-      {imageCredit && image && (
-        <div className="absolute bottom-1 right-2 text-[10px] text-white/60 drop-shadow-sm pointer-events-none">
-          {imageCredit}
+            {/*
+        Art. 50 Abs. 5 KI-VO: klar, unterscheidbar, bei erster Exposition, barrierefrei.
+        Bewusst im DOM und nicht nur ins Bild gebrannt — das Hero-Bild wird per
+        object-cover beschnitten, mobil ist ein eingebranntes Badge unsichtbar.
+      */}
+      {(imageCredit || aiGenerated) && image && (
+        <div className="absolute bottom-1.5 right-3 flex items-center gap-2 text-white/85 drop-shadow-sm pointer-events-none">
+          {aiGenerated && (
+            <span className="rounded bg-black/45 px-1.5 py-0.5 text-[11px] font-medium leading-none backdrop-blur-[2px]">
+              Bild: KI-generiert
+            </span>
+          )}
+          {imageCredit && <span className="text-[10px] text-white/70">{imageCredit}</span>}
         </div>
       )}
     </section>

@@ -86,6 +86,9 @@ export default async function BekanntschaftenArticle({ params }: { params: Promi
         imageAlt={article.featuredImageAlt || undefined}
         imageCredit={article.featuredImageCredit || undefined}
         date={article.publishedAt || undefined}
+      /* News nutzen echte Pressebilder, alles andere ist KI-generiert
+         (Art. 50 Abs. 4 KI-VO). */
+      aiGenerated
       />
 
       <StickyTOC items={extractH2s(article.content)} />
