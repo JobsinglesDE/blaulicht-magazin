@@ -37,6 +37,11 @@ export function SuccessStory({ title, couple, location, excerpt, href, image, im
             <p className="text-xs text-gray-500 mt-0.5">{location}</p>
           )}
           <p className="text-xs text-gray-600 mt-2 line-clamp-2">{excerpt}</p>
+          {image && (
+            /* Art. 50 Abs. 4 KI-VO + § 5 UWG: Die Story nennt konkrete Personen,
+               das Bild zeigt sie nicht. "Symbolbild" ist hier Teil der Wahrheit. */
+            <p className="text-[10px] text-gray-400 mt-1.5">Symbolbild · KI-generiert</p>
+          )}
         </div>
       </PolaroidCard>
     </Link>

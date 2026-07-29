@@ -72,6 +72,9 @@ export default async function StoryDetail({ params }: { params: Promise<{ slug: 
               <div className="p-3 text-center">
                 <p className="font-bold text-gray-900">{story.couple}</p>
                 {story.location && <p className="text-xs text-gray-500">{story.location}</p>}
+                {/* Art. 50 Abs. 4 KI-VO + § 5 UWG: Die Story nennt konkrete Personen,
+                    das Bild zeigt sie nicht. "Symbolbild" ist hier Teil der Wahrheit. */}
+                <p className="mt-1 text-[11px] text-gray-500">Symbolbild · KI-generiert</p>
               </div>
             </PolaroidCard>
           </div>
