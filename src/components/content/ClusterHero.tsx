@@ -8,9 +8,11 @@ interface ClusterHeroProps {
   imageAlt?: string;
   imageCredit?: string;
   date?: string;
+  /** KI-generiertes Bild — Kennzeichnung nach Art. 50 Abs. 4 KI-VO. */
+  aiGenerated?: boolean;
 }
 
-export function ClusterHero({ title, excerpt, category, image, imageAlt, imageCredit, date }: ClusterHeroProps) {
+export function ClusterHero({ title, excerpt, category, image, imageAlt, imageCredit, date, aiGenerated }: ClusterHeroProps) {
   if (!image) {
     return (
       <section className="max-w-4xl mx-auto px-6 pt-16 pb-12">
@@ -47,9 +49,19 @@ export function ClusterHero({ title, excerpt, category, image, imageAlt, imageCr
         <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-3 leading-tight drop-shadow-lg">{title}</h1>
         {excerpt && <p className="text-base md:text-lg text-white/80 max-w-2xl leading-relaxed drop-shadow">{excerpt}</p>}
       </div>
-      {imageCredit && (
-        <div className="absolute bottom-1 right-2 text-[10px] text-white/60 drop-shadow-sm pointer-events-none">
-          {imageCredit}
+      {/*
+        Art. 50 Abs. 5 KI-VO: klar, unterscheidbar, bei erster Exposition, barrierefrei.
+        Bewusst im DOM und nicht nur ins Bild gebrannt — das Hero-Bild wird per
+        object-cover beschnitten, mobil ist ein eingebranntes Badge unsichtbar.
+      */}
+      {(imageCredit || aiGenerated) && (
+        <div className="absolute bottom-1.5 right-3 flex items-center gap-2 text-white/85 drop-shadow-sm pointer-events-none">
+          {aiGenerated && (
+            <span className="rounded bg-black/45 px-1.5 py-0.5 text-[11px] font-medium leading-none backdrop-blur-[2px]">
+              Bild: KI-generiert
+            </span>
+          )}
+          {imageCredit && <span className="text-[10px] text-white/70">{imageCredit}</span>}
         </div>
       )}
     </section>

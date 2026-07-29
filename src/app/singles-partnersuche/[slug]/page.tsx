@@ -150,6 +150,9 @@ export default async function ClusterArticle({ params }: { params: Promise<{ slu
         imageAlt={article.featuredImageAlt || undefined}
         imageCredit={article.featuredImageCredit || undefined}
         date={article.publishedAt || undefined}
+        /* News nutzen echte Pressebilder, alles andere ist KI-generiert
+           (Art. 50 Abs. 4 KI-VO). */
+        aiGenerated={!article.isNews}
       />
 
       <StickyTOC items={extractH2s(article.content)} />
