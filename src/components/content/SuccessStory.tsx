@@ -38,9 +38,9 @@ export function SuccessStory({ title, couple, location, excerpt, href, image, im
           )}
           <p className="text-xs text-gray-600 mt-2 line-clamp-2">{excerpt}</p>
           {image && (
-            /* Art. 50 Abs. 4 KI-VO + § 5 UWG: Die Story nennt konkrete Personen,
-               das Bild zeigt sie nicht. "Symbolbild" ist hier Teil der Wahrheit. */
-            <p className="text-[10px] text-gray-400 mt-1.5">Symbolbild · KI-generiert</p>
+            /* Art. 50 Abs. 4 KI-VO + § 5 UWG. gray-500 statt gray-400: 4.83:1 statt
+               2.54:1 Kontrast — Abs. 5 verlangt Barrierefreiheit (WCAG AA 4.5:1). */
+            <p className="text-[10px] text-gray-500 mt-1">Symbolbild, KI-generiert</p>
           )}
         </div>
       </PolaroidCard>
