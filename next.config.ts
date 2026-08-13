@@ -75,6 +75,13 @@ const nextConfig: NextConfig = {
       { source: '/promi-aerzte-schweiz/promi-juerg-haecki-frau', destination: '/promi-aerzte-schweiz', permanent: true },
       { source: '/promi-aerzte-schweiz/promi-werner-mang-frau', destination: '/promi-aerzte-schweiz', permanent: true },
       { source: '/promi-aerzte-schweiz/promi-werner-mang-vermoegen', destination: '/promi-aerzte-schweiz', permanent: true },
+      // GSC 2026-08-13: alte Struktur /singles-partnersuche/promi-* rankt noch (je 1-4 Impr.),
+      // liefert aber 404. Beim URL-Umbau auf /promi-aerzte-schweiz/ fehlten diese Redirects —
+      // die Ziel-Slugs haben zusaetzlich ein Suffix bekommen, darum einzeln statt per Muster.
+      { source: '/singles-partnersuche/promi-daniel-koch', destination: '/promi-aerzte-schweiz/promi-daniel-koch-heute', permanent: true },
+      { source: '/singles-partnersuche/promi-juerg-haecki', destination: '/promi-aerzte-schweiz/promi-juerg-haecki-lucerne-clinic', permanent: true },
+      { source: '/singles-partnersuche/promi-nicole-lindenblatt', destination: '/promi-aerzte-schweiz/promi-nicole-lindenblatt', permanent: true },
+      { source: '/singles-partnersuche/promi-werner-mang', destination: '/promi-aerzte-schweiz/promi-werner-mang-buecher', permanent: true },
       // 2026-07-21 Tommy: blaulicht-News-Produktion pausiert, heutigen Artikel entfernt → Serien-Hub statt 404.
       { source: '/tv-news/bergdoktor/bergdoktor-benjamin-raue-ellmau-debut', destination: '/tv-news/bergdoktor', permanent: true },
     ];
