@@ -12,7 +12,7 @@ import { AnimatedStats } from '@/components/ui/AnimatedCounter';
 import { MatchQuiz } from '@/components/ui/MatchQuiz';
 
 export const metadata = {
-  alternates: { canonical: '/' },
+  alternates: { canonical: 'https://blaulichtsingles.ch/magazin' },
 };
 
 const rotations: Array<'left' | 'right' | 'slight'> = ['left', 'right', 'slight'];
