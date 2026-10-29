@@ -152,7 +152,23 @@ export default async function HomePage() {
         </ScrollReveal>
       )}
 
-      {/* TV News */}
+      {/* Weitere Artikel — Carousel */}
+      {carouselItems.length > 3 && (
+        <ScrollReveal>
+          <CarouselCards title="Mehr entdecken" items={carouselItems.slice(3)} />
+        </ScrollReveal>
+      )}
+
+      {/* Quiz */}
+      <ScrollReveal>
+        <section className="max-w-4xl mx-auto px-6 py-16">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2 text-center">Finde deinen Match-Typ</h2>
+          <p className="text-foreground/60 mb-8 text-center">3 Fragen — und du weisst, wer zu dir passt.</p>
+          <MatchQuiz />
+        </section>
+      </ScrollReveal>
+
+      {/* TV News — laufen aus, bewusst weit unten (Tommy 29.10.2026) */}
       {tvNews.length > 0 && (
         <ScrollReveal>
           <section className="max-w-6xl mx-auto px-6 py-12">
@@ -179,22 +195,6 @@ export default async function HomePage() {
           </section>
         </ScrollReveal>
       )}
-
-      {/* Weitere Artikel — Carousel */}
-      {carouselItems.length > 3 && (
-        <ScrollReveal>
-          <CarouselCards title="Mehr entdecken" items={carouselItems.slice(3)} />
-        </ScrollReveal>
-      )}
-
-      {/* Quiz */}
-      <ScrollReveal>
-        <section className="max-w-4xl mx-auto px-6 py-16">
-          <h2 className="text-2xl md:text-3xl font-bold mb-2 text-center">Finde deinen Match-Typ</h2>
-          <p className="text-foreground/60 mb-8 text-center">3 Fragen — und du weisst, wer zu dir passt.</p>
-          <MatchQuiz />
-        </section>
-      </ScrollReveal>
 
       {/* CTA */}
       <ScrollReveal>
