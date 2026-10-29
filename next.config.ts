@@ -84,6 +84,7 @@ const nextConfig: NextConfig = {
       { source: '/singles-partnersuche/promi-werner-mang', destination: '/promi-aerzte-schweiz/promi-werner-mang-buecher', permanent: true },
       // 2026-07-21 Tommy: blaulicht-News-Produktion pausiert, heutigen Artikel entfernt → Serien-Hub statt 404.
       { source: '/tv-news/bergdoktor/bergdoktor-benjamin-raue-ellmau-debut', destination: '/tv-news/bergdoktor', permanent: true },
+      { source: '/tv-news/bergdoktor/bergdoktor-ylvi-unertl-sophia-gruber', destination: '/tv-news/bergdoktor', permanent: true },
     ];
   },
 };
